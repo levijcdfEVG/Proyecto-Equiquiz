@@ -3,11 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <!-- Estilos locales -->
-    <link href="assets/css/fonts.css" rel="stylesheet" />
-    <link href="assets/css/mainMenu.css" rel="stylesheet" />
-    <link href="assets/css/historia.css" rel="stylesheet" />
-    <link href="assets/css/descripcion.css" rel="stylesheet" />
-    <link href="assets/css/ranking.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/reset.css"> 
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,20 +12,20 @@
     <link rel="icon" href="assets/img/icon.png" />
     <title>EquiQuiz</title>
 </head>
-<body>
+<body class="fondoCesped">
     <header>
-        <h1 class="irish-grover-regular">EquiQuiz</h1>
+        <h1>EquiQuiz</h1>
     </header>
     <!-- Seccion Principal del menu -->
     <main id="contenedorBotones">
         <!-- Primera fila: Historia y Jugar -->
         <div class="fila-arriba">
-            <button class="irish-grover-regular" onclick="activarBoton(); let tipoBoton = 'historia'; gestionarSecciones(tipoBoton);" id="botonHistoria">Historia</button>
-            <button class="irish-grover-regular" onclick="window.location.href='https://w3docs.com';" id="contendorJugar" disabled>Jugar</button>
+            <button onclick="activarBoton(); let tipoBoton = 'historia'; gestionarSecciones(tipoBoton);" id="botonHistoria">Historia</button>
+            <button onclick="window.location.href='https://w3docs.com';" id="contendorJugar" disabled>Jugar</button>
         </div>
         <!-- Segunda fila: Ranking -->
         <div class="fila-abajo">
-            <button class="irish-grover-regular" onclick="tipoBoton = 'ranking'; gestionarSecciones(tipoBoton);" id="botonRanking">Ranking</button>
+            <button onclick="tipoBoton = 'ranking'; gestionarSecciones(tipoBoton);" id="botonRanking">Ranking</button>
         </div>
     </main>
 
@@ -38,7 +35,7 @@
         <div class="personajes">
             <div class="personaje">
                 <img src="assets/img/luis.png" alt="Luis">
-                <br><button class="irish-grover-regular" onclick="mostrarDescripcion('luis')">Luis</button>
+                <br><button onclick="mostrarDescripcion('luis')">Luis</button>
             </div>
             <div class="personaje">
                 <img src="assets/img/ana.png" alt="Ana">
