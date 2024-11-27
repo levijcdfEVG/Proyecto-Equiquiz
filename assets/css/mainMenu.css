@@ -1,10 +1,33 @@
+/*Estilos de body*/
+body{
+    background-image: url("/assets/img/cespedFondo.jpg");
+  
+}
 
 /*Botones de menu*/
-.botonesMenu{
+#contenedorBotones > a{
     text-decoration: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #A8F8B4;
+    border: 1px solid black;
     border-radius: 10px;
     display: block;
+    padding: 10px;
+    text-align: center;
 }
-  
+
+/*Contenedor de botones del index*/
+#contenedorBotones{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+}
+
+/*Estilos de encabezado*/
+header{
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+}
