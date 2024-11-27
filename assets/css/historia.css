@@ -1,9 +1,10 @@
 /* Estilo para la sección historia */
 #historiaCard {
     padding: 20px;
-    background: url('assets/img/cespedFondo.png') no-repeat center center/cover;
+    background: url('assets/img/cespedFondo.png');
     color: white;
     text-align: center;
+    display: none;
 }
 
 #historiaCard h2 {

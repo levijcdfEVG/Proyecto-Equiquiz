@@ -1,7 +1,6 @@
 /* Estilo principal de la sección de descripción */
 #descripcionPersonaje {
     display: none;
-    height: 100vh;
     background: url('assets/img/cespedFondo.png') no-repeat center center/cover;
     text-align: center;
     color: white;
