@@ -5,6 +5,9 @@
     <!-- Estilos locales -->
     <link href="assets/css/fonts.css" rel="stylesheet" />
     <link href="assets/css/mainMenu.css" rel="stylesheet" />
+    <link href="assets/css/historia.css" rel="stylesheet" />
+    <link href="assets/css/descripcion.css" rel="stylesheet" />
+    <link href="assets/css/ranking.css" rel="stylesheet" />
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +19,7 @@
     <header>
         <h1 class="irish-grover-regular">EquiQuiz</h1>
     </header>
+    <!-- Seccion Principal del menu -->
     <main id="contenedorBotones">
         <!-- Primera fila: Historia y Jugar -->
         <div class="fila-arriba">
@@ -28,19 +32,87 @@
         </div>
     </main>
 
-     <!-- Sección Historia -->
-     <section id="historiaCard">
+    <!-- Sección Historia -->
+    <section id="historiaCard">
         <h2>Historia</h2>
-        <p>Aquí puedes explorar la historia del juego.</p>
-        <button onclick="volverAlMenu()" class="botonVolver">Volver</button>
+        <div class="personajes">
+            <div class="personaje">
+                <img src="assets/img/luis.png" alt="Luis">
+                <br><button class="irish-grover-regular" onclick="mostrarDescripcion('luis')">Luis</button>
+            </div>
+            <div class="personaje">
+                <img src="assets/img/ana.png" alt="Ana">
+                <br><button onclick="mostrarDescripcion('ana')">Ana</button>
+            </div>
+            <div class="personaje">
+                <img src="assets/img/martina.png" alt="Martina">
+                <br><button onclick="mostrarDescripcion('martina')">Martina</button>
+            </div>
+        </div>
+        <button id="volverBtn" onclick="volverAlMenu()">Volver</button>
     </section>
+    
+
+    <!-- Subseccion de cada personaje -->
+    <section id="descripcionPersonaje" style="display: none;">
+        <h2>Descripción</h2>
+        <div class="contenedor-descripcion">
+            <div class="personaje-descripcion">
+                <img src="assets/img/luis.png" alt="Luis" id="imagenPersonaje" />
+                <p id="nombrePersonaje">Luis</p>
+            </div>
+            <div class="descripcion-texto">
+                <p id="textoDescripcion">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacus metus, dignissim sit amet congue in, maximus quis nibh. In convallis hendrerit neque, eget pretium mi faucibus eu.
+                </p>
+                <div class="audio-descripcion">
+                    <button id="botonAudio" onclick="reproducirAudio()">
+                        <img src="assets/img/icono-audio.png" alt="Audio" />
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button id="volverBtnDescripcion" onclick="volverAHistoria()">Volver</button>
+    </section>
+    
 
     <!-- Sección Ranking -->
     <section id="rankingCard">
         <h2>Ranking</h2>
-        <p>Aquí puedes ver el ranking de jugadores.</p>
-        <button onclick="volverAlMenu()" class="botonVolver">Volver</button>
+        <table class="tabla-ranking">
+            <thead>
+                <tr>
+                    <th>Posición</th>
+                    <th>Nombre</th>
+                    <th>Puntuación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Zeus</td>
+                    <td>3800</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Maria</td>
+                    <td>3700</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Levi</td>
+                    <td>3600</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Botello</td>
+                    <td>3500</td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="volverBtnRanking" onclick="volverAlMenu()">Volver</button>
     </section>
+    
 
     <!-- Scripts para manejar el menu -->
     <script src="assets/js/activarJugar.js" type="text/javascript"></script>

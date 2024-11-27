@@ -1,0 +1,82 @@
+/* Estilo para la sección historia */
+#historiaCard {
+    padding: 20px;
+    background: url('assets/img/cespedFondo.png') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+}
+
+#historiaCard h2 {
+    font-size: 3rem;
+    text-shadow: 2px 2px 5px black;
+    margin-bottom: 20px;
+}
+
+/* Contenedor de los personajes */
+.personajes {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.personaje {
+    text-align: center;
+}
+
+/* Botones de los personajes como texto */
+.nombre-personaje {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efecto hover para los nombres */
+.nombre-personaje:hover {
+    color: #a8e6a8;
+    transform: scale(1.1);
+}
+
+.personaje img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Descripciones de los personajes, inicialmente ocultas */
+.descripcion-personaje {
+    display: none;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.descripcion-personaje p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+/* Botón Volver */
+#volverBtn {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    background-color: #a8e6a8;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#volverBtn:hover {
+    background-color: #7cc47c;
+    transform: scale(1.1);
+}
