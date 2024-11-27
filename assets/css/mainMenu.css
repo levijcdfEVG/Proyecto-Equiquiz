@@ -1,9 +1,8 @@
 /*Estilos de body*/
 body{
-    background-image: url("/assets/img/cespedFondo.jpg");
-  
-}
+    background-image: url("/assets/img/cespedFondo.png");
 
+}
 /*Botones de menu*/
 #contenedorBotones > a{
     text-decoration: none;
@@ -14,8 +13,8 @@ body{
     display: block;
     padding: 10px;
     text-align: center;
+    font-size: 80px;
 }
-
 /*Contenedor de botones del index*/
 #contenedorBotones{
     position: fixed;
@@ -24,7 +23,6 @@ body{
     transform: translate(-50%,-50%);
 
 }
-
 /*Estilos de encabezado*/
 header{
     text-align: center;
