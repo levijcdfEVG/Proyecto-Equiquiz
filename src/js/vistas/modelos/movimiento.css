@@ -1,0 +1,19 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Estilo del contenedor del personaje */
+  div {
+    position: relative;
+    width: 100%; /* Opcional: ajusta el área de movimiento */
+    height: 400px; /* Ajusta según tu diseño */
+    /* border: 1px solid #ccc; Opcional: ayuda a visualizar el área */
+  }
+  
+  /* Estilo del jugador */
+  #player {
+    position: absolute;
+    width: 50px; /* Ajusta según el tamaño deseado del personaje */
+  }
+  
