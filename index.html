@@ -1,26 +1,31 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <!-- Estilos locales -->
-        <link href="assets/css/fonts.css" rel="stylesheet"/>
-        <link href="assets/css/mainMenu.css" rel="stylesheet"/>
-        <!-- Fuentes -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet"> 
-        <link rel="icon" href="assets/img/icon.png" />
-        <title>EquiQuiz</title>
-    </head>
-    <body>
-        <header>
-            <h1 class="irish-grover-regular">EquiQuiz</h1>
-        </header>
-        <main id="contenedorBotones">
-            <a>Historia</a>
-            <a>Ranking</a>
-            <a>Jugar</a>
-        </main>
-    </body>
+<head>
+    <meta charset="utf-8" />
+    <!-- Estilos locales -->
+    <link href="assets/css/fonts.css" rel="stylesheet" />
+    <link href="assets/css/mainMenu.css" rel="stylesheet" />
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet"> 
+    <link rel="icon" href="assets/img/icon.png" />
+    <title>EquiQuiz</title>
+</head>
+<body>
+    <header>
+        <h1 class="irish-grover-regular">EquiQuiz</h1>
+    </header>
+    <main id="contenedorBotones">
+        <!-- Primera fila: Historia y Jugar -->
+        <div class="fila-arriba">
+            <button class="irish-grover-regular" onclick="window.location.href='https://w3docs.com';" id="contendorHistoria">Historia</button>
+            <button class="irish-grover-regular" onclick="window.location.href='https://w3docs.com';" id="contendorJugar">Jugar</button>
+        </div>
+        <!-- Segunda fila: Ranking -->
+        <div class="fila-abajo">
+            <button class="irish-grover-regular" onclick="window.location.href='https://w3docs.com';" id="contenedorRanking">Ranking</button>
+        </div>
+    </main>
+</body>
 </html>

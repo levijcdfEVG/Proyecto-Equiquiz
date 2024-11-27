@@ -1,33 +1,56 @@
-/*Estilos de body*/
-body{
+/* Estilos de body */
+body {
     background-image: url("/assets/img/cespedFondo.jpg");
-
 }
-/*Botones de menu*/
-#contenedorBotones > a{
+
+/* Estilo de encabezado*/
+header{
+    color: white;
+    text-align: center;
+    font-size: xx-large;
+}
+
+/* Botones de menú */
+#contenedorBotones button {
     text-decoration: none;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #A8F8B4;
-    display: block;
+    border: 1px solid black;
+    border-radius: 10px;
     padding: 10px;
+    width: 450px;
     text-align: center;
     font-size: 80px;
 }
-/*Contenedor de botones del index*/
-#contenedorBotones{
+
+/* Contenedor de botones del index */
+#contenedorBotones {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    border-radius: 10px;
-    border: 0.5px white solid;
-    padding: 100px;
+    transform: translate(-50%, -50%);
     background-image: url("/assets/img/cespedFondo.png");
-
+    border-radius: 10px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column; /* Una columna que incluye las filas */
+    gap: 30px;
 }
-/*Estilos de encabezado*/
-header{
-    text-align: center;
-    font-size: xx-large;
-    color: white;
+
+/* Primera fila: Historia y Jugar */
+.fila-arriba {
+    display: flex;
+    justify-content: space-around; /* Espacia uniformemente los botones */
+    gap: 20%; /* Espaciado entre botones */
+}
+
+/* Segunda fila: Solo Ranking */
+.fila-abajo {
+    display: flex;
+    justify-content: center; /* Centra el botón de Ranking */
+}
+
+/*Estilos boton Ranking*/
+#contenedorRanking{
+    margin-top: 5%;
+    width: ;
 }
