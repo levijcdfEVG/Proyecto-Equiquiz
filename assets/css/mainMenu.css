@@ -7,7 +7,7 @@ body {
 header{
     color: white;
     text-align: center;
-    font-size: xx-large;
+    font-size: 50px;
 }
 
 /* Botones de menú */
@@ -52,5 +52,4 @@ header{
 /*Estilos boton Ranking*/
 #contenedorRanking{
     margin-top: 5%;
-    width: ;
 }
