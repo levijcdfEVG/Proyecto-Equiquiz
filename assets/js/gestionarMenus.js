@@ -16,9 +16,11 @@ document.querySelectorAll('.personaje-btn').forEach((btn) => {
 });
 
 // Botones para volver
-document.getElementById('volverBtnHistoria').addEventListener('click', volverAlMenu);
+//document.getElementById('volverBtnHistoria').addEventListener('click', volverAlMenu);
 document.getElementById('volverBtnDescripcion').addEventListener('click', volverAHistoria);
-document.getElementById('volverBtnRanking').addEventListener('click', volverAlMenu);
+document.querySelectorAll('.volverBtnRanking').forEach(boton => {
+    boton.addEventListener('click', volverAlMenu);
+});
 
 // Función para gestionar las secciones
 function gestionarSecciones(menuPart) {

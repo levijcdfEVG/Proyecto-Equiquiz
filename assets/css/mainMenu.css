@@ -5,16 +5,19 @@
     font-style: normal;
 }
 
+/*-------------------------------------------------*/
+
 /* Estilos de body */
 body {
     background-image: url("/assets/img/cespedFondo.jpg");
 }
 
 /* Estilo de encabezado*/
-header{
+header > h1{
     color: white;
     text-align: center;
     font-size: 50px;
+    margin-top: 20px;
 }
 
 /* Botones de menú */
@@ -72,6 +75,8 @@ header{
     text-align: center;
     font-size: 80px;
 }
+
+/*-------------------------------------------------*/
 
 
 /* Configuración general de la sección "Ranking" */
@@ -135,7 +140,7 @@ header{
 }
 
 /* Configuración general del botón "Volver" en la sección "Ranking" */
-#volverBtnRanking {
+.volverBtnRanking {
     margin-top: 30px;
     margin-bottom: 10px;
     font-size: 1.5rem;
@@ -154,19 +159,45 @@ header{
     transform: scale(1.1);
 }
 
+/*-------------------------------------------------*/
+
 /* Estilo para la sección historia */
 #historiaCard {
     padding: 20px;
-    background: url('assets/img/cespedFondo.png');
+    background: url('/assets/img/cespedFondo.png');
+    border-radius: 20px;
     color: white;
     text-align: center;
     display: none;
+    width: 700px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
-#historiaCard h2 {
+#historiaCard > h2 {
     font-size: 3rem;
     text-shadow: 2px 2px 5px black;
     margin-bottom: 20px;
+}
+
+/*Botones de personaje*/
+.personaje-btn{
+    margin-top: 50px;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    background-color: #a8e6a8;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.personaje-btn:hover{
+    background-color: #7cc47c;
+    transform: scale(1.1);
 }
 
 /* Contenedor de los personajes */
@@ -198,50 +229,19 @@ header{
     transform: scale(1.1);
 }
 
-.personaje img {
-    width: 150px;
-    height: 150px;
+.personaje > img {
     border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Descripciones de los personajes, inicialmente ocultas */
-.descripcion-personaje {
-    display: none;
-    margin-top: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-}
-
-.descripcion-personaje p {
-    font-size: 1.2rem;
-    line-height: 1.8;
-}
-
-/* Botón Volver */
-#volverBtn {
-    margin-top: 30px;
-    font-size: 1.5rem;
-    padding: 10px 20px;
-    background-color: #a8e6a8;
-    color: #333;
-    border: 2px solid #333;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-#volverBtn:hover {
-    background-color: #7cc47c;
-    transform: scale(1.1);
-}
+/*-------------------------------------------------*/
 
 /* Estilo principal de la sección de descripción */
 #descripcionPersonaje {
     display: none;
-    background: url('assets/img/cespedFondo.png') no-repeat center center/cover;
+    width: 65%;
+    margin: auto;
+    background: url('/assets/img/cespedFondo.png') no-repeat center center/cover;
     text-align: center;
     color: white;
     padding: 20px;
@@ -269,8 +269,6 @@ header{
 }
 
 .personaje-descripcion img {
-    width: 200px;
-    height: 200px;
     border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
 }
@@ -335,3 +333,5 @@ header{
     background-color: #7cc47c;
     transform: scale(1.1);
 }
+
+
