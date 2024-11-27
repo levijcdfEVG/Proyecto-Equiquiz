@@ -1,6 +1,6 @@
 /*Estilos de body*/
 body{
-    background-image: url("/assets/img/cespedFondo.png");
+    background-image: url("/assets/img/cespedFondo.jpg");
 
 }
 /*Botones de menu*/
@@ -8,7 +8,6 @@ body{
     text-decoration: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #A8F8B4;
-    border: 1px solid black;
     border-radius: 10px;
     display: block;
     padding: 10px;
@@ -21,6 +20,10 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    border-radius: 10px;
+    border: 0.5px white solid;
+    padding: 100px;
+    background-image: url("/assets/img/cespedFondo.png");
 
 }
 /*Estilos de encabezado*/
