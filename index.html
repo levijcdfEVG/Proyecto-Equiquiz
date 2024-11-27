@@ -24,16 +24,22 @@
         </div>
         <!-- Segunda fila: Ranking -->
         <div class="fila-abajo">
-            <button class="irish-grover-regular" onclick="window.location.href='https://w3docs.com';" id="botonRanking">Ranking</button>
+            <button class="irish-grover-regular" onclick="tipoBoton = 'ranking'; gestionarSecciones(tipoBoton);" id="botonRanking">Ranking</button>
         </div>
     </main>
 
-    <section id="historiaCard" style="text-align: center; color: red; font-size: xx-large;">
-        PRUEBA1
+     <!-- Sección Historia -->
+     <section id="historiaCard">
+        <h2>Historia</h2>
+        <p>Aquí puedes explorar la historia del juego.</p>
+        <button onclick="volverAlMenu()" class="botonVolver">Volver</button>
     </section>
 
-    <section id="rankingCard" style="text-align: center; color: red; font-size: xx-large;">
-        PRUEBA2
+    <!-- Sección Ranking -->
+    <section id="rankingCard">
+        <h2>Ranking</h2>
+        <p>Aquí puedes ver el ranking de jugadores.</p>
+        <button onclick="volverAlMenu()" class="botonVolver">Volver</button>
     </section>
 
     <!-- Scripts para manejar el menu -->
