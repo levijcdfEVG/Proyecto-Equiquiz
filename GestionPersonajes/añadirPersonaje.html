@@ -11,13 +11,27 @@
     <body>
         <div id="addPersonBg">
             <h2>Añadir Personaje</h2>
-            <form action="" method="POST">
+            <form action="" method="POST" class="formPersonajes">
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" required>
+                <input type="text" name="nombre" placeholder="Introduce Nombre Personaje" required>
+                
+                <label for="edad">Edad:</label>
+                <input type="number" name="edad" required>
+                
+                <label for="genero">Género:</label>
+                <div class="genero">
+                    <label for="hombre">H</label>
+                    <input type="radio" id="hombre" name="genero" value="Hombre" required>
+                    <label for="mujer">M</label>
+                    <input type="radio" id="mujer" name="genero" value="Mujer" required>
+                </div>
+                
+                <label for="imagen">Imagen Jugador</label>
+                <input type="file" name="imagen">
+                
                 <label for="descripcion">Descripción:</label>
                 <textarea name="descripcion" required></textarea>
-                <label for="imagen">Imagen:</label>
-                <input type="file" name="imagen" required>
+                
                 <input type="submit" value="Añadir">
             </form>
         </div>
