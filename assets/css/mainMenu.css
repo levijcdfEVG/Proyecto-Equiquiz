@@ -167,7 +167,7 @@ header > h1{
 
 /* Estilo para la sección historia */
 #historiaCard {
-    margin-top: 30px;
+    margin-top: 60px;
     padding: 20px;
     background: url('/assets/img/cespedFondo.png');
     border-radius: 20px;
@@ -340,4 +340,60 @@ header > h1{
 /*-------------------------------------------------*/
 
 /*Seleccion de Escenarios*/
+/* Sección de selección de escenarios */
+#seleccionEscenarios {
+    display: none;
+    margin: 50px auto;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background: url('/assets/img/cespedFondo.png') no-repeat center center/cover;
+    border-radius: 10px;
+    width: 80%;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Título de la sección */
+#seleccionEscenarios h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px black;
+}
+
+/* Contenedor principal de escenarios */
+.escenarios {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Estilo de cada contenedor de escenario */
+.escenario {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.escenario img {
+    width: 250px;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Texto descriptivo debajo de cada imagen */
+.escenario p {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    font-family: 'Irish Grover', cursive;
+}
+
+/* Efecto hover en el contenedor */
+.escenario:hover img {
+    transform: scale(1.1);
+    box-shadow: 4px 4px 20px rgba(255, 255, 255, 0.8);
+}
 

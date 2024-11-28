@@ -5,11 +5,12 @@ const mainMenu = document.getElementById('contenedorBotones');
 const historiaCard = document.getElementById('historiaCard');
 const rankingCard = document.getElementById('rankingCard');
 const descripcionCard = document.getElementById('descripcionPersonaje');
+const seleccionEscenarios = document.getElementById('seleccionEscenarios'); 
 
 // Botones principales
 document.getElementById('botonHistoria').addEventListener('click', () => gestionarSecciones('historia'));
 document.getElementById('botonRanking').addEventListener('click', () => gestionarSecciones('ranking'));
-
+document.getElementById('botonJugar').addEventListener('click', () => gestionarSecciones('escenarios'));
 // Botones de personajes
 document.querySelectorAll('.personaje-btn').forEach((btn) => {
     btn.addEventListener('click', () => mostrarDescripcion(btn.dataset.personaje));
@@ -33,6 +34,10 @@ function gestionarSecciones(menuPart) {
             break;
         case 'ranking':
             rankingCard.style.display = 'block';
+            historiaCard.style.display = 'none';
+            break;
+        case 'escenarios':
+            seleccionEscenarios.style.display = 'block';
             historiaCard.style.display = 'none';
             break;
         default:
@@ -82,4 +87,5 @@ function volverAlMenu() {
     historiaCard.style.display = 'none';
     rankingCard.style.display = 'none';
     descripcionCard.style.display = 'none';
+    seleccionEscenarios.style.display = 'none';
 }
