@@ -53,17 +53,17 @@ function mostrarDescripcion(personaje) {
         case 'luis':
             imagenPersonaje.src = 'assets/img/luis.png';
             nombrePersonaje.textContent = 'Luis';
-            textoDescripcion.textContent = 'Luis es un joven aventurero, lleno de energía y curiosidad.';
+            textoDescripcion.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacus metus, dignissim sit amet congue in, maximus quis nibh. In convallis hendrerit neque, eget pretium mi faucibus eu.';
             break;
         case 'ana':
             imagenPersonaje.src = 'assets/img/ana.png';
             nombrePersonaje.textContent = 'Ana';
-            textoDescripcion.textContent = 'Ana es una investigadora apasionada por la ciencia.';
+            textoDescripcion.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacus metus, dignissim sit amet congue in, maximus quis nibh. In convallis hendrerit neque, eget pretium mi faucibus eu.';
             break;
         case 'martina':
             imagenPersonaje.src = 'assets/img/martina.png';
             nombrePersonaje.textContent = 'Martina';
-            textoDescripcion.textContent = 'Martina es una estratega brillante.';
+            textoDescripcion.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacus metus, dignissim sit amet congue in, maximus quis nibh. In convallis hendrerit neque, eget pretium mi faucibus eu.';
             break;
         default:
             console.error('Personaje desconocido');

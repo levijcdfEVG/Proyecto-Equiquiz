@@ -1,4 +1,7 @@
 /*Fuentes*/
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+
+/*Clase de la fuente*/
 .irish-grover-regular {
     font-family: "Irish Grover", system-ui;
     font-weight: 400;
@@ -163,13 +166,14 @@ header > h1{
 
 /* Estilo para la sección historia */
 #historiaCard {
+    margin-top: 30px;
     padding: 20px;
     background: url('/assets/img/cespedFondo.png');
     border-radius: 20px;
     color: white;
     text-align: center;
     display: none;
-    width: 700px;
+    width: 65%;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -185,6 +189,7 @@ header > h1{
 /*Botones de personaje*/
 .personaje-btn{
     margin-top: 50px;
+    width: 150px;
     font-size: 1.5rem;
     padding: 10px 20px;
     background-color: #a8e6a8;
@@ -231,7 +236,7 @@ header > h1{
 
 .personaje > img {
     border-radius: 10px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    margin: 0 20px 0 20px;
 }
 
 /*-------------------------------------------------*/
@@ -240,6 +245,8 @@ header > h1{
 #descripcionPersonaje {
     display: none;
     width: 65%;
+    margin-top: 30px;
+    border-radius: 10px;
     margin: auto;
     background: url('/assets/img/cespedFondo.png') no-repeat center center/cover;
     text-align: center;
@@ -266,11 +273,6 @@ header > h1{
 .personaje-descripcion {
     text-align: center;
     flex: 1;
-}
-
-.personaje-descripcion img {
-    border-radius: 10px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
 }
 
 .personaje-descripcion p {
@@ -334,4 +336,7 @@ header > h1{
     transform: scale(1.1);
 }
 
+/*-------------------------------------------------*/
+
+/*Seleccion de Escenarios*/
 
