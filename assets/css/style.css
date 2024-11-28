@@ -16,7 +16,8 @@ body {
     grid-template-rows: repeat(4, 1fr);
     grid-column-gap: 27px;
     grid-row-gap: 24px;
-    height: 100vh;
+    height: 96vh;
+    padding: 2vh 2vw;
 }
     
 .GInteres {
@@ -29,26 +30,28 @@ body {
     grid-area: 3 / 1 / 5 / 3; 
 }
 
-.panelAdmin>div {
+.panelAdmin > div {
+    display: flex;
+    flex-direction: column; /* Organiza los elementos en columna */
     background-color: #68EDCB;
     border-radius: 25px;
-    padding: 20px;
     box-shadow: 0 0 10px #000;
 }
 
 .panelAdmin h2 {
     font-size: 3em;
     text-align: center;
-    color: #000;
-    margin-bottom: 5%;
+    color: #000;    
+    margin-top: 1%;
 }
 
 .actions {
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 15px;
+    margin-top: 15vh;
+    margin-bottom: 5%;
 }
+
 
 .action {
     display: flex;
@@ -62,9 +65,4 @@ body {
 .action i {
     font-size: 2em;
     margin-bottom: 5px;
-}
-
-.action p {
-    font-family: 'Irish Grover', cursive;
-    margin: 0;
 }
