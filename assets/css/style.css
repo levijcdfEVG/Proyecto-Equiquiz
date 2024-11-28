@@ -189,6 +189,32 @@ input[type="submit"]:hover {
     margin: 2vh 1.5vw;
 }
 
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1vh 2vw;
+    border-radius: 25px 25px 0 0;
+    margin-bottom: 3vh;
+}
+
+nav a {
+    font-size: 3rem;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #FFFFFF;
+}
+
+nav h2 {
+    font-size: 3rem;
+    color: #000;
+}
+
 .ABMPersonaje h2 {
     font-size: 3rem;
     color: #000;
@@ -241,21 +267,6 @@ input[type="submit"]:hover {
     margin-left: 70%;
 }
 
-.ABMPersonaje>a {
-    display: block;
-    width: 10vw;
-    height: 4vh;
-    border-radius: 15px;
-    border: none;
-    background-color: #4CAF50;
-    color: #FFFFFF;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin: 0 auto;
-    text-decoration: none;
-    line-height: 4vh;
-}
 
 .basura:hover {
     color: #f94646;
