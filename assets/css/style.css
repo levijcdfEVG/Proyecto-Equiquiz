@@ -179,7 +179,7 @@ input[type="submit"]:hover {
 /* Eliminar Personaje */
 /**********************/
 
-.eliminarPersonaje {
+.ABMPersonaje {
     background-color: #68EDCB;
     border-radius: 25px;
     width: 97vw;
@@ -189,16 +189,16 @@ input[type="submit"]:hover {
     margin: 2vh 1.5vw;
 }
 
-.eliminarPersonaje h2 {
-    font-size: 2.5rem;
+.ABMPersonaje h2 {
+    font-size: 3rem;
     color: #000;
 }
 
-.eliminarPersonaje>h2 {
+.ABMPersonaje>h2 {
     padding: 3vh 0;
 }
 
-.eliminarPersonaje div {
+.ABMPersonaje div {
     margin: 0 auto;
     width: 80vw;
     height: 33vh;
@@ -212,14 +212,14 @@ input[type="submit"]:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.eliminarPersonaje img {
+.ABMPersonaje img {
     margin-left: 15%;
     width: 120px;
     height: auto;
     border-radius: 10px;
 }
 
-.eliminarPersonaje span {
+.ABMPersonaje span {
     font-size: 3rem;
     font-weight: bold;
     color: #000;
@@ -227,7 +227,7 @@ input[type="submit"]:hover {
     text-align: center;
 }
 
-.eliminarPersonaje i {
+.ABMPersonaje i {
     margin-right: 15%;
     font-size: 4rem;
     color: #000;
@@ -235,6 +235,36 @@ input[type="submit"]:hover {
     transition: color 0.3s ease;
 }
 
-.eliminarPersonaje i:hover {
+.ABMPersonaje>label {
+    font-size: 1.5rem;
+    color: #000;
+    margin-left: 70%;
+}
+
+.ABMPersonaje>a {
+    display: block;
+    width: 10vw;
+    height: 4vh;
+    border-radius: 15px;
+    border: none;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 auto;
+    text-decoration: none;
+    line-height: 4vh;
+}
+
+.basura:hover {
     color: #f94646;
+}
+
+.modificar:hover {
+    color: #f9f946;
+}
+
+.recuperar:hover {
+    color: #46f946;
 }
