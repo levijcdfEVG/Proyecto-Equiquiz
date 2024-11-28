@@ -85,7 +85,7 @@ h2 {
 }
 
 .formPersonajes {
-    padding: 3%;
+    padding: 1%;
 }
 
 label {
@@ -253,7 +253,7 @@ nav h2 {
     text-align: center;
 }
 
-.ABMPersonaje i {
+.ABMPersonaje a , i {
     margin-right: 15%;
     font-size: 4rem;
     color: #000;
