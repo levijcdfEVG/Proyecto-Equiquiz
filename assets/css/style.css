@@ -69,7 +69,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-
 /**********************/
 /*     Personajes     */
 /**********************/
@@ -176,5 +175,66 @@ input[type="submit"]:hover {
     background-color: #45A859;
 }
 
+/**********************/
+/* Eliminar Personaje */
+/**********************/
 
+.eliminarPersonaje {
+    background-color: #68EDCB;
+    border-radius: 25px;
+    width: 97vw;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 2vh 1.5vw;
+}
 
+.eliminarPersonaje h2 {
+    font-size: 2.5rem;
+    color: #000;
+}
+
+.eliminarPersonaje>h2 {
+    padding: 3vh 0;
+}
+
+.eliminarPersonaje div {
+    margin: 0 auto;
+    width: 80vw;
+    height: 33vh;
+    background-color: #59C4B4;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.eliminarPersonaje img {
+    margin-left: 15%;
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.eliminarPersonaje span {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #000;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.eliminarPersonaje i {
+    margin-right: 15%;
+    font-size: 4rem;
+    color: #000;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.eliminarPersonaje i:hover {
+    color: #f94646;
+}
