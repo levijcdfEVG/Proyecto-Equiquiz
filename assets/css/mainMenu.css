@@ -19,8 +19,9 @@ body {
 header > h1{
     color: white;
     text-align: center;
-    font-size: 50px;
-    margin-top: 20px;
+    font-size: 100px;
+    margin-top: 40px;
+
 }
 
 /* Botones de menú */
