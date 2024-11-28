@@ -1,3 +1,16 @@
+<?php
+    require_once("./config_db.php");
+    require_once("./buscarImg.php");
+
+    $mysqli = new mysqli($servidor, $usuario, $contraseña, $basedatos);
+    if ($mysqli->connect_error) {
+        die("Error de conexión: " . $mysqli->connect_error);
+    }
+
+    $objBuscarImg = new BuscarImg($mysqli);
+    // $rutaImagen = $objBuscarImg->eleccionEscenario(); // Línea eliminada
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -107,15 +120,22 @@
             <h2 class="irish-grover-regular">Selecciona tu Escenario</h2>
             <div class="escenarios">
                 <div class="escenario">
-                    <img src="assets/img/EscenarioEducacion.png" alt="Escenario 1">
+                    <?php
+                        echo '<a href="obtenerRuta.php?ambito=educacion"><img src="assets/img/EscenarioEducacion.png" alt="Escenario 1"></a>'
+                    ?>
                     <p>Escenario Educacion</p>
                 </div>
                 <div class="escenario">
-                    <img src="assets/img/EscenarioLaboral.png" alt="Escenario 2">
+                    <?php
+                        //Enlace a obtenerRuta.php con el parámetro 'ambito' en cada caso igualado al que corresponde
+                        echo '<a href="obtenerRuta.php?ambito=laboral"><img src="assets/img/EscenarioLaboral.png" alt="Escenario 2"></a>'
+                    ?>
                     <p>Escenario Laboral</p>
                 </div>
                 <div class="escenario">
-                    <img src="assets/img/EscenarioSalud.jpeg" alt="Escenario 3">
+                    <?php
+                        echo '<a href="obtenerRuta.php?ambito=salud"><img src="assets/img/EscenarioSalud.jpeg" alt="Escenario 3"></a>'
+                    ?>
                     <p>Escenario Salud</p>
                 </div>
             </div>
