@@ -85,7 +85,7 @@ header > h1{
 
 /* Configuración general de la sección "Ranking" */
 #rankingCard {
-    display: none;
+    display: block;
     background: url('/disenio/mainMenu/assets/img/cespedFondo.png');
     text-align: center;
     color: white;
@@ -173,7 +173,7 @@ header > h1{
     border-radius: 20px;
     color: white;
     text-align: center;
-    display: none;
+    display: block;
     width: 65%;
     position: fixed;
     top: 50%;
@@ -344,7 +344,7 @@ header > h1{
 /*Seleccion de Escenarios*/
 /* Sección de selección de escenarios */
 #seleccionEscenarios {
-    display: none;
+    display: block;
     margin: 50px auto;
     text-align: center;
     color: white;
