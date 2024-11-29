@@ -86,7 +86,7 @@ header > h1{
 /* Configuración general de la sección "Ranking" */
 #rankingCard {
     display: none;
-    background: url('/assets/img/cespedFondo.png');
+    background: url('/disenio/mainMenu/assets/img/cespedFondo.png');
     text-align: center;
     color: white;
     border-radius: 10px;
@@ -169,7 +169,7 @@ header > h1{
 #historiaCard {
     margin-top: 60px;
     padding: 20px;
-    background: url('/assets/img/cespedFondo.png');
+    background: url('/disenio/mainMenu/assets/img/cespedFondo.png');
     border-radius: 20px;
     color: white;
     text-align: center;
@@ -349,7 +349,7 @@ header > h1{
     text-align: center;
     color: white;
     padding: 20px;
-    background: url('/assets/img/cespedFondo.png') no-repeat center center/cover;
+    background: url('/disenio/mainMenu/assets/img/cespedFondo.png') no-repeat center center/cover;
     border-radius: 10px;
     width: 80%;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
