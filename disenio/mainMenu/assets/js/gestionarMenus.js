@@ -11,6 +11,7 @@ const seleccionEscenarios = document.getElementById('seleccionEscenarios');
 document.getElementById('botonHistoria').addEventListener('click', () => gestionarSecciones('historia'));
 document.getElementById('botonRanking').addEventListener('click', () => gestionarSecciones('ranking'));
 document.getElementById('botonJugar').addEventListener('click', () => gestionarSecciones('escenarios'));
+
 // Botones de personajes
 document.querySelectorAll('.personaje-btn').forEach((btn) => {
     btn.addEventListener('click', () => mostrarDescripcion(btn.dataset.personaje));
