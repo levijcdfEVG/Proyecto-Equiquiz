@@ -402,4 +402,109 @@ header > h1{
 }
 
 
-  
+/* Media query para iPad */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    /* Ajustes para el body */
+    body {
+        background-size: cover; /* Asegura que la imagen de fondo se adapte */
+        padding: 10px;
+    }
+
+    /* Encabezado */
+    header > h1 {
+        font-size: 70px; /* Reducir tamaño del título */
+        margin-top: 20px;
+    }
+
+    /* Botones del menú */
+    #contenedorBotones button {
+        font-size: 50px; /* Reducir tamaño del texto */
+        width: 350px; /* Ajustar ancho */
+        padding: 8px;
+    }
+
+    /* Contenedor de botones */
+    #contenedorBotones {
+        padding: 30px;
+        gap: 20px; /* Reducir espacio entre botones */
+    }
+
+    /* Tabla de ranking */
+    .tabla-ranking {
+        width: 80%; /* Hacerla más compacta */
+    }
+
+    .tabla-ranking th,
+    .tabla-ranking td {
+        font-size: 1rem; /* Reducir tamaño de las fuentes */
+        padding: 10px;
+    }
+
+    /* Botones de personajes */
+    .personaje-btn {
+        width: 120px;
+        font-size: 1.2rem;
+        padding: 8px 15px;
+    }
+
+    /* Contenedor de personajes */
+    .personajes {
+        flex-wrap: wrap; /* Permitir que se reorganicen en varias filas */
+        gap: 20px; /* Reducir espacio */
+    }
+
+    .personaje {
+        margin: 10px;
+    }
+
+    .personaje > img {
+        width: 120px;
+        height: auto; /* Mantener proporciones */
+    }
+
+    /* Sección de descripción */
+    #descripcionPersonaje {
+        width: 90%; /* Ajustar ancho */
+        padding: 15px;
+    }
+
+    #descripcionPersonaje h2 {
+        font-size: 2rem;
+    }
+
+    .descripcion-texto p {
+        font-size: 1.2rem;
+    }
+
+    /* Escenarios */
+    #seleccionEscenarios {
+        width: 90%; /* Reducir el ancho */
+    }
+
+    .escenarios {
+        flex-wrap: wrap; /* Permitir varias filas */
+        gap: 20px;
+    }
+
+    .escenario img {
+        width: 300px; /* Reducir el tamaño */
+        height: 300px;
+    }
+
+    .escenario p {
+        font-size: 1.2rem;
+    }
+
+    /* Botón "Volver" */
+    .botonVolver,
+    #volverBtnDescripcion {
+        font-size: 1.2rem;
+        padding: 8px 15px;
+    }
+
+    .volverBtnRanking {
+        font-size: 1.2rem;
+    }
+}
+ 
