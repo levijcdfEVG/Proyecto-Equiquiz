@@ -243,8 +243,12 @@ header > h1{
 /*-------------------------------------------------*/
 
 /* Estilo principal de la sección de descripción */
+#contenedoDeDescripcion{
+    display: flex;
+    align-items: center;
+}
+
 #descripcionPersonaje {
-    display: none;
     width: 65%;
     margin-top: 30px;
     border-radius: 10px;
@@ -264,7 +268,7 @@ header > h1{
 
 /* Contenedor principal */
 .contenedor-descripcion {
-    display: flex;
+    display: block;
     justify-content: space-around;
     align-items: center;
     margin-top: 50px;
@@ -278,7 +282,7 @@ header > h1{
     flex: 1;
 }
 
-.personaje-descripcion p {
+.personaje-descripcion > p {
     margin-top: 10px;
     font-size: 2rem;
     font-weight: bold;
@@ -286,7 +290,6 @@ header > h1{
 
 /* Estilo del texto de descripción */
 .descripcion-texto {
-    flex: 2;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 20px;
     border-radius: 10px;
