@@ -12,7 +12,7 @@
 
 /* Estilos de body */
 body {
-    background-image: url("/disenio/mainMenu/assets/img/cespedFondo.jpg");
+    background-image: url("/diseño/mainMenu/assets/img/cespedFondo.jpg");
 }
 
 /* Estilo de encabezado*/
@@ -42,7 +42,7 @@ header > h1{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-image: url("/disenio/mainMenu/assets/img/cespedFondo.png");
+    background-image: url("/diseño/mainMenu/assets/img/cespedFondo.png");
     border-radius: 10px;
     padding: 50px;
     display: flex;
@@ -86,7 +86,7 @@ header > h1{
 /* Configuración general de la sección "Ranking" */
 #rankingCard {
     display: block;
-    background: url('/disenio/mainMenu/assets/img/cespedFondo.png');
+    background: url('/diseño/mainMenu/assets/img/cespedFondo.png');
     text-align: center;
     color: white;
     border-radius: 10px;
@@ -169,7 +169,7 @@ header > h1{
 #historiaCard {
     margin-top: 60px;
     padding: 20px;
-    background: url('/disenio/mainMenu/assets/img/cespedFondo.png');
+    background: url('/diseño/mainMenu/assets/img/cespedFondo.png');
     border-radius: 20px;
     color: white;
     text-align: center;
@@ -352,7 +352,7 @@ header > h1{
     text-align: center;
     color: white;
     padding: 20px;
-    background: url('/disenio/mainMenu/assets/img/cespedFondo.png') no-repeat center center/cover;
+    background: url('/diseño/mainMenu/assets/img/cespedFondo.png') no-repeat center center/cover;
     border-radius: 10px;
     width: 80%;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
