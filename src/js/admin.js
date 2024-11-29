@@ -8,31 +8,31 @@ window.addEventListener('load', function() {
     const martina = document.getElementById('martina');
 
     añadirPersonaje.addEventListener('click', function() {
-        window.location.href = '../../GestionPersonajes/añadirPersonaje.html';
+        window.location.href = '../../diseño/GestionPersonajes/añadirPersonaje.html';
     });
 
     eliminarPersonaje.addEventListener('click', function() {
-        window.location.href = '../../GestionPersonajes/eliminarPersonajes.html';
+        window.location.href = '../../diseño/GestionPersonajes/eliminarPersonajes.html';
     });
 
     modificarPersonaje.addEventListener('click', function() {
-        window.location.href = '../../GestionPersonajes/modificarPersonajes.html';
+        window.location.href = '../../diseño/GestionPersonajes/modificarPersonajes.html';
     });
 
     listarPersonaje.addEventListener('click', function() {
-        window.location.href = '../../GestionPersonajes/listarPersonajes.html';
+        window.location.href = '../../diseño/GestionPersonajes/listarPersonajes.html';
     });
 
     recuperarPersonaje.addEventListener('click', function() {
-        window.location.href = '../../GestionPersonajes/recuperarPersonaje.html';
+        window.location.href = '../../diseño/GestionPersonajes/recuperarPersonaje.html';
     });
 
     luis.addEventListener('click', function() {
-        window.location.href = '../../GestionPersonajes/modificarParte2.html';
+        window.location.href = '../../diseño/GestionPersonajes/modificarParte2.html';
     });
 
     martina.addEventListener('click', function() {
-        window.location.href = '../../GestionPersonajes/modificarParte2.html';
+        window.location.href = '../../diseño/GestionPersonajes/modificarParte2.html';
     });
 
 });
