@@ -11,74 +11,32 @@
     <script src="../../src/js/admin.js"></script>
 </head>
 <body>
-    <div class="panelAdmin">
-        <div class="GInteres">
-            <h2>Gestión Puntos de Interés</h2>
-            <div class="actions">
-                <div class="action">
-                    <i class="fas fa-plus"></i>
-                    <span>Añadir</span>
-                </div>
-                <div class="action">
-                    <i class="fas fa-trash"></i>
-                    <span>Eliminar</span>
-                </div>
-                <div class="action">
-                    <i class="fas fa-edit"></i>
-                    <span>Modificar</span>
-                </div>
-                <div class="action">
-                    <i class="fas fa-list"></i>
-                    <span>Listar</span>
-                </div>
-            </div>
+    <div id="navPanelAdmin">
+        <div>
+            <i class="fas fa-plus añadir"></i>
+            <span>Añadir</span>
         </div>
-        <div class="GPreguntas">
-            <h2>Gestión Preguntas/Respuestas</h2>
-            <div class="actions">
-                <div class="action">
-                    <i class="fas fa-plus"></i>
-                    <p>Añadir</p>
-                </div>
-                <div class="action">
-                    <i class="fas fa-trash"></i>
-                    <p>Eliminar</p>
-                </div>
-                <div class="action">
-                    <i class="fas fa-edit"></i>
-                    <p>Modificar</p>
-                </div>
-                <div class="action">
-                    <i class="fas fa-list"></i>
-                    <p>Listar</p>
-                </div>
-            </div>
+        <div>
+            <i class="fas fa-list listar"></i>
+            <span>Listar</span>
         </div>
-        <div class="GPersonajes">
-            <h2>Gestión Personajes</h2>
-            <div class="actions">
-                <div class="action" id="añadirPersonajes">
-                    <i class="fas fa-plus"></i>
-                    <p>Añadir</p>
-                </div>
-                <div class="action" id="eliminarPersonajes">
-                    <i class="fas fa-trash"></i>
-                    <p>Eliminar</p>
-                </div>
-                <div class="action" id="modificarPersonajes">
-                    <i class="fas fa-edit"></i>
-                    <p>Modificar</p>
-                </div>
-                <div class="action" id="listarPersonajes">
-                    <i class="fas fa-list"></i>
-                    <p>Listar</p>
-                </div>
-                <div class="action" id="recuperarPersonajes">
-                    <i class="fas fa-arrow-up"></i>
-                    <p>Recuperar</p>
-                </div>
-            </div>
+        <div>
+            <i class="fas fa-undo recuperar"></i>
+            <span>Recuperar Personaje</span>
         </div>
-    </div> 
+    </div>
+    <main id="panelAdmin">
+        <h1>
+            Panel Administrador EquiQuizz
+        </h1>
+        <div>
+            <p>
+                Bienvenido al panel de administración de EquiQuizz.
+            </p>
+            <p>
+                Aquí podrás gestionar los Personajes / Preguntas & Respuestas / Puntos de interes de la aplicación.
+            </p>
+        </div>
+    </main>
 </body>
 </html>
