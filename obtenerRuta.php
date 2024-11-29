@@ -9,9 +9,9 @@
 
     $objEleccionImg = new BuscarImg($mysqli);
 
-    //Llamar al método eleccionEscenario para obtener la ruta de la imagen según el ámbito
-    
+    //Llamar al método eleccionEscenario para obtener la ruta de la imagen según el ámbito  
     $rutaImg = $objEleccionImg->eleccionEscenario($_GET['ambito']);
+
     //Redirige a la página visualizarFondo pasando la ruta de la imagen como parámetro
     header('Location:./visualizarFondo.php?rutaImg='.$rutaImg);
 ?>
