@@ -56,9 +56,12 @@ main h1{
 }
 
 
+
 /**********************/
 /*     Personajes     */
 /**********************/
+
+
 
 #addPersonBg {
     background-color: #68EDCB;
@@ -108,22 +111,15 @@ input[type="file"] {
     margin: 1% 0 2%;
     padding: 10px 20px;
     border-radius: 15px;
-    border: none;
     background-color: #FFFFFF;
     color: #000;
     font-size: 1rem;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
     display: block;
 }
 
 input[type="file"]::file-selector-button {
-    background-color: transparent;
     border: none;
-    font-family: inherit;
-    font-size: inherit;
-    color: inherit;
     cursor: pointer;
 }
 
@@ -140,8 +136,7 @@ textarea {
     border-radius: 10px;
     border: none;
     font-size: 1rem;
-    font-family: Arial, sans-serif;
-    resize: none;
+    resize: none; /* Para que no pueda aumentarlo el usuario */
 }
 
 input[type="submit"] {
@@ -224,7 +219,6 @@ nav h2 {
     justify-content: space-between;
     padding: 15px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .ABMPersonaje img {
@@ -276,9 +270,9 @@ nav h2 {
     color: #3982ef;
 }
 
-/**********************/
-/*     MediaQuerys     */
-/**********************/
+/*****************************/
+/*    MediaQuerys   TABLET   */
+/*****************************/
 
 @media (max-width: 810px) {
     body {
@@ -327,5 +321,5 @@ nav h2 {
         width: 20vw;
         height: 6vh;
     }
-
 }
+
