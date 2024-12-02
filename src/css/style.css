@@ -118,7 +118,7 @@ input[type="file"] {
     display: block;
 }
 
-input[type="file"]::file-selector-button {
+input[type="file"]::file-selector-button { /* Esto se le aplica al boton de añadir ficheros */
     border: none;
     cursor: pointer;
 }
