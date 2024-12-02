@@ -418,17 +418,23 @@ header > h1{
         margin-top: 20px;
     }
 
-    /* Botones del menú */
+    /* Botones Menu Principal */
     #contenedorBotones button {
         font-size: 50px; /* Reducir tamaño del texto */
-        width: 350px; /* Ajustar ancho */
-        padding: 8px;
+        width: 100%; /* Los botones ocuparán todo el ancho disponible */
+        padding: 8px; /* Reducir el padding */
+    }
+
+    .fila-arriba{
+        display: block;
     }
 
     /* Contenedor de botones */
     #contenedorBotones {
         padding: 30px;
-        gap: 20px; /* Reducir espacio entre botones */
+        display: flex;
+        flex-direction: column; /* Colocar los botones en una columna */
+        gap: 20px; /* Reducir espacio entre los botones */
     }
 
     /* Tabla de ranking */
