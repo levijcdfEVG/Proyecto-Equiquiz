@@ -6,13 +6,12 @@
     if(isset($_POST["ambito"]) && isset($_FILES["img"])){
         $ambito = $_POST["ambito"];
         $img = $_FILES['img']['name'];
-        echo "Hola";
         
-        $directorio= "../assets/img/";
+        $directorio= "../../src/img/";
         $rutaImg = $directorio . basename($img); // Se utiliza para obtener el nombre del archivo de la imagen
-        echo $rutaImg;
+        
 
-        if (move_uploaded_file($_FILES['img']['tmp_name'], $rutaImg)) {
+        if (move_uploaded_file($_FILES['img']['tmp_name'], $rutaImg)) { 
             $consulta = "INSERT INTO Escenarios (ambito, rutaImagen) VALUES ('".$ambito."','".$rutaImg."');";
     
             $resultado = $mysqli->query($consulta);
@@ -22,7 +21,7 @@
             }else{
                 echo "Error al guardar la imagen";
             }
-    
+
         } else {
             echo "Error al subir la imagen";
         }
