@@ -7,6 +7,10 @@
 /**********************/
 
 
+body {
+    font-family: "Irish Grover", system-ui;
+    background-color: #c8f2c4;
+}
 
 main h1{
     font-size: 5rem;
