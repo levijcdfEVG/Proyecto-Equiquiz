@@ -25,7 +25,7 @@
         } else {
             echo "Error al subir la imagen";
         }
-
+        /*Formulario*/
     }
 
 ?>
