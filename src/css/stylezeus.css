@@ -172,7 +172,7 @@ input[type="submit"]:hover {
     margin: 2vh 1.5vw;
 }
 
-.navPersonaje {
+nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -183,7 +183,7 @@ input[type="submit"]:hover {
 }
 
 
-.navPersonaje a {
+nav a {
     font-size: 3rem;
     color: #000;
     text-decoration: none;
@@ -191,11 +191,11 @@ input[type="submit"]:hover {
     transition: color 0.3s;
 }
 
-.navPersonaje a:hover {
+nav a:hover {
     color: #FFFFFF;
 }
 
-.navPersonaje h2 {
+nav h2 {
     font-size: 3rem;
     color: #000;
 }
