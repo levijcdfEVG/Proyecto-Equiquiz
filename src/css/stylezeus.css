@@ -158,6 +158,9 @@ input[type="submit"]:hover {
     background-color: #45A859;
 }
 
+/**********************/
+/* Eliminar Personaje */
+/**********************/
 
 .ABMPersonaje {
     background-color: #68EDCB;
@@ -169,7 +172,7 @@ input[type="submit"]:hover {
     margin: 2vh 1.5vw;
 }
 
-nav {
+.navPersonaje {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -179,7 +182,8 @@ nav {
     margin-bottom: 3vh;
 }
 
-nav a {
+
+.navPersonaje a {
     font-size: 3rem;
     color: #000;
     text-decoration: none;
@@ -187,11 +191,11 @@ nav a {
     transition: color 0.3s;
 }
 
-nav a:hover {
+.navPersonaje a:hover {
     color: #FFFFFF;
 }
 
-nav h2 {
+.navPersonaje h2 {
     font-size: 3rem;
     color: #000;
 }
