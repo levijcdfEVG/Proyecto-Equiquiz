@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Añadir Personaje</title>
+        <link rel="icon" href="../../src/img/Logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="../../src/css/reset.css">
+        <link rel="stylesheet" href="../../src/css/stylezeus.css">
+    </head>
+    <body>
+        <div id="BgPaginas">
+            <nav>
+                <a href="panelAdmin.html">Volver</a>
+                <h2>Añadir Mapa</h2>
+            </nav>
+            <form action="" method="POST" class="formPersonajes">
+                <label for="nombre">Ambito:</label>
+                <select name="ambito" id="ambito">
+                    <option value="" disabled hidden >Selecciona ambito</option>
+                    <option value="salud">Salud</option>
+                    <option value="educacion">Educacion</option>
+                    <option value="empleo">Empleo</option>
+                </select>
+                <label for="imagen">Imagen Mapa</label>
+                <input type="file" name="img">
+
+                <input type="submit" value="Añadir">
+            </form>
+        </div>
+    </body>
+</html>
