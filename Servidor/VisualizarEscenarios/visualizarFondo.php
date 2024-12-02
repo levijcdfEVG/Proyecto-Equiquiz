@@ -11,6 +11,7 @@
                 echo 'background-image: url('.$_GET["rutaImg"].');';
             ?> 
         }
+        
     </style>
 </head>
 <body>

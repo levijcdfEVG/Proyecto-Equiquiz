@@ -1,6 +1,6 @@
 <?php
     require_once("./buscarImg.php");
-    require_once("./config_db.php");
+    require_once("../Config/config_db.php");
 
     $mysqli = new mysqli($servidor, $usuario, $contraseña, $basedatos);
     if ($mysqli->connect_error) {

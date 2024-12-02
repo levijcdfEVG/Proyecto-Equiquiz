@@ -1,5 +1,5 @@
 <?php
-    require_once("./config_db.php");
+    require_once("../Config/config_db.php");
 
     class BuscarImg {
         private $mysqli;
@@ -10,7 +10,7 @@
 
         public function eleccionEscenario($ambito) { 
             //Consulta para obtener la ruta de la imagen según el ambito que recibimos por parámetro   
-            $consulta = "SELECT rutaImagen FROM escenarios WHERE ambito='$ambito';";
+            $consulta = "SELECT rutaImagen FROM Escenarios WHERE ambito='$ambito';";
             $resultado = $this->mysqli->query($consulta);
 
              //Obtiene la fila del resultado
