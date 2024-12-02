@@ -86,7 +86,7 @@ label {
 }
 
 
-input[type="text"], input[type="number"] {
+input[type="text"], input[type="number"], #ambito{
     display: block;
     width: 30%;
     padding: 1%;
@@ -158,9 +158,6 @@ input[type="submit"]:hover {
     background-color: #45A859;
 }
 
-/**********************/
-/* Eliminar Personaje */
-/**********************/
 
 .ABMPersonaje {
     background-color: #68EDCB;
@@ -270,6 +267,28 @@ nav h2 {
 .recuperar:hover {
     color: #3982ef;
 }
+
+/*************/
+/*   MAPAS   */
+/*************/
+
+
+.formMapa {
+    padding: 3%;
+}
+
+.formMapa label {
+    display: block;
+    margin-top: 11vh;
+    font-weight: bold;
+    color: #333;
+}
+
+.formMapa input[type="submit"] {
+    margin-top: 20vh;
+    height: 6vh;
+}
+
 
 /*****************************/
 /*    MediaQuerys   TABLET   */
