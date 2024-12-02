@@ -1,6 +1,6 @@
 <?php
-    require_once("./config_db.php");
-    require_once("./buscarImg.php");
+    require_once("config_db.php");
+    require_once("buscarImg.php");
 
     $mysqli = new mysqli($servidor, $usuario, $contraseña, $basedatos);
     if ($mysqli->connect_error) {
@@ -16,9 +16,9 @@
     <head>
         <meta charset="utf-8" />
         <!-- Estilos locales -->
-        <link href="assets/css/mainMenu.css" rel="stylesheet" />
-        <link href="assets/css/reset.css" rel="stylesheet" />
-        <link rel="icon" href="assets/img/icon.png" />
+        <link href="../../src/css/reset.css" rel="stylesheet" />
+        <link href="../../src/css/mainMenu.css" rel="stylesheet" />
+        <link rel="icon" href="../../src/img/icon.png" />
         <title>EquiQuiz</title>
     </head>
     <body>
