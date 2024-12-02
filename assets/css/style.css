@@ -12,7 +12,6 @@ header > h1{
     text-align: center;
     font-size: 100px;
     margin-top: 40px;
-
 }
 
 /* Botones de menú */
@@ -398,7 +397,6 @@ header > h1{
 /*    Panel Admin     */
 /**********************/
 
-
 main h1{
     font-size: 5rem;
     text-align: center;
@@ -506,7 +504,7 @@ input[type="file"] {
     display: block;
 }
 
-input[type="file"]::file-selector-button {
+input[type="file"]::file-selector-button { /* Esto se le aplica al boton de añadir ficheros */
     border: none;
     cursor: pointer;
 }
@@ -559,7 +557,7 @@ input[type="submit"]:hover {
     margin: 2vh 1.5vw;
 }
 
-nav {
+.navPersonaje {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -570,7 +568,7 @@ nav {
 }
 
 
-nav a {
+.navPersonaje a {
     font-size: 3rem;
     color: #000;
     text-decoration: none;
@@ -578,11 +576,11 @@ nav a {
     transition: color 0.3s;
 }
 
-nav a:hover {
+.navPersonaje a:hover {
     color: #FFFFFF;
 }
 
-nav h2 {
+.navPersonaje h2 {
     font-size: 3rem;
     color: #000;
 }
