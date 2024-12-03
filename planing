@@ -1,0 +1,9 @@
+Esta es la estrucutura que hay que seguir a partir de ahora
+
+src
+    index.php
+    /app
+        /assets
+        /model
+        /view
+        /controller
