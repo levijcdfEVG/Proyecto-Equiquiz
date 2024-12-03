@@ -4,11 +4,13 @@ src
     index.php
     /app
         /admin
+            /config
             /assets
             /model
             /view
             /controller
         /user
+            /config
             /assets
             /model
             /view
