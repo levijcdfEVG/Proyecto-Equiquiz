@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modificacion de Personaje</title>
+        <link rel="icon" href="../assets/img/icon.png" type="image/x-icon">
+        <link rel="stylesheet" href="../assets/css/reset.css">
+        <link rel="stylesheet" href="../assets/css/stylezeus.css">
+    </head>
+    <body>
+        <div id="addPersonBg">
+            <nav>
+                <a href="modificarPersonajes.html">Volver</a>
+                <h2>Modificar ( Nombre Personaje )</h2>
+            </nav>
+            <form action="" method="POST" class="formPersonajes">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" placeholder="Introduce Nombre Personaje" required>
+                
+                <label for="edad">Edad:</label>
+                <input type="number" name="edad" required>
+                
+                <label for="genero">Género:</label>
+                <div class="genero">
+                    <label for="hombre">H</label>
+                    <input type="radio" id="hombre" name="genero" value="Hombre" required>
+                    <label for="mujer">M</label>
+                    <input type="radio" id="mujer" name="genero" value="Mujer" required>
+                </div>
+                
+                <label for="imagen">Imagen Jugador</label>
+                <input type="file" name="imagen">
+                
+                <label for="descripcion">Descripción:</label>
+                <textarea name="descripcion" required></textarea>
+                
+                <input type="submit" value="Modificar">
+            </form>
+        </div>
+    </body>
+</html>
