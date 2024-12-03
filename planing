@@ -1,7 +1,6 @@
 Esta es la estrucutura que hay que seguir a partir de ahora
 
 src
-    index.php
     /app
         /admin
             /config
@@ -9,9 +8,11 @@ src
             /model
             /view
             /controller
+            index.php
         /user
             /config
             /assets
             /model
             /view
             /controller
+            index.php
