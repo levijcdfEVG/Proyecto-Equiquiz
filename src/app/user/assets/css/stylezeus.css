@@ -1,0 +1,348 @@
+/*Fuentes*/
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+
+
+/**********************/
+/*    Panel Admin     */
+/**********************/
+
+
+body {
+    font-family: "Irish Grover", system-ui;
+    background-color: #c8f2c4;
+}
+
+main h1{
+    font-size: 5rem;
+    text-align: center;
+    margin: 10vh 0;
+}
+
+#navPanelAdmin {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    align-items: center;
+    padding: 3vh;
+    background-color: #a2d79d;
+}
+
+#navPanelAdmin>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#navPanelAdmin>div>span {
+    font-size: 1.3rem;
+    margin: 2vh 0;
+}
+
+#navPanelAdmin i {
+    display: block;
+    font-size: 4rem;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: color 0.3s;
+}
+
+#panelAdmin>div {
+    margin-top: 20vh;
+}
+
+#panelAdmin>div>p{
+    margin: 9vh 3vw;
+    font-size: 2rem;
+}
+
+
+
+/**********************/
+/*     Personajes     */
+/**********************/
+
+
+
+#addPersonBg {
+    background-color: #68EDCB;
+    border-radius: 25px;
+    height: 94vh;
+    margin: 3vh 3vw;
+}
+
+#addPersonBg > h2 {   
+    padding-top: 3vh;
+}
+
+.formPersonajes {
+    padding: 1%;
+}
+
+label {
+    font-size: 1.5em;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+
+input[type="text"], input[type="number"], #ambito{
+    display: block;
+    width: 30%;
+    padding: 1%;
+    margin: 1% 0 2%;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 10%;
+}
+
+.genero {
+    margin: 3vh 0;
+}
+
+input[type="radio"] {
+    margin: 0 1%;
+}
+
+input[type="file"] {
+    margin: 1% 0 2%;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+}
+
+input[type="file"]::file-selector-button { /* Esto se le aplica al boton de añadir ficheros */
+    border: none;
+    cursor: pointer;
+}
+
+input[type="file"]:hover {
+    background-color: #E6E6E6;
+}
+
+textarea {
+    display: block;
+    width: 80%;
+    height: 120px;
+    margin: 1% 0 2% 0;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    resize: none; /* Para que no pueda aumentarlo el usuario */
+}
+
+input[type="submit"] {
+    display: block;
+    margin: 2% auto;
+    width: 10vw;
+    height: 4vh;
+    border-radius: 15px;
+    border: none;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #45A859;
+}
+
+
+.ABMPersonaje {
+    background-color: #68EDCB;
+    border-radius: 25px;
+    width: 97vw;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 2vh 1.5vw;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-shrink: 1;
+    padding: 1vh 2vw;
+    border-radius: 25px 25px 0 0;
+    margin-bottom: 3vh;
+}
+
+
+nav a {
+    font-size: 3rem;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #FFFFFF;
+}
+
+nav h2 {
+    font-size: 3rem;
+    color: #000;
+}
+
+.ABMPersonaje h2 {
+    font-size: 3rem;
+    color: #000;
+}
+
+.ABMPersonaje>h2 {
+    padding: 3vh 0;
+}
+
+.ABMPersonaje div {
+    margin: 0 auto;
+    width: 80vw;
+    height: 11vh;
+    background-color: #59C4B4;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.ABMPersonaje img {
+    margin-left: 15%;
+    width: 50px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.ABMPersonaje span {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #000;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.ABMPersonaje a , i {
+    margin-right: 15%;
+    font-size: 2rem;
+    color: #000;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.ABMPersonaje>label {
+    font-size: 1.5rem;
+    color: #000;
+    margin-left: 70%;
+}
+
+.añadir:hover {
+    color: #46f946;
+}
+
+.basura:hover {
+    color: #f94646;
+}
+
+.modificar:hover {
+    color: #f9f946;
+}
+
+.listar:hover {
+    color: #cb39ef;
+}
+
+.recuperar:hover {
+    color: #3982ef;
+}
+
+/*************/
+/*   MAPAS   */
+/*************/
+
+
+.formMapa {
+    padding: 3%;
+}
+
+.formMapa label {
+    display: block;
+    margin-top: 11vh;
+    font-weight: bold;
+    color: #333;
+}
+
+.formMapa input[type="submit"] {
+    margin-top: 20vh;
+    height: 6vh;
+}
+
+
+/*****************************/
+/*    MediaQuerys   TABLET   */
+/*****************************/
+
+@media (max-width: 810px) {
+    body {
+        font-size: 1rem;
+    }
+
+    main h1 {
+        font-size: 4rem;
+    }
+
+    #navPanelAdmin i {
+        font-size: 3rem;
+    }
+
+    #panelAdmin>div {
+        margin-top: 17vh;
+    }
+
+    #panelAdmin>div>p {
+        margin: 8vh 2vw;
+        font-size: 1.3rem;
+    }
+
+    #addPersonBg {
+        height: 95vh;
+        margin: 2vh 2vw;
+    }
+
+    input[type="text"], input[type="number"], textarea, input[type="file"], .genero{
+        margin-bottom: 5vh;
+    }
+
+    input[type="text"] {
+        width: 80%;
+    }
+
+    input[type="number"] {
+        width: 20%;
+    }
+
+    textarea {
+        height: 17vh;
+    }
+
+    input[type="submit"] {
+        width: 20vw;
+        height: 6vh;
+    }
+}
+
+
+
