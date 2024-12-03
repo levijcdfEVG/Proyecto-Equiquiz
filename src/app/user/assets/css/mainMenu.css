@@ -1,0 +1,517 @@
+/*Levi Josué Candeias de Figueiredo*/
+
+/*Fuentes*/
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+
+/*Clase de la fuente*/
+.irish-grover-regular {
+    font-family: "Irish Grover", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*-------------------------------------------------*/
+
+/* Estilos de body */
+body {
+    background-image: url("../img/cespedFondo.jpg");
+}
+
+/* Estilo de encabezado*/
+header > h1{
+    color: white;
+    text-align: center;
+    font-size: 100px;
+    margin-top: 40px;
+
+}
+
+/* Botones de menú */
+#contenedorBotones button {
+    text-decoration: none;
+    background-color: #A8F8B4;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    width: 450px;
+    text-align: center;
+    font-size: 80px;
+}
+
+/* Contenedor de botones del index */
+#contenedorBotones {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("../img/cespedFondo.png");
+    border-radius: 10px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column; /* Una columna que incluye las filas */
+    gap: 30px;
+}
+
+/* Primera fila: Historia y Jugar */
+.fila-arriba {
+    display: flex;
+    justify-content: space-around; /* Espacia uniformemente los botones */
+    gap: 20%; /* Espaciado entre botones */
+}
+
+/* Segunda fila: Solo Ranking */
+.fila-abajo {
+    display: flex;
+    justify-content: center; /* Centra el botón de Ranking */
+}
+
+/*Estilos boton Ranking*/
+#contenedorRanking{
+    margin-top: 5%;
+}
+
+/*Boton de volver*/
+.botonVolver{
+    text-decoration: none;
+    background-color: #A8F8B4;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    width: 450px;
+    text-align: center;
+    font-size: 80px;
+}
+
+/*-------------------------------------------------*/
+
+
+/* Configuración general de la sección "Ranking" */
+#rankingCard {
+    display: block;
+    background: url("../img/cespedFondo.png");
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    width: 50%;
+    margin: auto;
+}
+
+/* Estilo del título principal dentro de la sección "Ranking" */
+#rankingCard h2 {
+    margin-top: 20px;
+    font-size: 3rem;
+    text-shadow: 2px 2px 5px black;
+    font-family: 'Irish Grover', cursive;
+}
+
+/* Configuración de la tabla para mostrar el ranking */
+.tabla-ranking {
+    margin: 50px auto;
+    border-collapse: collapse;
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+    color: #000;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Estilo de las celdas de la tabla */
+.tabla-ranking th,
+.tabla-ranking td {
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: 'Irish Grover', cursive;
+}
+
+/* Estilo de las cabeceras de la tabla */
+.tabla-ranking th {
+    background-color: rgba(173, 216, 230, 0.8); /* Azul claro semi-transparente */
+    color: #000;
+    font-size: 1.5rem;
+}
+
+/* Estilo para filas pares de la tabla */
+.tabla-ranking tr:nth-child(even) {
+    background-color: rgba(0, 128, 0, 0.2); /* Verde semi-transparente */
+}
+
+/* Efecto hover para las filas de la tabla */
+.tabla-ranking tr:hover {
+    background-color: rgba(144, 238, 144, 0.6); /* Verde claro */
+    color: #000;
+    cursor: pointer;
+}
+
+/* Configuración general del botón "Volver" en la sección "Ranking" */
+.volverBtnRanking {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    background-color: #a8e6a8;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Estilo para el efecto hover del botón "Volver" */
+#volverBtnRanking:hover {
+    background-color: #7cc47c;
+    transform: scale(1.1);
+}
+
+/*-------------------------------------------------*/
+
+/* Estilo para la sección historia */
+#historiaCard {
+    margin-top: 60px;
+    padding: 20px;
+    background: url("../img/cespedFondo.png");
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    display: block;
+    width: 65%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#historiaCard > h2 {
+    font-size: 3rem;
+    text-shadow: 2px 2px 5px black;
+    margin-bottom: 20px;
+}
+
+/*Botones de personaje*/
+.personaje-btn{
+    margin-top: 50px;
+    width: 150px;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    background-color: #a8e6a8;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.personaje-btn:hover{
+    background-color: #7cc47c;
+    transform: scale(1.1);
+}
+
+/* Contenedor de los personajes */
+.personajes {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.personaje {
+    text-align: center;
+}
+
+/* Botones de los personajes como texto */
+.nombre-personaje {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efecto hover para los nombres */
+.nombre-personaje:hover {
+    color: #a8e6a8;
+    transform: scale(1.1);
+}
+
+.personaje > img {
+    border-radius: 10px;
+    margin: 0 20px 0 20px;
+}
+
+/*-------------------------------------------------*/
+
+/* Estilo principal de la sección de descripción */
+#contenedoDeDescripcion{
+    display: flex;
+    align-items: center;
+}
+
+#descripcionPersonaje {
+    width: 65%;
+    margin-top: 30px;
+    border-radius: 10px;
+    margin: auto;
+    background: url("../img/cespedFondo.png") no-repeat center center/cover;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px black;
+}
+
+#descripcionPersonaje h2 {
+    margin-top: 20px;
+    font-size: 3rem;
+    text-shadow: 2px 2px 5px black;
+}
+
+/* Contenedor principal */
+.contenedor-descripcion {
+    display: block;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+    gap: 30px;
+    border-radius: 20px;
+}
+
+/* Estilo de la imagen y nombre del personaje */
+.personaje-descripcion {
+    text-align: center;
+    flex: 1;
+}
+
+.personaje-descripcion > p {
+    margin-top: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Estilo del texto de descripción */
+.descripcion-texto {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.descripcion-texto p {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* Botón de audio */
+.audio-descripcion {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.audio-descripcion button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.audio-descripcion img {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.2s ease;
+}
+
+.audio-descripcion img:hover {
+    transform: scale(1.1);
+}
+
+/* Botón "Volver" */
+#volverBtnDescripcion {
+    margin-top: 50px;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    background-color: #a8e6a8;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#volverBtnDescripcion:hover {
+    background-color: #7cc47c;
+    transform: scale(1.1);
+}
+
+/*-------------------------------------------------*/
+
+/*Seleccion de Escenarios*/
+/* Sección de selección de escenarios */
+#seleccionEscenarios {
+    display: block;
+    margin: 3% auto;
+    text-align: center;
+    color: white;
+    padding: 1%;
+    background: url("../img/cespedFondo.png") no-repeat center center/cover;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Título de la sección */
+#seleccionEscenarios h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px black;
+}
+
+/* Contenedor principal de escenarios */
+.escenarios {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Estilo de cada contenedor de escenario */
+.escenario {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.escenario img {
+    width: 350px;
+    height: 350px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Texto descriptivo debajo de cada imagen */
+.escenario p {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    font-family: 'Irish Grover', cursive;
+}
+
+/* Efecto hover en el contenedor */
+.escenario:hover{
+    transform: scale(1.1);
+}
+
+
+/* Media query para iPad */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    /* Ajustes para el body */
+    body {
+        background-size: cover; /* Asegura que la imagen de fondo se adapte */
+        padding: 10px;
+    }
+
+    /* Encabezado */
+    header > h1 {
+        font-size: 70px; /* Reducir tamaño del título */
+        margin-top: 20px;
+    }
+
+    /* Botones Menu Principal */
+    #contenedorBotones button {
+        font-size: 50px; /* Reducir tamaño del texto */
+        width: 100%; /* Los botones ocuparán todo el ancho disponible */
+        padding: 8px; /* Reducir el padding */
+    }
+
+    .fila-arriba{
+        display: block;
+    }
+
+    /* Contenedor de botones */
+    #contenedorBotones {
+        padding: 30px;
+        display: flex;
+        flex-direction: column; /* Colocar los botones en una columna */
+        gap: 20px; /* Reducir espacio entre los botones */
+    }
+
+    /* Tabla de ranking */
+    .tabla-ranking {
+        width: 80%; /* Hacerla más compacta */
+    }
+
+    .tabla-ranking th,
+    .tabla-ranking td {
+        font-size: 1rem; /* Reducir tamaño de las fuentes */
+        padding: 10px;
+    }
+
+    /* Botones de personajes */
+    .personaje-btn {
+        width: 120px;
+        font-size: 1.2rem;
+        padding: 8px 15px;
+    }
+
+    /* Contenedor de personajes */
+    .personajes {
+        flex-wrap: wrap; /* Permitir que se reorganicen en varias filas */
+        gap: 20px; /* Reducir espacio */
+    }
+
+    .personaje {
+        margin: 10px;
+    }
+
+    .personaje > img {
+        width: 120px;
+        height: auto; /* Mantener proporciones */
+    }
+
+    /* Sección de descripción */
+    #descripcionPersonaje {
+        width: 90%; /* Ajustar ancho */
+        padding: 15px;
+    }
+
+    #descripcionPersonaje h2 {
+        font-size: 2rem;
+    }
+
+    .descripcion-texto p {
+        font-size: 1.2rem;
+    }
+
+    /* Escenarios */
+    #seleccionEscenarios {
+        width: 90%; /* Reducir el ancho */
+    }
+
+    .escenarios {
+        flex-wrap: wrap; /* Permitir varias filas */
+        gap: 20px;
+    }
+
+    .escenario img {
+        width: 300px; /* Reducir el tamaño */
+        height: 300px;
+    }
+
+    .escenario p {
+        font-size: 1.2rem;
+    }
+
+    /* Botón "Volver" */
+    .botonVolver,
+    #volverBtnDescripcion {
+        font-size: 1.2rem;
+        padding: 8px 15px;
+    }
+
+    .volverBtnRanking {
+        font-size: 1.2rem;
+    }
+}
+ 

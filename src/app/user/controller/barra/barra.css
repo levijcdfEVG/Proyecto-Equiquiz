@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap'); 
+
+#contenedor-barra-progreso {
+    border: 1px solid black;
+    height: 32px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    width: 300px;
+  }
+
+
+  #barra-progreso {
+    background-color: pink;
+    height: 100%;
+    position: absolute;
+  }
+  
+  #cantidad-progreso {
+    float: left;
+    left: 50%;
+    position: absolute;
+    font-family: "Irish Grover", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .boton {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  #mensaje-gano {
+    display: none; /* Inicialmente el mensaje está oculto */
+    font-size: 20px;
+    font-weight: bold;
+    color: green;
+  }
+  
