@@ -26,6 +26,16 @@
             require_once VIEWPATHADMIN.$this->view;
         }
 
+        public function gatewayAdd() {
+            $this->title = 'Panel Aministrador';
+            $this->view = 'unionAñadir.php';
+        }
+
+        public function gatewayList() {
+            $this->title = 'Panel Aministrador';
+            $this->view = 'unionListar.php';
+        }
+
         public function addCharacter() {
             if (!empty($_POST)) {
                 var_dump($_POST);

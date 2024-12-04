@@ -1,10 +1,11 @@
+
 <div id="navPanelAdmin">
     <div>
         <a class="quitarEstilo" href="index.php?c=CPersonaje&a=gatewayAdd"><i class="fas fa-plus añadir"></i></a>
         <span>Añadir</span>
     </div>
     <div>
-        <a class="quitarEstilo" href="index.php?c=CPersonaje&a=gatewayList"><i class="fas fa-list listar"></i></a>
+        <i class="fas fa-list listar"></i>
         <span>Listar</span>
     </div>
     <div>
@@ -12,6 +13,13 @@
         <span>Recuperar Personaje</span>
     </div>
 </div>
+
+<nav id="opciones">
+    <a href="index.php?c=CPersonaje&a=viewListCharacter" class="nav-link">Listar Personajes</a>
+    <a href="#" class="nav-link">Listar Mapas</a>
+    <a href="#" class="nav-link">Listar Preguntas</a>
+</nav>
+
 <main id="panelAdmin">
     <h1>
         Panel Administrador EquiQuizz
@@ -25,4 +33,3 @@
         </p>
     </div>
 </main>
-
