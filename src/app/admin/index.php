@@ -21,7 +21,7 @@
             if(method_exists($objController, $action)){
                 $objController->$action();
                 require_once HEADADMIN;
-                require_once VIEWPATHADMIN.$objController->vista;
+                require_once VIEWPATHADMIN.$objController->view;
                 require_once FOOTERADMIN;
             }
             else

@@ -1,7 +1,7 @@
 <?php
     class CAdministrador {
         private $MAdministrador;
-        public $vista;
+        public $view;
         public $title;
 
         public function __construct() {
@@ -11,7 +11,7 @@
             $this->MAdministrador = new MAdministrador();
         }
         public function view() {
-            $this->vista = 'panelAdmin.php';
+            $this->view = 'panelAdmin.php';
             $this->title = 'Panel de Administrador';
         }
     }
