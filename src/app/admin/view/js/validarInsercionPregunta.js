@@ -1,10 +1,13 @@
 'use strict'
 
 document.addEventListener('DOMContentLoaded', () => {
+    //Se añade el boton de submit al DOM
+    let botonSubir = document.getElementById('submitButton');
 
-    // Añadir respyestas
+
+    // Añadir respuestas
     let aniadirRespuestas = document.getElementById('aniadirRespuestas');
-    let contenedorPreguntas = document.getElementById('contenedorDeRespuestas');
+    let contenedorDeRespuestas = document.getElementById('contenedorDeRespuestas');
 
     let counter = 1;
 
@@ -24,8 +27,26 @@ document.addEventListener('DOMContentLoaded', () => {
             newInput.required = true;
 
             // Se añade el nuevo campo al contenedor
-            contenedorPreguntas.appendChild(newInput);
+            contenedorDeRespuestas.appendChild(newInput);
         }
     });
+
+
+    //Validacion de longitud de values de formulario
+    //Pregunta
+    let pregunta = document.getElementById('pregunta');
+    pregunta.addEventListener('focusout', ()=>{
+        let longitud = pregunta.value.length;
+
+        if (longitud > 350) {
+            alert("La longitud de la pregunta supera el límite establecido (350 caracteres)");
+            botonSubir.setAttribute('disabled', 'true'); // Deshabilitar el botón
+        } else {
+            console.log("Longitud OK");
+            botonSubir.removeAttribute('disabled'); // Habilitar el botón si la longitud es válida
+        }
+        
+    });
+
 });
 
