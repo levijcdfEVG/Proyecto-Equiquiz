@@ -19,6 +19,11 @@
         public function viewListCharacter() {
             $this->title = 'Listado de Personaje';
             $this->view = 'listarPersonajes.php';
+
+            //Obtengo todos los personajes
+            $characters = $this->MPersonaje->getAllCharacters();
+
+            require_once VIEWPATHADMIN.$this->view;
         }
 
         public function addCharacter() {

@@ -36,5 +36,14 @@
             $resultado->bindParam(':img', $img);
             return $resultado->execute();
         }
+
+        public function getAllCharacters() {
+            $sql = "SELECT idPersonaje, nombre, urlImagen FROM Personaje";
+            $resultado = $this->conexion->prepare($sql);
+            $resultado->execute();
+        
+            return $resultado;
+        }
+        
     }
 ?>
