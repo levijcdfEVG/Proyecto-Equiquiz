@@ -1,27 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Añadir Personaje</title>
-        <link rel="icon" href="../../src/img/Logo.png" type="image/x-icon">
-        <link rel="stylesheet" href="/src/app/admin/assets/css/reset.css">
-        <link rel="stylesheet" href="/src/app/admin/assets/css/stylezeus.css">
-    </head>
-    <body>
-        <div id="addPersonBg">
-            <nav>
-                <a href="panelAdmin.html">Volver</a>
-                <h2>Modificar Preguntas/Respuestas</h2>
-            </nav>
-            <form action="" method="POST" class="formPersonajes">
-                
-            </form>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Pregunta/Respuestas</title>
+    <link rel="stylesheet" href="/src/app/admin/assets/css/reset.css">
+    <link rel="stylesheet" href="/src/app/admin/assets/css/preguntas.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Modificar Pregunta/Respuestas</h1>
+        <div class="form-container">
+            <div class="input-group">
+                <label for="pregunta">Pregunta</label>
+                <textarea id="pregunta" rows="4"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="respuesta1">Respuesta 1</label>
+                <textarea id="respuesta1" rows="4"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="respuesta2">Respuesta 2</label>
+                <textarea id="respuesta2" rows="4"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="respuesta3">Respuesta 3</label>
+                <textarea id="respuesta3" rows="4"></textarea>
+            </div>
         </div>
-
-
-
-        <!-- Scripts de validacion de Form  -->
-         <script type="text/javascript" src="/src/app/admin/view/js/validarModificacion.js"></script>    
-    </body>
+        <div class="button-group">
+            <button class="btn volver">Volver</button>
+            <button class="btn modificar">Modificar</button>
+        </div>
+    </div>
+</body>
 </html>

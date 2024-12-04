@@ -53,7 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
     pregunta.addEventListener('focusout', ()=>{
         let longitud = pregunta.value.length;
 
-        if (longitud > 350) {
+        if (longitud === 0) {
+            alert("La pregunta no puede estar vacía");
+            botonSubir.setAttribute('disabled', 'true'); // Deshabilitar el botón
+        }else if (longitud > 350) {
             alert("La longitud de la pregunta supera el límite establecido (350 caracteres)");
             botonSubir.setAttribute('disabled', 'true'); // Deshabilitar el botón
         } else {
@@ -68,7 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
     respuestas.addEventListener('focusout', ()=>{
         let longitud = respuestas.value.length;
 
-        if (longitud > 300) {
+        if (longitud === 0) {
+            alert("La respuesta no puede estar vacía");
+            botonSubir.setAttribute('disabled', 'true'); // Deshabilitar el botón
+            aniadirRespuestas.setAttribute('disabled', 'true'); // Deshabilitar la opción de añadir una pregunta más
+            removeRespuesta.setAttribute('disabled', 'true'); // Deshabilitar la opción de quitar una pregunta más
+        }else if (longitud > 300) {
             alert("La longitud de la respuesta supera el límite establecido (300 caracteres)");
             botonSubir.setAttribute('disabled', 'true'); // Deshabilitar el botón
             aniadirRespuestas.setAttribute('disabled', 'true'); //Deshabilitar la opcion de añadir una pregunta más
