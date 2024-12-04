@@ -36,6 +36,26 @@
             $this->view = 'unionListar.php';
         }
 
+        public function viewModifyCharacter() {
+            $this->title = 'Modificar Personaje';
+            $this->view = 'modificarPersonaje.php';
+        
+            if (isset($_GET['id'])) {
+                $data = $this->MPersonaje->getInfoviewModify($_GET['id']);
+                
+                if ($data) {
+                    $parseData = $this->getInfoData($data);
+                } else {
+                    $this->view = 'error.php?e="Error: No se encontró el personaje seleccionado"';
+                }
+            } else {
+                $this->view = 'error.php?e="Error: Al modificar no se pudo obtener su ID"';
+            }
+        
+            require_once VIEWPATHADMIN . $this->view;
+        }
+        
+
         public function addCharacter() {
             if (!empty($_POST)) {
                 var_dump($_POST);
@@ -83,5 +103,48 @@
         
             return null;
         }
+
+        public function getInfoData($data) {
+            $returndata = [];
+            $returndata['id'] = $data['idPersonaje'];
+            $returndata['name'] = $data['nombre'];
+            $returndata['age'] = $data['edad'];
+            $returndata['gender'] = $data['genero'];
+            $returndata['description'] = $data['descripcion'];
+            $returndata['imageUrl'] = $data['urlImagen'];
+
+            return $returndata;
+        }
+
+        public function modifyCharacter() {
+            if (!empty($_POST)) {
+                //var_dump($_POST);
+                //var_dump($_GET);
+                $id = $_GET['id'];
+        
+                if (!$id) {
+                    $this->view = 'error.php?e="No existe el ID"';
+                    return;
+                }
+        
+                $data = $this->getInfoCharacter();
+        
+                if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+                    $data['image'] = $this->validateImage($_FILES['imagen'], $data);
+                } else {
+                    $data['image'] = null; // Si no se sube imagen nueva
+                }
+        
+                // Llamar al modelo para actualizar
+                if ($this->MPersonaje->modifyCharacter($id, $data['name'], $data['age'], $data['gender'], $data['description'], $data['image'])) {
+                    header('Location: index.php?c=CPersonaje&a=viewListCharacter');
+                    exit;
+                } else {
+                    $this->view = 'error.php?e="No se pudo modificar el personaje"';
+                }
+            }
+        }
+        
+        
     }
 ?>
