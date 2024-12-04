@@ -1,7 +1,7 @@
 <?php
     require_once("../Config/config_db.php");
 
-    class BuscarImg {
+    class MBuscarImg {
         private $mysqli;
 
         public function __construct($mysqli) {

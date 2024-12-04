@@ -8,6 +8,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/img/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/stylezeus.css">
     <title>Resultado</title>
 </head>
 <body>
@@ -19,7 +22,7 @@
                 echo '<p>Error</p>';
             }
         ?>
-        <a href="../view/añadirMapa.html"></a>
+        <a href="../view/añadirMapa.html">Volver</a>
     </div>
 </body>
 </html>

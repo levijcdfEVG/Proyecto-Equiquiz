@@ -9,7 +9,7 @@
         }
 
         public function subirImagen($ambito, $img){
-            $directorio = "../assets/img";
+            $directorio = "../assets/img/";
             $rutaImg = $directorio . basename($img); // Se utiliza para obtener solo el nombre del archivo sin la ruta completa
 
             // Mueve el archivo subido al directorio especificado
