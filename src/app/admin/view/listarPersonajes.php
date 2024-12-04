@@ -1,4 +1,4 @@
-<?php require_once 'head.php';?>
+<?php require_once 'view/head.php';?>
     <div class="ABMPersonaje">
         <nav>
             <a href="panelAdmin.html">Volver</a>
@@ -29,4 +29,4 @@
             </a>
         </div>
     </div>
-<?php require_once 'footer.php';?>
+<?php require_once 'view/footer.php';?>
