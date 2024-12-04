@@ -1,94 +1,107 @@
-//Levi Josué Candeias de Figueiredo
-'use strict'
+// Levi Josué Candeias de Figueiredo
+'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
-    //Se añade el boton de submit al DOM
-    let botonSubir = document.getElementById('submitButton');
-
-
-    // Añadir y quitar respuestas
-    let aniadirRespuestas = document.getElementById('aniadirRespuestas');
-    let contenedorDeRespuestas = document.getElementById('contenedorDeRespuestas');
-    let removeRespuesta = document.getElementById('quitarRespuestas');
+    // Referencias a elementos del DOM
+    const botonSubir = document.getElementById('submitButton');
+    const aniadirRespuestas = document.getElementById('aniadirRespuestas');
+    const contenedorDeRespuestas = document.getElementById('contenedorDeRespuestas');
+    const removeRespuesta = document.getElementById('quitarRespuestas');
+    const pregunta = document.getElementById('pregunta');
 
     let counter = 1;
 
-    //Añadir respuestas
-    aniadirRespuestas.addEventListener('click', (event) => {
-        event.preventDefault(); //Bloquea la subida del form cuando se clica en el boton
+    /**
+     * Añadir un nuevo campo de respuesta al formulario.
+     */
+    const handleAddRespuesta = (event) => {
+        event.preventDefault(); // Bloquea la subida del form
 
         if (counter >= 4) {
             alert("No se pueden añadir más preguntas");
         } else {
             counter++;
-            
-            // Se crea un nuevo imput tipo text
-            let newInput = document.createElement('input');
+
+            // Crear y añadir nuevo input de respuesta
+            const newInput = document.createElement('input');
             newInput.type = 'text';
             newInput.name = 'respuestas';
-            newInput.id = 'respuestas'+counter;
+            newInput.id = `respuestas${counter}`;
             newInput.required = true;
 
-            // Se añade el nuevo campo al contenedor
             contenedorDeRespuestas.appendChild(newInput);
         }
-    });
+    };
 
-    //Quitar respuestas
-    removeRespuesta.addEventListener('click', (event) => {
-        event.preventDefault(); //Bloquea la subida del form cuando se clica en el boton
-        
+    /**
+     * Quitar el último campo de respuesta del formulario.
+     */
+    const handleRemoveRespuesta = (event) => {
+        event.preventDefault(); // Bloquea la subida del form
+
         if (counter <= 1) {
             alert("No se pueden quitar más preguntas");
         } else {
-            let ultimaRespuesta = document.getElementById('respuestas'+counter);
+            const ultimaRespuesta = document.getElementById(`respuestas${counter}`);
             ultimaRespuesta.remove();
             counter--;
         }
-    });
+    };
 
-    //Validacion de longitud de values de formulario
-    //Pregunta
-    let pregunta = document.getElementById('pregunta');
-    pregunta.addEventListener('focusout', ()=>{
-        let longitud = pregunta.value.length;
+    /**
+     * Validar longitud de la pregunta.
+     */
+    const validarPregunta = () => {
+        const longitud = pregunta.value.length;
 
         if (longitud === 0) {
             alert("La pregunta no puede estar vacía");
-            botonSubir.setAttribute('disabled', 'true'); // Deshabilitar el botón
-        }else if (longitud > 350) {
+            botonSubir.setAttribute('disabled', 'true');
+        } else if (longitud > 350) {
             alert("La longitud de la pregunta supera el límite establecido (350 caracteres)");
-            botonSubir.setAttribute('disabled', 'true'); // Deshabilitar el botón
+            botonSubir.setAttribute('disabled', 'true');
         } else {
             console.log("Longitud OK");
-            botonSubir.removeAttribute('disabled'); // Habilitar el botón si la longitud es válida
+            botonSubir.removeAttribute('disabled');
         }
-        
-    });
+    };
 
-    //Respuestas
-    let respuestas = document.getElementById('respuestas'+counter);
-    respuestas.addEventListener('focusout', ()=>{
-        let longitud = respuestas.value.length;
+    /**
+     * Validar longitud de una respuesta.
+     */
+    const validarRespuesta = () => {
+        const respuestaActual = document.getElementById(`respuestas${counter}`);
+        const longitud = respuestaActual.value.length;
 
         if (longitud === 0) {
             alert("La respuesta no puede estar vacía");
-            botonSubir.setAttribute('disabled', 'true'); // Deshabilitar el botón
-            aniadirRespuestas.setAttribute('disabled', 'true'); // Deshabilitar la opción de añadir una pregunta más
-            removeRespuesta.setAttribute('disabled', 'true'); // Deshabilitar la opción de quitar una pregunta más
-        }else if (longitud > 300) {
+            botonSubir.setAttribute('disabled', 'true');
+            aniadirRespuestas.setAttribute('disabled', 'true');
+            removeRespuesta.setAttribute('disabled', 'true');
+        } else if (longitud > 300) {
             alert("La longitud de la respuesta supera el límite establecido (300 caracteres)");
-            botonSubir.setAttribute('disabled', 'true'); // Deshabilitar el botón
-            aniadirRespuestas.setAttribute('disabled', 'true'); //Deshabilitar la opcion de añadir una pregunta más
-            removeRespuesta.setAttribute('disabled', 'true'); //Deshabilitar la opcion de añadir una pregunta más
+            botonSubir.setAttribute('disabled', 'true');
+            aniadirRespuestas.setAttribute('disabled', 'true');
+            removeRespuesta.setAttribute('disabled', 'true');
         } else {
             console.log("Longitud OK");
-            botonSubir.removeAttribute('disabled'); // Habilitar el botón si la longitud es válida
+            botonSubir.removeAttribute('disabled');
             aniadirRespuestas.removeAttribute('disabled');
             removeRespuesta.removeAttribute('disabled');
         }
-        
+    };
+
+    // Eventos para manejar añadir y quitar respuestas
+    aniadirRespuestas.addEventListener('click', handleAddRespuesta);
+    removeRespuesta.addEventListener('click', handleRemoveRespuesta);
+
+    // Evento para validar la longitud de la pregunta
+    pregunta.addEventListener('focusout', validarPregunta);
+
+    // Evento para validar la longitud de las respuestas
+    document.addEventListener('focusout', (event) => {
+        if (event.target && event.target.matches(`#respuestas${counter}`)) {
+            validarRespuesta();
+        }
     });
-
 });
-
