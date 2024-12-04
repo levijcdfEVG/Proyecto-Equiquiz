@@ -1,4 +1,5 @@
 <?php require_once 'view/head.php';?>
+    
     <div class="ABMPersonaje">
         <nav>
             <a href="panelAdmin.html">Volver</a>
