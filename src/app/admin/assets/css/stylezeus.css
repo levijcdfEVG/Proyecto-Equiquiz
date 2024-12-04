@@ -328,8 +328,9 @@ nav h2 {
 }
 
 #opciones .nav-link:hover {
-    background-color: #3982ef;
-    color: #fff;
+    background-color: #c8f2c4;
+    border-radius: 25px;
+    color: #000;
 }
 
 /**********************/
