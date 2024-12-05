@@ -9,30 +9,30 @@
 <body>
     <div class="background">
         <!-- Botones en la parte superior derecha -->
-        <div class="top-right-buttons">
-            <button class="btn progreso">P.I 1/5</button>
-            <button class="btn terminar" disabled>Terminar</button>
+        <div id="botones-dcha">
+            <button class="botones progreso">P.I 1/5</button>
+            <button class="botones terminar" disabled>Terminar</button>
         </div>
         <!-- Controles -->
-        <div class="controls">
-            <button class="btn salir">Salir</button>
-            <button class="btn resetear">Resetear</button>
+        <div id="controles">
+            <button>Salir</button>
+            <button>Resetear</button>
         </div>
         <!-- Contenedor de juego -->
-        <div class="game-container">
-            <img class="game-image" src="/src/app/admin/assets/img/EscenarioEducacion.png" alt="Escenario">
+        <div id="div-juego">
+            <img id="mapa" src="/src/app/admin/assets/img/EscenarioEducacion.png" alt="Escenario">
         </div>
         <!-- Barra inferior -->
-        <div class="bottom-bar">
-            <div class="progress">
-                <span class="progress-label">Equidad</span>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
+        <div id="barraBotones">
+            <div id="progreso">
+                <span id="equidad">Equidad</span>
+                <div id="barra-progreso">
+                    <div id="rellenar-progreso"></div>
                 </div>
             </div>
-            <div class="info">
-                <button class="btn controles">Controles</button>
-                <span class="escenario">Escenario: Educación</span>
+            <div id="info">
+                <button class="botones controles">Controles</button>
+                <span id="escenario">Escenario: Educación</span>
             </div>
         </div>
     </div>

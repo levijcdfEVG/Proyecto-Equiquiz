@@ -23,7 +23,7 @@ body, html {
 }
 
 /* Botones superiores a la derecha */
-.top-right-buttons {
+#botones-dcha {
     position: absolute;
     top: 2%;
     right: 2%;
@@ -32,7 +32,7 @@ body, html {
     gap: 1rem; /* Espaciado entre botones */
 }
 
-.top-right-buttons .btn {
+#botones-dcha .botones {
     font-family: "Irish Grover", cursive;
     font-size: 2em;
     background-color: #1a7f1a;
@@ -46,26 +46,26 @@ body, html {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-.top-right-buttons .btn.progreso:hover {
+#botones-dcha .botones.progreso:hover {
     background-color: #145e14;
 }
 
 /* Botón 'Terminar' estilo diferenciado */
-.top-right-buttons .terminar {
+#botones-dcha .botones.terminar {
     color: gray;
 }
 
 /* Controles */
-.controls {
+#controles {
     display: flex;
     flex-direction: column;
     gap: 1em;
     position: absolute;
     left: 2%;
-    top: 5%;
+    top: 2%;
 }
 
-.controls .btn {
+#controles button {
     font-family: "Irish Grover", cursive;
     font-size: 2em;
     background-color: #1a7f1a;
@@ -77,23 +77,23 @@ body, html {
     text-align: center;
 }
 
-.controls .btn:hover {
+#controles button:hover {
     background-color: #145e14;
 }
 
 /* Contenedor del juego */
-.game-container {
+#div-juego {
     flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 40%;
+    max-width: 39%;
     max-height: 78%;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.game-image {
+#mapa {
     border: 0.5em solid #64d8b5;
     width: 100%;
     height: 100%;
@@ -101,7 +101,7 @@ body, html {
 }
 
 /* Barra inferior */
-.bottom-bar {
+#barraBotones {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -113,7 +113,7 @@ body, html {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.progress {
+#progreso {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -121,7 +121,7 @@ body, html {
     position: relative; /* Permite posicionar el span encima */
 }
 
-.progress-label {
+#equidad {
     font-family: "Irish Grover", cursive;
     font-size: 2em;
     color: black;
@@ -131,7 +131,7 @@ body, html {
 }
 
 
-.progress-bar {
+#barra-progreso {
     width: 90%;
     height: 1.5em;
     background-color: #e8e8e8;
@@ -140,13 +140,13 @@ body, html {
     position: relative;
 }
 
-.progress-fill {
+#rellenar-progreso {
     width: 50%; /* Ajusta este valor para cambiar el progreso */
     height: 100%;
     background-color: #ff00ff;
 }
 
-.info {
+#info {
     display: flex;
     gap: 1em;
     align-items: center;
@@ -154,7 +154,7 @@ body, html {
     justify-content: flex-end;
 }
 
-.btn.controles {
+.botones.controles {
     font-family: "Irish Grover", cursive;
     margin-right: 15%;
     background-color: #1a7f1a;
@@ -167,11 +167,11 @@ body, html {
     text-align: center;
 }
 
-.btn.controles:hover {
+.botones.controles:hover {
     background-color: #145e14;
 }
 
-.escenario {
+#escenario {
     font-family: "Irish Grover", cursive;
     font-size: 2em;
     color: black;
