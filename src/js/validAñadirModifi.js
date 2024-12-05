@@ -49,7 +49,7 @@ document.querySelector('.formPersonajes').addEventListener('submit', async funct
         formData.append("img", img.files[0]);
 
         try {
-            const response = await fetch('../', {//Llamar al index concatenando un modelo y un controlador
+            const response = await fetch('../app/index.php', {//Llamar al index concatenando un modelo y un controlador
                 method: 'POST',
                 body: formData
             });
@@ -58,8 +58,6 @@ document.querySelector('.formPersonajes').addEventListener('submit', async funct
             console.error('Error:', error);
         }
     }
-
-
 
 })
     
