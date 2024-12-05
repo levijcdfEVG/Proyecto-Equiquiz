@@ -8,7 +8,7 @@
         <span>Listar</span>
     </div>
     <div>
-        <i class="fas fa-undo recuperar"></i>
+        <a class="quitarEstilo" href="index.php?c=CPersonaje&a=viewRecovery"><i class="fas fa-undo recuperar"></i></a>
         <span>Recuperar Personaje</span>
     </div>
 </div>

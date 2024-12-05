@@ -1,6 +1,6 @@
 <?php
     class MPersonaje {
-        
+
         private $conexion;
 
         /**
@@ -56,6 +56,14 @@
         
             return $resultado;
         }
+
+        public function getAllOldCharacters() {
+            $sql = "SELECT idPersonaje, nombre, urlImagen FROM Old_Personaje";
+            $resultado = $this->conexion->prepare($sql);
+            $resultado->execute();
+        
+            return $resultado;
+        }
         
         /**
          * Summary of getInfoviewModify
@@ -101,6 +109,44 @@
             $resultado->bindParam(':description', $description);
             $resultado->bindParam(':img', $img);
         
+            return $resultado->execute();
+        }
+
+        public function deleteCharacter($id) {
+
+            $data = $this->getInfoviewModify($id);
+        
+            if ($data) {
+                $this->moveCharacter($data['nombre'], $data['edad'], $data['genero'], $data['descripcion'], $data['urlImagen']);
+        
+                $sql = 'DELETE FROM Personaje WHERE idPersonaje = :id';
+                $resultado = $this->conexion->prepare($sql);
+                $resultado->bindParam(':id', $id, PDO::PARAM_INT);
+        
+                return $resultado->execute();
+            }
+        }
+        
+        /**
+         * Summary of moveCharacter
+         * 
+         * Método para mover el personaje eliminado a la tabla de personajes antiguos.
+         * @param mixed $name Nombre del personaje.
+         * @param mixed $age Edad del personaje.
+         * @param mixed $gender Genero del personaje.
+         * @param mixed $description Descripcion del personaje.
+         * @param mixed $img Ruta + nombre de la imagen.
+         * @return bool Devuelve si la consulta ha sido correcta.
+         */
+        public function moveCharacter($name, $age, $gender, $description, $img) {
+            $sql = "INSERT INTO Old_Personaje (nombre, edad, genero, descripcion, urlImagen) 
+                VALUES (:name, :age, :gender, :description, :img)";
+            $resultado = $this->conexion->prepare($sql);
+            $resultado->bindParam(':name', $name);
+            $resultado->bindParam(':age', $age);
+            $resultado->bindParam(':gender', $gender);
+            $resultado->bindParam(':description', $description);
+            $resultado->bindParam(':img', $img);
             return $resultado->execute();
         }
     }

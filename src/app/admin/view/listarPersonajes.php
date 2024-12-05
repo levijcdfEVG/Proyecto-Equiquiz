@@ -9,22 +9,27 @@
     </label>
 
     <?php
-    // Confirmamos que al menos exista 1 personaje.
-    if ($characters && $characters->rowCount() > 0) {
-        // Iteramos sobre los personajes
-        while ($character = $characters->fetch(PDO::FETCH_ASSOC)) {
-            // echo $character['urlImagen'];
+    if(isset($characters)){
+        if ($characters && $characters->rowCount() > 0) {
+            // Iteramos sobre los personajes
+            while ($character = $characters->fetch(PDO::FETCH_ASSOC)) {
+                // echo $character['urlImagen'];
+                ?>
+                <div>
+                    <img src="<?php echo $character['urlImagen'];?>" alt="Imagen de <?php echo $character['nombre'];?>">
+                    <span><?php echo $character['nombre']; ?></span>
+                    <a href="index.php?c=CPersonaje&a=viewmodifyCharacter&id=<?php echo $character['idPersonaje'] ?>">
+                        <i class="fas fa-edit modificar"></i>
+                    </a>
+                    <a href="index.php?c=CPersonaje&a=deleteCharacter&id=<?php echo $character['idPersonaje'] ?>">
+                        <i class="fas fa-trash basura"></i>
+                    </a>
+                </div>
+                <?php
+            }
+        } else {
             ?>
-            <div>
-                <img src="<?php echo $character['urlImagen'];?>" alt="Imagen de <?php echo $character['nombre'];?>">
-                <span><?php echo $character['nombre']; ?></span>
-                <a href="index.php?c=CPersonaje&a=viewmodifyCharacter&id=<?php echo $character['idPersonaje'] ?>">
-                    <i class="fas fa-edit modificar"></i>
-                </a>
-                <a href="index.php?c=CPersonaje&a=viewdeleteCharacter&id=<?php echo $character['idPersonaje'] ?>">
-                    <i class="fas fa-trash basura"></i>
-                </a>
-            </div>
+            <p>No hay personajes disponibles.</p>
             <?php
         }
     } else {
