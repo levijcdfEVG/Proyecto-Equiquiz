@@ -77,7 +77,7 @@
 
             $characters = $this->MPersonaje->getAllOldCharacters();
 
-            require_once VIEWPATHADMIN.$this->view;
+            require_once VIEWPATHADMIN . $this->view;
         }
 
         /**
@@ -154,6 +154,18 @@
             return $data;
         }
 
+        private function getInfoCharacterModify($info) {
+            $data = [];
+            $data['name'] = !empty($_POST['nombre']) ? $_POST['nombre'] : $info['nombre'];
+            $data['age'] = !empty($_POST['edad']) ? (int)$_POST['edad'] : $info['edad'];
+            $data['gender'] = !empty($_POST['genero']) ? $_POST['genero'] : $info['genero'];
+            $data['description'] = !empty($_POST['descripcion']) ? $_POST['descripcion'] : $info['descripcion'];
+            $data['image'] = $info['urlImagen']; // Por si no añade imagen.
+        
+            return $data;
+        }
+        
+
         /**
          * Summary of validateImage
          * 
@@ -219,13 +231,13 @@
                     $this->view = 'error.php?e="No existe el ID"';
                     return;
                 }
-        
-                $data = $this->getInfoCharacter();
+                $data = $this->MPersonaje->getInfoviewModify($id);
+                $data = $this->getInfoCharacterModify($data['edad']);
         
                 if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
                     $data['image'] = $this->validateImage($_FILES['imagen'], $data);
                 } else {
-                    $data['image'] = null; // Si no se sube imagen nueva
+                    $data['image'] = $data['urlImagen']; // Si no se sube imagen nueva se queda la anterior.
                 }
         
                 // Llamar al modelo para actualizar
@@ -244,6 +256,20 @@
         
             if (isset($_GET['id'])) {
                 $this->MPersonaje->deleteCharacter($_GET['id']);
+                $this->viewListCharacter();
+            }
+        }
+
+        public function recoveryCharacter() {
+            $id = $_GET['id'];
+
+            if (!$id) {
+                $this->view = 'error.php?e="No existe el ID"';
+                return;
+            } else {
+                $this->MPersonaje->recoveryCharacter($id);
+                header('Location: index.php?c=CPersonaje&a=viewRecovery');
+                exit;
             }
         }
     }
