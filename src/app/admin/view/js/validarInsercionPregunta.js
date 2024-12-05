@@ -2,54 +2,61 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Referencias a elementos del DOM
+    // Referencias a los elementos del DOM
     const botonSubir = document.getElementById('submitButton');
     const aniadirRespuestas = document.getElementById('aniadirRespuestas');
     const contenedorDeRespuestas = document.getElementById('contenedorDeRespuestas');
     const removeRespuesta = document.getElementById('quitarRespuestas');
     const pregunta = document.getElementById('pregunta');
 
-    let counter = 1;
+    let counter = 1; // Contador de respuestas agregadas
 
     /**
-     * Añadir un nuevo campo de respuesta al formulario.
+     * Añade un nuevo campo de respuesta al formulario.
+     * Limita la cantidad máxima de respuestas a 4.
+     * @param {Event} event El evento de clic en el botón de añadir respuesta.
      */
     const handleAddRespuesta = (event) => {
-        event.preventDefault(); // Bloquea la subida del form
+        event.preventDefault(); // Previene el envío del formulario
 
+        // Limita el número de respuestas a 4
         if (counter >= 4) {
             alert("No se pueden añadir más preguntas");
         } else {
             counter++;
 
-            // Crear y añadir nuevo input de respuesta
+            // Crear y añadir un nuevo campo de entrada de texto para respuesta
             const newInput = document.createElement('input');
             newInput.type = 'text';
             newInput.name = 'respuestas';
             newInput.id = `respuestas${counter}`;
             newInput.required = true;
 
-            contenedorDeRespuestas.appendChild(newInput);
+            contenedorDeRespuestas.appendChild(newInput); // Añade el nuevo input al contenedor
         }
     };
 
     /**
-     * Quitar el último campo de respuesta del formulario.
+     * Elimina el último campo de respuesta del formulario.
+     * No permite eliminar todas las respuestas (al menos una debe quedar).
+     * @param {Event} event El evento de clic en el botón de quitar respuesta.
      */
     const handleRemoveRespuesta = (event) => {
-        event.preventDefault(); // Bloquea la subida del form
+        event.preventDefault(); // Previene el envío del formulario
 
+        // Evita eliminar todas las respuestas (al menos una debe quedar)
         if (counter <= 1) {
             alert("No se pueden quitar más preguntas");
         } else {
             const ultimaRespuesta = document.getElementById(`respuestas${counter}`);
-            ultimaRespuesta.remove();
-            counter--;
+            ultimaRespuesta.remove(); // Elimina el último input de respuesta
+            counter--; // Decrementa el contador
         }
     };
 
     /**
-     * Validar longitud de la pregunta.
+     * Valida la longitud de la pregunta.
+     * Deshabilita el botón de envío si la pregunta es vacía o excede los 350 caracteres.
      */
     const validarPregunta = () => {
         const longitud = pregunta.value.length;
@@ -62,12 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
             botonSubir.setAttribute('disabled', 'true');
         } else {
             console.log("Longitud OK");
-            botonSubir.removeAttribute('disabled');
+            botonSubir.removeAttribute('disabled'); // Habilita el botón de enviar
         }
     };
 
     /**
-     * Validar longitud de una respuesta.
+     * Valida la longitud de la respuesta actual.
+     * Deshabilita los botones si la respuesta es vacía o excede los 300 caracteres.
      */
     const validarRespuesta = () => {
         const respuestaActual = document.getElementById(`respuestas${counter}`);
@@ -95,11 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
     aniadirRespuestas.addEventListener('click', handleAddRespuesta);
     removeRespuesta.addEventListener('click', handleRemoveRespuesta);
 
-    // Evento para validar la longitud de la pregunta
+    // Evento para validar la longitud de la pregunta cuando se pierde el foco
     pregunta.addEventListener('focusout', validarPregunta);
 
-    // Evento para validar la longitud de las respuestas
+    // Evento para validar la longitud de las respuestas cuando se pierde el foco
     document.addEventListener('focusout', (event) => {
+        // Solo valida la respuesta actual
         if (event.target && event.target.matches(`#respuestas${counter}`)) {
             validarRespuesta();
         }
