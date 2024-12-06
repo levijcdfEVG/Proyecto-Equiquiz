@@ -64,17 +64,17 @@ function mostrarDescripcion(personaje) {
 
     switch (personaje) {
         case 'luis':
-            imagenPersonaje.src = 'assets/img/luis.png';
+            imagenPersonaje.src = '/src/app/user/assets/img/luis.png';
             nombrePersonaje.textContent = 'Luis';
             textoDescripcion.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacus metus, dignissim sit amet congue in, maximus quis nibh. In convallis hendrerit neque, eget pretium mi faucibus eu.';
             break;
         case 'ana':
-            imagenPersonaje.src = 'assets/img/ana.png';
+            imagenPersonaje.src = '/src/app/user/assets/img/ana.png';
             nombrePersonaje.textContent = 'Ana';
             textoDescripcion.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacus metus, dignissim sit amet congue in, maximus quis nibh. In convallis hendrerit neque, eget pretium mi faucibus eu.';
             break;
         case 'martina':
-            imagenPersonaje.src = 'assets/img/martina.png';
+            imagenPersonaje.src = '/src/app/user/assets/img/martina.png';
             nombrePersonaje.textContent = 'Martina';
             textoDescripcion.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacus metus, dignissim sit amet congue in, maximus quis nibh. In convallis hendrerit neque, eget pretium mi faucibus eu.';
             break;

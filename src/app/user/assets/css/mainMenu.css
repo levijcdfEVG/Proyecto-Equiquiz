@@ -251,6 +251,7 @@ header > h1{
     align-items: center;
 }
 
+
 #descripcionPersonaje {
     display: none;
     width: 65%;
@@ -272,7 +273,7 @@ header > h1{
 
 /* Contenedor principal */
 .contenedor-descripcion {
-    display: block;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     margin-top: 50px;
