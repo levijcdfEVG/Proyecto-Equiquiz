@@ -3,8 +3,8 @@
 // Configuración inicial
 const movimiento = 10;
 const jugador = {
-    x: 0,
-    y: 0,
+    x: 370,
+    y: 680,
     image: document.getElementById("player")
 };
 const divJuego = document.getElementById("div-juego");

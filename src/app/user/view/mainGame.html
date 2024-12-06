@@ -13,15 +13,19 @@
             <button class="botones progreso">P.I 1/5</button>
             <button class="botones terminar" disabled>Terminar</button>
         </div>
+
         <!-- Controles -->
         <div id="controles">
-            <button>Salir</button>
-            <button>Resetear</button>
+            <button id="salir">Salir</button>
+            <button id="resetear">Resetear</button>
         </div>
+
         <!-- Contenedor de juego -->
         <div id="div-juego">
             <img id="mapa" src="/src/app/admin/assets/img/EscenarioEducacion.png" alt="Escenario">
+            <img id="player" src="/src/app/user/assets/img/player.png" alt="Jugador" style="position:absolute;">
         </div>
+
         <!-- Barra inferior -->
         <div id="barraBotones">
             <div id="progreso">
@@ -37,7 +41,7 @@
         </div>
     </div>
 
-    <!-- Script de jugabilidad -->
-    <script type="text/javascript" src="/src/app/user/view/js/mainJuego.js"></script>
+    <!-- Script principal -->
+    <script src="/src/app/user/view/js/mainJuego.js"></script>
 </body>
 </html>
