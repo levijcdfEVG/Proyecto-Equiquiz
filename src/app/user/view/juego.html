@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escenario</title>
+    <link rel="stylesheet" href="/src/app/admin/assets/css/juego.css">
+</head>
+<body>
+    <div class="background">
+        <!-- Botones en la parte superior derecha -->
+        <div id="botones-dcha">
+            <button class="botones progreso">P.I 1/5</button>
+            <button class="botones terminar" disabled>Terminar</button>
+        </div>
+        <!-- Controles -->
+        <div id="controles">
+            <button>Salir</button>
+            <button>Resetear</button>
+        </div>
+        <!-- Contenedor de juego -->
+        <div id="div-juego">
+            <img id="mapa" src="/src/app/admin/assets/img/EscenarioEducacion.png" alt="Escenario">
+        </div>
+        <!-- Barra inferior -->
+        <div id="barraBotones">
+            <div id="progreso">
+                <span id="equidad">Equidad</span>
+                <div id="barra-progreso">
+                    <div id="rellenar-progreso"></div>
+                </div>
+            </div>
+            <div id="info">
+                <button class="botones controles">Controles</button>
+                <span id="escenario">Escenario: Educación</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
