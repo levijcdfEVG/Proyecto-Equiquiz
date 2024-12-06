@@ -7,6 +7,13 @@ const rankingCard = document.getElementById('rankingCard');
 const descripcionCard = document.getElementById('descripcionPersonaje');
 const seleccionEscenarios = document.getElementById('seleccionEscenarios'); 
 
+//Reforzar que los elementos esten ocultos
+historiaCard.style.display = 'none';
+rankingCard.style.display = 'none';
+descripcionCard.style.display = 'none';
+seleccionEscenarios.style.display = 'none';
+mainMenu.style.display = 'flex';
+
 // Botones principales
 document.getElementById('botonHistoria').addEventListener('click', () => gestionarSecciones('historia'));
 document.getElementById('botonRanking').addEventListener('click', () => gestionarSecciones('ranking'));
