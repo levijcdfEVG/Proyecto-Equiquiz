@@ -290,7 +290,6 @@ nav h2 {
     height: 6vh;
 }
 
-<<<<<<< HEAD
 /* Parte Botello */
 
 @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
@@ -381,65 +380,6 @@ button.btn:hover {
 
 
 
-=======
-/**********************/
-/* Nuevo Parte Carlos */
-/**********************/
-
-.quitarEstilo{
-    text-decoration: none;
-    color: black;
-}
-
-/**********************/
-/*  Opciones del Nav  */
-/**********************/
-#opciones {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 15%;
-    background-color: #a2d79d;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-#opciones .nav-link {
-    font-size: 1.5rem;
-    text-decoration: none;
-    color: #000;
-    margin: 1.5rem 0;
-    padding: 1rem;
-    text-align: center;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-#opciones .nav-link:hover {
-    background-color: #c8f2c4;
-    border-radius: 25px;
-    color: #000;
-}
-
-/**********************/
-/*Body de las opciones*/
-/**********************/
-.opcion {
-    margin-left: 15%; 
-}
-
-.opcion main h1 {
-    font-size: 5rem;
-    text-align: center;
-    margin: 10vh 0;
-}
-
-
->>>>>>> Carlos_Sprint2
 /*****************************/
 /*    MediaQuerys   TABLET   */
 /*****************************/

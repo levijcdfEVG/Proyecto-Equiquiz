@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Pregunta</title>
+    <link rel="stylesheet" href="/src/app/admin/assets/css/preguntas.css">
+</head>
+<body id="cuerpo">
+    <div id="container">
+        <h1>Añadir Pregunta</h1>
+        <form class="form-container">
+            <div class="crear-input-group">
+                <label for="pregunta">Pregunta</label>
+                <textarea class="textarea" name="pregunta" rows="2"></textarea>
+            </div>
+            <div class="crear-input-group respuesta-group">
+                <label for="respuesta">Respuesta/s</label>
+                <div class="respuesta-container">
+                    <textarea class="textarea" name="respuesta" rows="2"></textarea>
+                    <button type="button" class="add-btn">+</button>
+                </div>
+            </div>
+            <div id="button-group">
+                <button type="button" class="btn volver">Volver</button>
+                <button type="submit" class="btn añadir">Añadir</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

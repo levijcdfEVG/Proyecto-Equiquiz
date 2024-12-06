@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+/* General reset */
+body, html {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    height: 100%;
+}
+
+.background {
+    background-image: url('/src/app/admin/assets/img/cespedFondo.png'); /* Ruta a la imagen del césped */
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 1em;
+    position: relative;
+}
+
+/* Botones superiores a la derecha */
+#botones-dcha {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    display: flex;
+    flex-direction: column; /* Botones apilados */
+    gap: 1rem; /* Espaciado entre botones */
+}
+
+#botones-dcha .botones {
+    font-family: "Irish Grover", cursive;
+    font-size: 2em;
+    background-color: #1a7f1a;
+    color: white;
+    border: none;
+    padding: 0.5em 1.5em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+#botones-dcha .botones.progreso:hover {
+    background-color: #145e14;
+}
+
+/* Botón 'Terminar' estilo diferenciado */
+#botones-dcha .botones.terminar {
+    color: gray;
+}
+
+/* Controles */
+#controles {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    position: absolute;
+    left: 2%;
+    top: 2%;
+}
+
+#controles button {
+    font-family: "Irish Grover", cursive;
+    font-size: 2em;
+    background-color: #1a7f1a;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    text-align: center;
+}
+
+#controles button:hover {
+    background-color: #145e14;
+}
+
+/* Contenedor del juego */
+#div-juego {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 39%;
+    max-height: 78%;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#mapa {
+    border: 0.5em solid #64d8b5;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Barra inferior */
+#barraBotones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin-bottom: 2em;
+    padding: 1em;
+    background-color: #64d8b5;
+    border-radius: 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#progreso {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative; /* Permite posicionar el span encima */
+}
+
+#equidad {
+    font-family: "Irish Grover", cursive;
+    font-size: 2em;
+    color: black;
+    top: -0.3em;
+    position: absolute; /* Posiciona el span sobre la barra */
+    z-index: +1;
+}
+
+
+#barra-progreso {
+    width: 90%;
+    height: 1.5em;
+    background-color: #e8e8e8;
+    border-radius: 0.5em;
+    overflow: hidden;
+    position: relative;
+}
+
+#rellenar-progreso {
+    width: 50%; /* Ajusta este valor para cambiar el progreso */
+    height: 100%;
+    background-color: #ff00ff;
+}
+
+#info {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.botones.controles {
+    font-family: "Irish Grover", cursive;
+    margin-right: 15%;
+    background-color: #1a7f1a;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    font-size: 1.7em;
+    cursor: pointer;
+    text-align: center;
+}
+
+.botones.controles:hover {
+    background-color: #145e14;
+}
+
+#escenario {
+    font-family: "Irish Grover", cursive;
+    font-size: 2em;
+    color: black;
+}
