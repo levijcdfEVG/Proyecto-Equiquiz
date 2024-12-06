@@ -1,3 +1,4 @@
+//import { verificarCercania, actualizarProgreso } from './file.js';
 'use strict';
 
 // Configuración inicial
@@ -52,10 +53,18 @@ function decrementarProgreso(cantidad) {
 
 // Manejo de eventos de teclado
 window.addEventListener("keydown", (event) => {
+    // Evitar que elementos interactivos capturen el evento
+    if (["input", "textarea", "button"].includes(document.activeElement.tagName.toLowerCase())) {
+        return; // Evita interferencia de elementos interactivos
+    }
+
     const keyPressed = event.key.toLowerCase();
+    console.log(`Tecla presionada: ${keyPressed}`); // Verifica que el evento sea capturado
+
     if (keyPressed in keyHandlers) {
         keyHandlers[keyPressed]();
         actualizarPosicionJugador();
+        verificarCercania(jugador); // Lógica de los puntos
     }
 });
 
@@ -74,6 +83,7 @@ Object.keys(buttonHandlers).forEach(buttonId => {
         button.addEventListener("click", () => {
             buttonHandlers[buttonId]();
             actualizarPosicionJugador();
+            //verificarCercania(jugador);
         });
     }
 });

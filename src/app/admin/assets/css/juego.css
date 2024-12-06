@@ -188,3 +188,13 @@ body, html {
     font-size: 2em;
     color: black;
 }
+
+.punto {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    cursor: pointer;
+}
