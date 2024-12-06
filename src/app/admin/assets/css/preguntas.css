@@ -161,10 +161,16 @@ button.btn:hover {
 
 
 .respuesta-group .respuesta-container {
-    display: flex;
     align-items: center;
     gap: 1em; 
 }
+
+.respuesta-container > input {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px; /* Espacio entre las respuestas */
+}
+
 
 button.add-btn {
     background-color: #9ff5b1;
@@ -178,6 +184,7 @@ button.add-btn {
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s ease;
+    display: inline-block;
 }
 
 button.add-btn:hover {

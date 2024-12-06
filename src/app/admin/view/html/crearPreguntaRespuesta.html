@@ -12,20 +12,22 @@
         <form class="form-container">
             <div class="crear-input-group">
                 <label for="pregunta">Pregunta</label>
-                <textarea class="textarea" name="pregunta" rows="2"></textarea>
+                <textarea class="textarea" id="pregunta" name="pregunta" rows="2"></textarea>
             </div>
             <div class="crear-input-group respuesta-group">
                 <label for="respuesta">Respuesta/s</label>
-                <div class="respuesta-container">
-                    <textarea class="textarea" name="respuesta" rows="2"></textarea>
-                    <button type="button" class="add-btn">+</button>
+                <div id="contenedorDeRespuestas" class="respuesta-container">
+                    <input type="text" id="respuestas1" name="respuestas" required>
                 </div>
+                <button type="button" id="aniadirRespuestas" class="add-btn">+</button>
+                <button type="button" id="quitarRespuestas" class="add-btn">-</button>
             </div>
             <div id="button-group">
                 <button type="button" class="btn volver">Volver</button>
-                <button type="submit" class="btn añadir">Añadir</button>
+                <button type="submit" id="submitButton" class="btn añadir">Añadir</button>
             </div>
         </form>
     </div>
+    <script type="text/javascript" src="/src/app/admin/view/js/validarInsercionPregunta.js"></script>
 </body>
 </html>
