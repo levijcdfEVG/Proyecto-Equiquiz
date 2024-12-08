@@ -1,6 +1,3 @@
-/**
- * Activa el modo estricto de JavaScript.
- */
 'use strict';
 
 /**
@@ -16,6 +13,18 @@ const barraProgreso = document.getElementById("rellenar-progreso");
 const puntos = document.querySelectorAll('.punto');
 
 /**
+ * Elemento del DOM que representa el contador de puntos de interés interactuados.
+ * @type {HTMLElement}
+ */
+const contadorPI = document.querySelector('.botones.progreso');
+
+/**
+ * Elemento del DOM que representa el botón de "Terminar" en la interfaz.
+ * @type {HTMLElement}
+ */
+const botonTerminar = document.querySelector('.botones.terminar');
+
+/**
  * Nivel de progreso inicial del jugador.
  * @type {number}
  */
@@ -23,6 +32,12 @@ let progreso = 50; // Progreso inicial
 
 // Establece el ancho de la barra de progreso según el valor de 'progreso'
 barraProgreso.style.width = `${progreso}%`;
+
+/**
+ * Objeto que guarda el número de interacciones con los puntos de interés.
+ * @type {Object<string, number>}
+ */
+const interaccionesPuntos = {};
 
 /**
  * Muestra un cuadro de diálogo de confirmación para una pregunta específica.
@@ -58,6 +73,7 @@ function decrementarProgreso(cantidad) {
 /**
  * Verifica la cercanía entre el jugador y los puntos en el juego.
  * Si la distancia entre el jugador y un punto es menor a 50px, muestra un popup con la pregunta relacionada.
+ * Además, lleva un contador de interacciones por punto de interés y actualiza el DOM.
  * @param {Object} jugador - El objeto que representa al jugador.
  * @param {HTMLElement} jugador.image - El elemento de imagen del jugador.
  */
@@ -72,9 +88,27 @@ function verificarCercania(jugador) {
             Math.pow(rectJugador.top - rectPunto.top, 2)
         );
 
-        // Muestra el popup si la distancia es menor a 50px
+        // Si la distancia es menor a 50px
         if (distancia < 50) {
-            mostrarPopup(punto.dataset.preguntaId);
+            const preguntaId = punto.dataset.preguntaId;
+
+            // Si ya se interactuó con este punto, incrementar el contador
+            if (!interaccionesPuntos[preguntaId]) {
+                interaccionesPuntos[preguntaId] = 0;
+            }
+            interaccionesPuntos[preguntaId]++;
+
+            // Actualizar el contador en el DOM
+            contadorPI.textContent = `P.I ${Object.values(interaccionesPuntos).reduce((acc, val) => acc + val, 0)}/5`;
+
+            // Si el punto se ha interactuado 5 veces, termina el juego
+            if (interaccionesPuntos[preguntaId] >= 5) {
+                botonTerminar.disabled = false; // Desactiva el botón de "Terminar"
+
+            }
+
+            // Muestra el popup para interactuar
+            mostrarPopup(preguntaId);
         }
     });
 }
@@ -85,6 +119,19 @@ function verificarCercania(jugador) {
 function actualizarBarra() {
     barraProgreso.style.width = `${progreso}%`;
 }
+
+/**
+ * Termina el juego y muestra un mensaje de finalización.
+ */
+function terminarJuego() {
+    alert("¡Juego terminado! Has interactuado con todos los puntos de interés.");
+}
+
+/**
+ * Evento que se dispara cuando el jugador hace clic en el botón "Terminar".
+ * Este evento llama a la función `terminarJuego`, que finaliza el juego y muestra un mensaje de alerta.
+ */
+botonTerminar.addEventListener('click', terminarJuego);
 
 // Exporta la función para verificar la cercanía
 export { verificarCercania };
