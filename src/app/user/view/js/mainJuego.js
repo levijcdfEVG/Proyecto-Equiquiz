@@ -1,4 +1,4 @@
-//import { verificarCercania, actualizarProgreso } from './file.js';
+import { verificarCercania, actualizarProgreso } from './pointHandler.js';
 'use strict';
 
 // Configuración inicial
@@ -10,7 +10,7 @@ const jugador = {
 };
 const divJuego = document.getElementById("div-juego");
 const barraProgreso = document.getElementById("rellenar-progreso");
-let progreso = 0;
+let progreso = 50;
 
 // Mapeo de teclas para movimiento
 const keyHandlers = {
@@ -83,7 +83,7 @@ Object.keys(buttonHandlers).forEach(buttonId => {
         button.addEventListener("click", () => {
             buttonHandlers[buttonId]();
             actualizarPosicionJugador();
-            //verificarCercania(jugador);
+            verificarCercania(jugador);
         });
     }
 });
