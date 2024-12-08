@@ -1,97 +1,119 @@
-import { verificarCercania, actualizarProgreso } from './pointHandler.js';
+/**
+ * Importa la función para verificar la cercanía desde el archivo 'pointHandler.js'.
+ */
+import { verificarCercania } from './pointHandler.js';
+
+/**
+ * Activa el modo estricto de JavaScript.
+ */
 'use strict';
 
-// Configuración inicial
+/**
+ * Elemento del DOM que representa la barra de progreso del juego.
+ * @type {HTMLElement}
+ */
+const barraProgreso = document.getElementById("rellenar-progreso");
+
+/**
+ * Configuración inicial del juego.
+ * @constant
+ * @type {number}
+ */
 const movimiento = 10;
+
+/**
+ * Objeto que representa al jugador en el juego, incluyendo su posición (x, y) y la imagen asociada.
+ * @typedef {Object} Jugador
+ * @property {number} x - Coordenada X del jugador.
+ * @property {number} y - Coordenada Y del jugador.
+ * @property {HTMLElement} image - Elemento de imagen del jugador.
+ */
 const jugador = {
     x: 370,
     y: 680,
     image: document.getElementById("player")
 };
-const divJuego = document.getElementById("div-juego");
-const barraProgreso = document.getElementById("rellenar-progreso");
-let progreso = 50;
 
-// Mapeo de teclas para movimiento
+/**
+ * Elemento del DOM que representa el contenedor principal del juego.
+ * @type {HTMLElement}
+ */
+const divJuego = document.getElementById("div-juego");
+
+/**
+ * Nivel de progreso inicial del jugador en el juego.
+ * @type {number}
+ */
+let progreso = 50; // Nivel inicial de progreso
+
+/**
+ * Objeto que mapea las teclas a sus respectivas funciones de movimiento.
+ * Cada propiedad corresponde a una tecla y su valor es una función que mueve al jugador.
+ * @type {Object<string, Function>}
+ */
 const keyHandlers = {
+    /**
+     * Mueve al jugador hacia arriba.
+     * @function
+     */
     w: () => { if (jugador.y > 0) jugador.y -= movimiento; },
+    
+    /**
+     * Mueve al jugador hacia la izquierda.
+     * @function
+     */
     a: () => { if (jugador.x > 0) jugador.x -= movimiento; },
+    
+    /**
+     * Mueve al jugador hacia abajo.
+     * @function
+     */
     s: () => {
         if (jugador.y + jugador.image.offsetHeight < divJuego.offsetHeight) 
             jugador.y += movimiento;
     },
+    
+    /**
+     * Mueve al jugador hacia la derecha.
+     * @function
+     */
     d: () => {
         if (jugador.x + jugador.image.offsetWidth < divJuego.offsetWidth) 
             jugador.x += movimiento;
     }
 };
 
-// Actualizar posición del jugador en la pantalla
+/**
+ * Actualiza la posición del jugador en el DOM en función de sus coordenadas (x, y).
+ */
 function actualizarPosicionJugador() {
     jugador.image.style.left = `${jugador.x}px`;
     jugador.image.style.top = `${jugador.y}px`;
 }
 
-// Controlar progreso de la barra de equidad
-function actualizarBarra() {
-    if (progreso > 100) progreso = 100;
-    if (progreso < 0) progreso = 0;
-    barraProgreso.style.width = `${progreso}%`;
-}
-
-// Incrementar progreso de equidad
-function incrementarProgreso(cantidad) {
-    progreso += cantidad;
-    actualizarBarra();
-}
-
-// Decrementar progreso de equidad
-function decrementarProgreso(cantidad) {
-    progreso -= cantidad;
-    actualizarBarra();
-}
-
-// Manejo de eventos de teclado
+/**
+ * Maneja los eventos de teclas presionadas, controlando el movimiento del jugador.
+ * No permite la interacción con campos de texto, áreas de texto o botones.
+ * @param {KeyboardEvent} event - El evento de teclado disparado.
+ */
 window.addEventListener("keydown", (event) => {
-    // Evitar que elementos interactivos capturen el evento
+    // Si el foco está en un campo de entrada, textarea o botón, no se procesa el evento
     if (["input", "textarea", "button"].includes(document.activeElement.tagName.toLowerCase())) {
-        return; // Evita interferencia de elementos interactivos
+        return;
     }
 
+    // Obtener la tecla presionada
     const keyPressed = event.key.toLowerCase();
-    console.log(`Tecla presionada: ${keyPressed}`); // Verifica que el evento sea capturado
-
+    
+    // Si la tecla está mapeada en 'keyHandlers', ejecutar la función asociada
     if (keyPressed in keyHandlers) {
         keyHandlers[keyPressed]();
-        actualizarPosicionJugador();
-        verificarCercania(jugador); // Lógica de los puntos
+        actualizarPosicionJugador(); // Actualizar la posición del jugador
+        verificarCercania(jugador); // Verificar si el jugador está cerca de un punto
     }
 });
 
-// Configurar botones para interacción adicional
-const buttonHandlers = {
-    "arriba": () => { keyHandlers.w(); },
-    "izq": () => { keyHandlers.a(); },
-    "abajo": () => { keyHandlers.s(); },
-    "dcha": () => { keyHandlers.d(); }
-};
-
-// Agregar eventos de clic a los botones de dirección
-Object.keys(buttonHandlers).forEach(buttonId => {
-    const button = document.getElementById(buttonId);
-    if (button) {
-        button.addEventListener("click", () => {
-            buttonHandlers[buttonId]();
-            actualizarPosicionJugador();
-            verificarCercania(jugador);
-        });
-    }
-});
-
-// Asignación de eventos para progresión y decrecimiento de equidad
-document.getElementById("boton-correcto").addEventListener("click", () => incrementarProgreso(10));
-document.getElementById("boton-incorrecto").addEventListener("click", () => decrementarProgreso(5));
-
-// Inicializar posición y progreso
+/**
+ * Inicializa la posición del jugador y el progreso del juego.
+ */
 actualizarPosicionJugador();
-actualizarBarra();
