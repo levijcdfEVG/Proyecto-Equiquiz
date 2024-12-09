@@ -1,66 +1,52 @@
-document.querySelector('.formPersonajes').addEventListener('submit', async function (event) {
+document.querySelector("form").addEventListener("submit", function(event){
+    //Evitar que el formulario se envíe automaticamente
     event.preventDefault();
 
-    /*Recoger elementos del formulario*/
-    const nombre = document.querySelector('[name="nombre"]');
-    const edad = document.querySelector('[name="edad"]');
-    const genero = document.querySelector('[name="genero"]');
-    const img = document.querySelector('[name="imagen"]');
-    const descripcion = document.querySelector('[name="descripcion"]');
+    //Obtener campos del formulario
+    const nombre = document.querySelector("[name='nombre']");
+    const edad = document.querySelector("[name='edad']");
+    const genero = document.querySelector("[name='genero']:checked");
+    const img = document.querySelector("[name='imagen']");
+    const descripcion = document.querySelector("[name='descripcion']");
 
-    /*Variable para comprobar*/
-    let valid=true;
-
+    let valid = true;
+    //Campo nombre no este vacío
     if(!nombre.value){
-        alert("Inserte un nombre al personaje");
-        valid=false;
+        alert("Introduce el nombre del personaje");
+        valid = false;
     }
 
+    //Campo edad no este vacío
     if(!edad.value){
-        alert("Inserte una edad al personaje");
-        valid=false;
+        alert("Introduce la edad del personaje");
+        valid = false;        
     }
 
-    if(!genero.value){
-        alert("Inserte un genero al personaje");
-        valid=false;
-    }
-
+    //Verificar que se haya seleccionado un genero
+    if(!genero){
+        alert("Introduce el género del personaje");
+        valid = false;  
+    }   
+    
+    //Campo descripcion no este vacío
     if(!descripcion.value){
-        alert("Inserte una descripcion al personaje");
-        valid=false;
+        alert("Introduce una descripción del personaje");
+        valid = false;        
     }
 
-    const formatoValido = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
-    if (img.files.length === 0) {
-        alert("Por favor, sube una imagen del personaje.");
+    //Verificar que se haya seleccionado un archivo
+    if(!img.files.length){
+        alert("Selecciona una imagen");
         valid = false;
-    } else if (!formatoValido.includes(img.files[0].type)) {
-        alert("Por favor, sube un archivo de imagen válido (JPEG, PNG, GIF, JPG).");
-        valid = false;
-    }
-
-    if(valid){
-        const formData = new FormData();
-        formData.append("nombre", nombre.value);
-        formData.append("edad", edad.value);
-        formData.append("genero", genero.value);
-        formData.append("descripcion", descripcion.value);
-        formData.append("img", img.files[0]);
-
-        try {
-            const response = await fetch('../app/index.php', {//Llamar al index concatenando un modelo y un controlador
-                method: 'POST',
-                body: formData
-            });
-            const result = await response.text();
-        } catch (error) {
-            console.error('Error:', error);
+    } else {
+        const tiposPermitidos = ['image/jpeg', 'image/jpg', 'image/png'];
+        if(!tiposPermitidos.includes(img.files[0].type)) {
+            alert("Tipo de archivo no permitido. Solo se permiten imágenes JPEG, JPG y PNG");
+            valid = false;
         }
     }
 
+    if(valid) {
+        event.target.submit();
+    }
 })
-    
-
-
-
