@@ -57,6 +57,12 @@
             return $resultado;
         }
 
+        /**
+         * Summary of getAllOldCharacters
+         * 
+         * Metedo para obtener todo los personajes antiguos.
+         * @return bool|PDOStatement Devuelve los personajes.
+         */
         public function getAllOldCharacters() {
             $sql = "SELECT idPersonaje, nombre, urlImagen FROM Old_Personaje";
             $resultado = $this->conexion->prepare($sql);
@@ -81,6 +87,12 @@
             return $resultado->fetch(PDO::FETCH_ASSOC); // Devuelve un array asociativo.
         }
 
+        /**
+         * Summary of getInfoOldCharacter
+         * Obtener los datos de un personaje antiguo por su id.
+         * @param mixed $id ID que identifica a ese personaje.
+         * @return mixed Devuelve los datos de ese personaje.
+         */
         public function getInfoOldCharacter($id) {
             $sql = 'SELECT * FROM Old_Personaje WHERE idPersonaje = :id';
             $resultado = $this->conexion->prepare($sql);
@@ -122,6 +134,7 @@
             return $resultado->execute();
         }
 
+        /* Metodo para eliminar a un personaje */
         public function deleteCharacter($id) {
 
             $data = $this->getInfoviewModify($id);
@@ -183,6 +196,7 @@
             return $resultado->execute();
         }
 
+        /* Metodo para recuperar a un personaje */
         public function recoveryCharacter($id) {
             $data = $this->getInfoOldCharacter($id);
             var_dump($data);

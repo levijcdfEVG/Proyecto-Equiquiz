@@ -154,6 +154,13 @@
             return $data;
         }
 
+        /**
+         * Summary of getInfoCharacterModify
+         * 
+         * Obtiene la info del personaje a modificar para pasarlos a un array. Para validar que todos los campos vengan rellenos y si no rellenar por defecto con los que tenia antes.
+         * @param mixed $info Se le pasa la informacion del personaje obtenida de la consulta.
+         * @return array Devuelve el array del personaje para visualizarlo en el modificador de personaje.
+         */
         private function getInfoCharacterModify($info) {
             $data = [];
             $data['name'] = !empty($_POST['nombre']) ? $_POST['nombre'] : $info['nombre'];
@@ -250,6 +257,13 @@
             }
         }
         
+        /**
+         * /
+         * Establece el titulo de la pagina y la vista que queremos visualizar comprueba si por URL le llega el ID del personaje a borrar.
+         * Si tiene el ID borra el personaje con ese ID.
+         * 
+         * @return void No devuelve nada.
+         */
         public function deleteCharacter() {
             $this->title = 'Listar Personaje';
             $this->view = 'listarPersonajes.php';
@@ -260,6 +274,12 @@
             }
         }
 
+        /**
+         * Summary of recoveryCharacter
+         * 
+         * Metodo para recuperar un personaje.
+         * @return void No devuelve nada.
+         */
         public function recoveryCharacter() {
             $id = $_GET['id'];
 
