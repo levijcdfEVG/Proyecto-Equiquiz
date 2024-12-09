@@ -51,11 +51,6 @@ body, html {
     background-color: #145e14;
 }
 
-/* Botón 'Terminar' estilo diferenciado */
-#botones-dcha .botones.terminar {
-    color: gray;
-}
-
 /* Controles */
 #controles {
     display: flex;
