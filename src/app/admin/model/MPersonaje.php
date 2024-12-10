@@ -115,7 +115,7 @@
          * @return bool Retorna si la consulta fue correcta o no.
          */
         public function modifyCharacter($id, $name, $age, $gender, $description, $img) {
-            echo $id, $name, $age, $gender, $description, $img;
+            // echo $id, $name, $age, $gender, $description, $img;
             $sql = "UPDATE Personaje SET 
                         nombre = :name, 
                         edad = :age, 
