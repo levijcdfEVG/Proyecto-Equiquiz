@@ -21,11 +21,14 @@
 
         //Viewmodify
         public function viewModify() {
-            $this->title = 'Añadir Personaje';
-            $this->view = 'añadirPersonaje.php';
+            $this->title = 'Modificacion de Preguntas';
+            $this->view = 'modificarPreguntas.php';
         }
         //ViewList
-
+        public function viewList() {
+            $this->title = 'Listado de Preguntas';
+            $this->view = 'listarPreguntas.php';
+        }
         //ViewDelete
 
         //ViewAdd
