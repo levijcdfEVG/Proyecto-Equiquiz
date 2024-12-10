@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Añadir Personaje</title>
+        <link rel="icon" href="../assets/img/Logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="../assets/css/reset.css">
+        <link rel="stylesheet" href="../assets/css/stylezeus.css">
+    </head>
+    <body>
+        <div id="addPersonBg">
+            <nav>
+                <a href="../../diseño/GPersonajesPanelAdmin/index.html">Volver</a>
+                <h2>Añadir Mapa</h2>
+            </nav>
+            <form action="../view/formResultado.php" action="formResultado.php" method="POST" enctype="multipart/form-data" class="formMapa">
+                <label for="nombre" >Ambito:</label>
+                <select name="ambito" id="ambito">
+                    <option value="" disabled selected hidden>Selecciona ambito</option>
+                    <option value="salud">Salud</option>
+                    <option value="educacion">Educacion</option>
+                    <option value="empleo">Empleo</option>
+                </select>
+                <label for="imagen">Imagen Mapa</label>
+                <input type="file" name="img">
+
+                <input type="submit" value="Añadir">
+            </form>
+        </div>
+    </body>
+</html>
