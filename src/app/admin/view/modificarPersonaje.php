@@ -17,9 +17,9 @@
         <!-- Falta que el genero se seleccion preguntar isa -->
         <div class="genero">
             <label for="hombre">H</label>
-            <input type="radio" id="hombre" name="genero" value="Hombre" <?php if($parseData['gender'] === 'Hombre') echo 'checked' ?> required>
+            <input type="radio" id="hombre" name="genero" value="Hombre" <?php if($parseData['gender'] === 'Hombre') echo 'checked' ?>>
             <label for="mujer">M</label>
-            <input type="radio" id="mujer" name="genero" value="Mujer" <?php if($parseData['gender'] === 'Mujer') echo 'checked' ?> required>
+            <input type="radio" id="mujer" name="genero" value="Mujer" <?php if($parseData['gender'] === 'Mujer') echo 'checked' ?>>
         </div>
         
         <label for="imagen">Imagen Jugador</label>
@@ -31,8 +31,9 @@
         <input type="file" name="imagen">
         
         <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" required> <?php echo $parseData['description'] ?></textarea>
+        <textarea name="descripcion"> <?php echo $parseData['description'] ?></textarea>
         
         <input type="submit" value="Modificar">
     </form>
 </div>
+<script src="../../../js/validAñadirModifi.js"></script>

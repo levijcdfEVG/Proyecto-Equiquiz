@@ -5,7 +5,7 @@
     </nav>
     <form action="index.php?c=CPersonaje&a=addCharacter" method="POST" class="formPersonajes" enctype="multipart/form-data">
         <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" placeholder="Introduce Nombre Personaje" required>
+        <input type="text" name="nombre" placeholder="Introduce Nombre Personaje">
         
         <label for="edad">Edad:</label>
         <input type="number" name="edad" placeholder="Opcional">
@@ -22,9 +22,9 @@
         <input type="file" name="imagen">
         
         <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" required></textarea>
+        <textarea name="descripcion"></textarea>
         
         <input type="submit" value="Añadir">
     </form>
 </div>
-
+<script src="../../../js/validAñadirModifi.js"></script>
