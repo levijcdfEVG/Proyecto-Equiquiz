@@ -1,5 +1,4 @@
 <?php
-
     //Rutas dinamicas
     define("RUTA", "../");
     define("VIEWPATHADMIN", RUTA . "admin/view/");
