@@ -37,6 +37,7 @@ class CPreguntas {
 
     /**
      * Show the view for modifying questions.
+     * @return void
      */
     public function showModify() {
         $this->title = 'Modificacion de Preguntas';
@@ -45,6 +46,7 @@ class CPreguntas {
 
     /**
      * Show the view for listing questions.
+     * @return void
      */
     public function showList() {
         $this->title = 'Listado de Preguntas';
@@ -53,6 +55,7 @@ class CPreguntas {
 
     /**
      * Show the view for deleting questions.
+     * @return void
      */
     public function showDelete() {
         $this->title = 'Borrado de Preguntas';
@@ -61,6 +64,7 @@ class CPreguntas {
 
     /**
      * Show the view for adding questions.
+     * @return void
      */
     public function showAdd() {
         $this->title = 'Añadir Preguntas';
