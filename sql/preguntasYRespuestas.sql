@@ -1,3 +1,4 @@
+-- Levi Josué Candeias de Figueiredo
 -- Crear la tabla Escenario
 CREATE TABLE Escenario (
     idEscenario TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
