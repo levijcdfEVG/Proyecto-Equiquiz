@@ -1,0 +1,165 @@
+/*Fuentes*/
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+
+
+/**********************/
+/*    Panel Admin     */
+/**********************/
+
+
+body {
+    font-family: "Irish Grover", system-ui;
+    background-color: #c8f2c4;
+}
+
+main h1{
+    font-size: 5rem;
+    text-align: center;
+    margin: 10vh 0;
+}
+
+#navPanelAdmin {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    align-items: center;
+    padding: 3vh;
+    background-color: #a2d79d;
+}
+
+#navPanelAdmin>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#navPanelAdmin>div>span {
+    font-size: 1.3rem;
+    margin: 2vh 0;
+}
+
+#navPanelAdmin i {
+    display: block;
+    font-size: 4rem;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: color 0.3s;
+}
+
+#panelAdmin>div {
+    margin-top: 20vh;
+}
+
+#panelAdmin>div>p{
+    margin: 9vh 3vw;
+    font-size: 2rem;
+}
+
+
+
+/**********************/
+/* Modificar Preguntas */
+/**********************/
+
+#modfPreguntas {
+    background-color: #68EDCB;
+    border-radius: 25px;
+    height: 94vh;
+    margin: 3vh 3vw;
+}
+
+#modfPreguntas > h2 {   
+    padding-top: 3vh;
+}
+
+#modificar{
+    position: relative;
+}
+
+.formPreguntas {
+    padding: 1%;
+}
+
+label {
+    font-size: 1.5em;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+textarea {
+    display: block;
+    width: 40%;
+    height: 120px;
+    margin: 1% 0 2% 0;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+}
+
+.pregunta{
+    position: absolute;
+    
+}
+
+.respuesta1{
+    position: absolute;
+}
+
+.respuesta2{
+    position: absolute;
+}
+
+.respuesta3{
+    position: absolute;
+}
+
+input[type="submit"] {
+    display: block;
+    margin: 2% auto;
+    width: 10vw;
+    height: 4vh;
+    border-radius: 15px;
+    border: none;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #45A859;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-shrink: 1;
+    padding: 1vh 2vw;
+    border-radius: 25px 25px 0 0;
+    margin-bottom: 3vh;
+}
+
+
+nav a {
+    font-size: 3rem;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #FFFFFF;
+}
+
+nav h2 {
+    font-size: 3rem;
+    color: #000;
+}
+
+
