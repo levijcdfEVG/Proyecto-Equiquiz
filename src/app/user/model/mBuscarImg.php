@@ -1,5 +1,5 @@
 <?php
-    require_once("../Config/config_db.php");
+    require_once("../../admin/config/config_db.php");
 
     class MBuscarImg {
         private $mysqli;

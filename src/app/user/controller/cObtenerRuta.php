@@ -17,13 +17,14 @@
             // Verificar si se obtuvo una ruta válida
             if ($rutaImg) {
                 // Redirige a la página visualizarFondo pasando la ruta de la imagen como parámetro
-                header('Location: ./visualizarFondo.php?rutaImg=' . $rutaImg);
+                header('Location: ../view/visualizarFondo.php?rutaImg=' . $rutaImg);
                 exit();
             } else {
                 // Manejar el caso en que no se encontró una imagen
                 return "No se encontró una imagen para el ámbito especificado.";
-            }
+            } 
         }
+        
     }
     
 ?>
