@@ -1,0 +1,36 @@
+{
+    "authors": [
+        {
+            "name": "Sebastian Bergmann"
+        },
+        {
+            "name": "Kore Nordmann"
+        },
+        {
+            "name": "Derick Rethans"
+        },
+        {
+            "name": "Tobias Schlitt"
+        },
+        {
+            "name": "Alexandru Stanoi"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "src"
+        ]
+    },
+    "description": "The Document components provides a general conversion framework for different semantic document markup languages like XHTML, Docbook, RST and similar.",
+    "homepage": "https://github.com/zetacomponents",
+    "license": "Apache-2.0",
+    "name": "zetacomponents/document",
+    "type": "library",
+    "require": {
+        "zetacomponents/base": "~1.8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "zetacomponents/unit-test": "*"
+    }
+}

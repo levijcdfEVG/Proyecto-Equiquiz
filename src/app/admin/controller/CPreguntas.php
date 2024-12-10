@@ -19,20 +19,26 @@
         }
 
 
-        //Viewmodify
-        public function viewModify() {
+        //Visualizar 
+        public function showModify() {
             $this->title = 'Modificacion de Preguntas';
             $this->view = 'modificarPreguntas.php';
         }
         //ViewList
-        public function viewList() {
+        public function showList() {
             $this->title = 'Listado de Preguntas';
             $this->view = 'listarPreguntas.php';
         }
         //ViewDelete
-
+        public function showDelete() {
+            $this->title = 'Borrado de Preguntas';
+            $this->view = 'borrarPreguntas.php';
+        }
         //ViewAdd
-
+        public function showAdd() {
+            $this->title = 'Añadir Preguntas';
+            $this->view = 'aniadirPreguntas.php';
+        }
         //GetQuestionData
 
         //GetAnswerData
