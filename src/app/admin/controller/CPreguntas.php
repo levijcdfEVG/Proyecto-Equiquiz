@@ -20,7 +20,10 @@
 
 
         //Viewmodify
-
+        public function viewModify() {
+            $this->title = 'Añadir Personaje';
+            $this->view = 'añadirPersonaje.php';
+        }
         //ViewList
 
         //ViewDelete
