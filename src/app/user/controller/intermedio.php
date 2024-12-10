@@ -1,6 +1,7 @@
 <?php
     require_once("../controller/cObtenerRuta.php");
 
-    $objCObtenerRuta = new cRuta($_GET["ambito"]);
+    $objCObtenerRuta = new CObtenerRuta();
+    $objCObtenerRuta -> cRuta($_GET["ambito"]);
 
 ?>
