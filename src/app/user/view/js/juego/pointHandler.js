@@ -54,6 +54,16 @@ function mostrarPopup(preguntaId) {
     actualizarBarra(); // Actualiza la barra de progreso
 }
 
+async function mostrarPopupv2(preguntaId) {
+    const respuesta = await fetch('');
+    if (respuesta) {
+        incrementarProgreso(10); // Incrementa si responde "Sí"
+    } else {
+        decrementarProgreso(10); // Decrementa si responde "No"
+    }
+    actualizarBarra(); // Actualiza la barra de progreso
+}
+
 /**
  * Incrementa el progreso en una cantidad específica, limitando el valor a 100%.
  * @param {number} cantidad - La cantidad a incrementar en el progreso.
@@ -89,7 +99,7 @@ function verificarCercania(jugador) {
         );
 
         // Si la distancia es menor a 50px
-        if (distancia < 50) {
+        if (distancia < 10) {
             const preguntaId = punto.dataset.preguntaId;
 
             // Si ya se interactuó con este punto, incrementar el contador

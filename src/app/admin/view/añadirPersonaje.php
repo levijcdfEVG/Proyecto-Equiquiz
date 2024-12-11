@@ -19,7 +19,7 @@
         </div>
         
         <label for="imagen">Imagen Jugador</label>
-        <input type="file" name="imagen">
+        <input type="file" name="imagen" required>
         
         <label for="descripcion">Descripción:</label>
         <textarea name="descripcion"></textarea>
