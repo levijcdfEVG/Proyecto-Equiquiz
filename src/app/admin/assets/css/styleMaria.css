@@ -59,6 +59,7 @@ main h1{
     border-radius: 25px;
     height: 94vh;
     margin: 3vh 3vw;
+    padding-bottom: 1%;
 }
 
 #modfPreguntas > h2 {   
@@ -135,6 +136,54 @@ nav h2 {
     color: #f9f946;
 }
 
+/*****************************/
+/*    Media Queries Tablet   */
+/*****************************/
+@media (max-width: 810px) {
+    body {
+        font-size: 1rem; 
+    }
 
+    #modfPreguntas {
+        height: auto; 
+        margin: 2vh 2vw; 
+        padding: 2vh; 
+    }
 
+    nav a {
+        font-size: 2rem; 
+        text-align: center; 
+    }
+
+    nav h2 {
+        font-size: 2rem; 
+        text-align: center; 
+    }
+
+    .preguntas {
+        width: 90%; 
+        padding: 1.5vh;
+        margin-top: 2%; 
+    }
+
+    .preguntas>p {
+        font-size: 1rem;
+    }
+
+    .preguntas>i {
+        font-size: 1.2rem; 
+    }
+
+    .preguntas i:nth-of-type(1) {
+        right: 3%;
+    }
+
+    .preguntas i:nth-of-type(2) {
+        right: 7%; 
+    }
+
+    .basura:hover, .modificar:hover {
+        transform: scale(1.2); 
+    }
+}
 
