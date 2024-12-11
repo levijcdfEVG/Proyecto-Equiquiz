@@ -1,5 +1,5 @@
 <?php
-    require_once '../Proyecto-Equiquiz/app/config/config.php';
+    require_once '../config/config.php';
 
     $controller = isset($_GET['c']) ? $_GET['c'] : DEFAULTCONTROLLER;
     $action = isset($_GET['a']) ? $_GET['a'] : DEFAULTVIEW;
