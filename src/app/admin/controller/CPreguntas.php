@@ -84,6 +84,8 @@ class CPreguntas {
      * @return void
      */
     public function showQuestions() {
+        $this->showList(); //Se llama el metodo de asignacion de titulo y de pagina
+        
         $preguntas = $this->getQuestionData();
         foreach ($preguntas as $idPregunta => $pregunta) {
             echo "ID Pregunta: " . $idPregunta . "\n";
@@ -100,6 +102,10 @@ class CPreguntas {
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      */
     public function addQuestion($contenido, $idEscenario, $opciones) {
+        // Validar parámetros
+        if (empty($contenido) || empty($idEscenario) || !is_array($opciones)) {
+            return false;
+        }
         return $this->MPreguntas->addQuestion($contenido, $idEscenario, $opciones);
     }
 
@@ -112,6 +118,10 @@ class CPreguntas {
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      */
     public function modifyQuestion($idPregunta, $contenido, $opciones) {
+        // Validar parámetros
+        if (empty($idPregunta) || empty($contenido) || !is_array($opciones)) {
+            return false;
+        }
         return $this->MPreguntas->modifyQuestion($idPregunta, $contenido, $opciones);
     }
 
@@ -122,8 +132,11 @@ class CPreguntas {
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      */
     public function deleteQuestion($idPregunta) {
+        // Validar parámetros
+        if (empty($idPregunta)) {
+            return false;
+        }
         return $this->MPreguntas->deleteQuestion($idPregunta);
     }
 
 }
-?>
