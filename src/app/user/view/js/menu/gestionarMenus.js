@@ -7,6 +7,7 @@ const rankingCard = document.getElementById('rankingCard');
 const descripcionCard = document.getElementById('descripcionPersonaje');
 const seleccionEscenarios = document.getElementById('seleccionEscenarios'); 
 const mapaEducacion = document.getElementById('laboral');
+//const btnsalir = document.getElementById('salir');
 
 //Reforzar que los elementos esten ocultos
 historiaCard.style.display = 'none';
@@ -31,6 +32,11 @@ document.getElementById('volverBtnDescripcion').addEventListener('click', volver
 document.querySelectorAll('.volverBtnRanking').forEach(boton => {
     boton.addEventListener('click', volverAlMenu);
 });
+
+
+btnSalir.addEventListener('click', () => {
+    window.location.href = '/src/app/user/view/js/menu/mainMenu.html';
+}); 
 
 // Función para gestionar las secciones
 function gestionarSecciones(menuPart) {

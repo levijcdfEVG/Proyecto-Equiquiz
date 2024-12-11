@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escenario</title>
+    <link rel="stylesheet" href="/src/app/user/assets/css/juego.css">
+</head>
+<body>
+    <div class="background">
+        <!-- Botones en la parte superior derecha -->
+        <div id="botones-dcha">
+            <button class="botones progreso">P.I 0/5</button>
+            <button class="botones terminar" disabled>Terminar</button>
+        </div>
+
+        <!-- Controles -->
+        <div id="controles">
+            <button id="salir">Salir</button>
+            <button id="resetear">Resetear</button>
+        </div>
+
+        <!-- Contenedor de juego -->
+        <div id="div-juego">
+            <img id="mapa" src="/src/app/user/assets/img/salud.png" alt="Escenario">
+            <img id="player" src="/src/app/user/assets/img/luis.png" alt="Jugador">
+            <!-- Se cambiara dinamicamente despues desde el back -->
+            <div class="punto" data-pregunta-id="1" style="position:absolute; left: 20vw; top: 15vh;"></div>
+            <div class="punto" data-pregunta-id="2" style="position:absolute; left: 30vw; top: 70vh;"></div>
+            <div class="punto" data-pregunta-id="3" style="position:absolute; left: 15vw; top: 40vh;"></div>
+        </div>
+
+        <!-- Barra inferior -->
+        <div id="barraBotones">
+            <div id="progreso">
+                <span id="equidad">Equidad</span>
+                <div id="barra-progreso">
+                    <div id="rellenar-progreso"></div>
+                </div>
+            </div>
+            <div id="info">
+                <button class="botones controles">Controles</button>
+                <span id="escenario">Escenario: Educación</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script principal -->
+    <script type="module" src="/src/app/user/view/js/juego/mainJuego.js"></script>
+</body>
+</html>

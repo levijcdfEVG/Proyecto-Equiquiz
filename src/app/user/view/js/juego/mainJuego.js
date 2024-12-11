@@ -1,7 +1,7 @@
 /**
  * Importa la función para verificar la cercanía desde el archivo 'pointHandler.js'.
  */
-import { verificarCercania } from '../pointHandler.js';
+import { verificarCercania } from './pointHandler.js';
 
 /**
  * Activa el modo estricto de JavaScript.
