@@ -195,3 +195,63 @@ body, html {
     box-shadow: 0 0 5.55vh rgba(255, 0, 0, 0.7); /* 10px ≈ 5.55vh */
     cursor: pointer;
 }
+
+/* POPUP PREGUNTA RESPUESTAS */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 4vh 6vw; /* Espaciado alrededor del contenido */
+    border-radius: 2.77vh;
+    box-shadow: 0 0 5.55vh rgba(0, 0, 0, 0.3); /* Sombra suave */
+    z-index: 1000; /* Asegura que esté sobre otros elementos */
+    max-width: 90vw; /* Limita el tamaño máximo */
+    max-height: 70vh; /* Limita el tamaño máximo de altura */
+    overflow-y: auto; /* Permite desplazarse si el contenido es largo */
+    text-align: center;
+}
+
+/* Estilo de la pregunta */
+.pregunta {
+    font-family: "Irish Grover", cursive;
+    font-size: 3.7vh; /* Similar a los botones */
+    color: #333; /* Un color oscuro para que sea legible */
+    margin-bottom: 3vh; /* Espacio debajo de la pregunta */
+    font-weight: bold;
+}
+
+/* Estilo para las opciones */
+.opciones button {
+    font-family: "Irish Grover", cursive;
+    font-size: 2.8vh; /* Tamaño adecuado para leer */
+    background-color: #1a7f1a; /* Color de fondo similar al de los botones */
+    color: white;
+    border: none;
+    padding: 2vh 4vw; /* Espaciado adecuado para el botón */
+    border-radius: 2.77vh;
+    cursor: pointer;
+    margin: 1vh 0; /* Espacio entre los botones */
+    transition: background-color 0.3s ease; /* Transición suave al pasar el mouse */
+    width: 80%; /* Ancho del botón */
+    max-width: 20rem; /* Limita el ancho máximo del botón */
+}
+
+.opciones button:hover {
+    background-color: #145e14; /* Efecto hover */
+}
+
+.opciones button:active {
+    background-color: #0d4b0d; /* Cambio de color cuando se presiona */
+}
+
+/* Estilo para el mensaje de respuesta */
+.popup .respuesta {
+    font-family: "Irish Grover", cursive;
+    font-size: 3.7vh;
+    color: #333;
+    margin-top: 2vh;
+    font-weight: bold;
+    display: none; /* Inicialmente oculto */
+}

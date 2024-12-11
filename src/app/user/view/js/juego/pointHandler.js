@@ -44,25 +44,79 @@ const interaccionesPuntos = {};
  * Si el jugador responde afirmativamente, incrementa el progreso, de lo contrario lo decrementa.
  * @param {string} preguntaId - El identificador de la pregunta.
  */
-function mostrarPopup(preguntaId) {
-    const respuesta = confirm(`¿Quieres responder la pregunta ${preguntaId}?`);
-    if (respuesta) {
-        incrementarProgreso(10); // Incrementa si responde "Sí"
-    } else {
-        decrementarProgreso(10); // Decrementa si responde "No"
+// function mostrarPopup(preguntaId) {
+//     const respuesta = confirm(`¿Quieres responder la pregunta ${preguntaId}?`);
+//     if (respuesta) {
+//         incrementarProgreso(10); // Incrementa si responde "Sí"
+//     } else {
+//         decrementarProgreso(10); // Decrementa si responde "No"
+//     }
+//     actualizarBarra(); // Actualiza la barra de progreso
+// }
+
+async function fetchPregunta(idEscenario) {
+    try {
+        const respuesta = await fetch('src/app/user/controller/CPInteres.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                action: 'getQuestion',
+                idEscenario: idEscenario,
+            }),
+        });
+
+        const preguntas = await respuesta.json();
+        mostrarPopup(preguntas.data);
+    } catch (error) {
+        console.error('Error en la solicitud:', error);
     }
-    actualizarBarra(); // Actualiza la barra de progreso
 }
 
-async function mostrarPopupv2(preguntaId) {
-    const respuesta = await fetch('');
-    if (respuesta) {
-        incrementarProgreso(10); // Incrementa si responde "Sí"
-    } else {
-        decrementarProgreso(10); // Decrementa si responde "No"
-    }
-    actualizarBarra(); // Actualiza la barra de progreso
+function mostrarPopup(preguntas) {
+    // Seleccionar una pregunta aleatoria
+    const pregunta = preguntas[Math.floor(Math.random() * preguntas.length)];
+
+    const popup = document.createElement('div');
+    popup.classList.add('popup');
+
+    // Creamos la pregunta
+    const preguntaDiv = document.createElement('div');
+    preguntaDiv.classList.add('pregunta');
+    preguntaDiv.textContent = pregunta.Pregunta;
+    popup.appendChild(preguntaDiv);
+
+    // Crear un contenedor para las opciones de respuesta
+    const opcionesDiv = document.createElement('div');
+    opcionesDiv.classList.add('opciones');
+
+    // Crear los botones para las opciones
+    pregunta.Opcion.forEach(opcion => {
+        const botonOpcion = document.createElement('button');
+        botonOpcion.textContent = opcion;
+        botonOpcion.onclick = () => verificarRespuesta(opcion, pregunta);
+        opcionesDiv.appendChild(botonOpcion);
+    });
+
+    popup.appendChild(opcionesDiv);
+
+    // Añadir el popup al body
+    document.body.appendChild(popup);
 }
+
+
+function verificarRespuesta(opcion, pregunta) {
+    // Comprobar si la opción es correcta
+    if (opcion === pregunta.Correcto) {
+        alert("ok");
+    } else {
+        alert("nook");
+    }
+    document.body.removeChild(document.querySelector('.popup'));
+}
+
+
 
 /**
  * Incrementa el progreso en una cantidad específica, limitando el valor a 100%.
@@ -99,14 +153,14 @@ function verificarCercania(jugador) {
         );
 
         // Si la distancia es menor a 50px
-        if (distancia < 10) {
-            const preguntaId = punto.dataset.preguntaId;
+        if (distancia < 50) {
+            const escenario = punto.dataset.escenario;
 
             // Si ya se interactuó con este punto, incrementar el contador
-            if (!interaccionesPuntos[preguntaId]) {
-                interaccionesPuntos[preguntaId] = 0;
+            if (!interaccionesPuntos[escenario]) {
+                interaccionesPuntos[escenario] = 0;
             }
-            interaccionesPuntos[preguntaId]++;
+            interaccionesPuntos[escenario]++;
 
             // Actualizar el contador en el DOM
             contadorPI.textContent = `P.I ${Object.values(interaccionesPuntos).reduce((acc, val) => acc + val, 0)}/5`;
@@ -114,11 +168,10 @@ function verificarCercania(jugador) {
             // Si el punto se ha interactuado 5 veces, termina el juego
             if (interaccionesPuntos[preguntaId] >= 5) {
                 botonTerminar.disabled = false; // Desactiva el botón de "Terminar"
-
             }
 
             // Muestra el popup para interactuar
-            mostrarPopup(preguntaId);
+            fetchPregunta(escenario);
         }
     });
 }

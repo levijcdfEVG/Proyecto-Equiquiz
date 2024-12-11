@@ -20,11 +20,19 @@
             }
         }
 
-        public function getQuestion() {
-            $sql = "SELECT * FROM pregunta";
-            $query = $this->conexion->prepare($sql);
-            $query->execute();
-            return $query->fetchAll(PDO::FETCH_ASSOC);
+        public function getQuestion($idEscenario) {
+            $sql = 'SELECT
+                        idPregunta AS idPregunta,
+                        contenido_P AS Pregunta,
+                        idOpcion AS idOpcion,
+                        contenidos AS Opcion,
+                        esCorrecto AS Correcto
+                        FROM Pregunta JOIN Opciones ON Pregunta.idPregunta = Opciones.idPregunta
+                        WHERE idEscenario = :idEscenario';
+            $resultado = $this->conexion->prepare($sql);
+            $resultado->bindParam(':idEscenario', $idEscenario);
+            $resultado->execute();
+            return $resultado;
         }
     }
 ?>

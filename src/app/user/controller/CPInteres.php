@@ -14,8 +14,8 @@
             $this->MPInteres = new MPInteres();
         }
 
-        public function getQuestion() {
-            return $this->MPInteres->getQuestion();
+        public function getQuestion($idEscenario) {
+            return $this->MPInteres->getQuestion($idEscenario);
         }
     }
 ?>
