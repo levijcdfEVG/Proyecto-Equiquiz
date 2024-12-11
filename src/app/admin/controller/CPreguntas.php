@@ -31,8 +31,8 @@ class CPreguntas {
     public function __construct() {
         require_once '../config/config.php';
         // Requiring the model class.
-        require_once 'model/MPersonaje.php';
-        $this->MPersonaje = new MPersonaje();
+        require_once 'model/MPreguntas.php';
+        $this->objMPreguntas = new MPreguntas();
     }
 
     /**
