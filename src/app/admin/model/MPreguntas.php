@@ -25,7 +25,45 @@
 
 
         //AddQuestions
-
+        public function addQuestion($contenido, $idEscenario, $opciones) {
+            try {
+                if (count($opciones) < 2 || count($opciones) > 4) {
+                    throw new Exception("El número de opciones debe estar entre 2 y 4.");
+                }
+        
+                $this->conexion->beginTransaction();
+        
+                // Insertar la pregunta
+                $query = "INSERT INTO Pregunta (contenido_P, idEscenario) VALUES (:contenido, :idEscenario)";
+                $stmt = $this->conexion->prepare($query);
+                $stmt->execute([
+                    ':contenido' => $contenido,
+                    ':idEscenario' => $idEscenario
+                ]);
+        
+                $idPregunta = $this->conexion->lastInsertId();
+        
+                // Insertar las opciones
+                $queryOpciones = "INSERT INTO Opciones (contenidos, esCorrecto, idPregunta) VALUES (:contenidos, :esCorrecto, :idPregunta)";
+                $stmtOpciones = $this->conexion->prepare($queryOpciones);
+                
+                //Se utiliza un foreach para poder recorrer todas las opciones creadas desde el front para poder insertarlas todas
+                foreach ($opciones as $opcion) {
+                    $stmtOpciones->execute([
+                        ':contenidos' => $opcion['contenido'],
+                        ':esCorrecto' => $opcion['esCorrecto'],
+                        ':idPregunta' => $idPregunta
+                    ]);
+                }
+        
+                $this->conexion->commit();
+                return true;
+            } catch (Exception $e) {
+                $this->conexion->rollBack();
+                return false;
+            }
+        }
+        
         //ListQuestions
 
         //ModifyQuestions
