@@ -1,4 +1,3 @@
--- Carlos Rodriguez Botello
 -- Crear la tabla Escenario
 CREATE TABLE Escenario (
     idEscenario TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
