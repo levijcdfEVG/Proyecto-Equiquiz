@@ -115,7 +115,6 @@
          * @return bool Retorna si la consulta fue correcta o no.
          */
         public function modifyCharacter($id, $name, $age, $gender, $description, $img) {
-            // echo $id, $name, $age, $gender, $description, $img;
             $sql = "UPDATE Personaje SET 
                         nombre = :name, 
                         edad = :age, 
@@ -199,7 +198,6 @@
         /* Metodo para recuperar a un personaje */
         public function recoveryCharacter($id) {
             $data = $this->getInfoOldCharacter($id);
-            var_dump($data);
         
             if ($data) {
                 $this->moveCharacter($data['nombre'], $data['edad'], $data['genero'], $data['descripcion'], $data['urlImagen']);
