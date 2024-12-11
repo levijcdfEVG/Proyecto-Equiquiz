@@ -91,15 +91,10 @@ class MPreguntas {
         try {
             $query = "SELECT 
                         p.idPregunta, 
-                        p.contenido_P, 
-                        e.ambito, 
-                        o.idOpcion, 
-                        o.contenidos, 
-                        o.esCorrecto 
+                        p.contenido_P 
                       FROM Pregunta p
-                      JOIN Escenario e ON p.idEscenario = e.idEscenario
                       LEFT JOIN Opciones o ON p.idPregunta = o.idPregunta
-                      ORDER BY p.idPregunta, o.idOpcion";
+                      ORDER BY p.idPregunta";
 
             $stmt = $this->conexion->query($query);
             $preguntas = [];
@@ -107,12 +102,6 @@ class MPreguntas {
             // Recorrer los resultados y organizar las preguntas y opciones
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $preguntas[$row['idPregunta']]['pregunta'] = $row['contenido_P'];
-                $preguntas[$row['idPregunta']]['ambito'] = $row['ambito'];
-                $preguntas[$row['idPregunta']]['opciones'][] = [
-                    'idOpcion' => $row['idOpcion'],
-                    'contenido' => $row['contenidos'],
-                    'esCorrecto' => $row['esCorrecto']
-                ];
             }
 
             return $preguntas;

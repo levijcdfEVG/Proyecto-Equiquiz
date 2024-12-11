@@ -3,40 +3,40 @@
 /**
  * Class CPreguntas
  *
- * This class handles the operations related to "Preguntas" (questions), including showing different views for modifying,
- * listing, deleting, and adding questions. It utilizes the MPersonaje model for data operations.
+ * Esta clase maneja las operaciones relacionadas con "Preguntas", incluyendo mostrar diferentes vistas para modificar,
+ * listar, eliminar y añadir preguntas. Utiliza el modelo MPreguntas para las operaciones de datos.
  */
 class CPreguntas {
 
     /**
-     * @var MPersonaje $MPreguntas Instance of the MPersonaje model.
+     * @var MPreguntas $MPreguntas Instancia del modelo MPreguntas.
      */
     private $MPreguntas;
 
     /**
-     * @var string $view The view to be rendered.
+     * @var string $view La vista que se va a renderizar.
      */
     public $view;
 
     /**
-     * @var string $title The title of the current view.
+     * @var string $title El título de la vista actual.
      */
     public $title;
 
     /**
-     * CPreguntas constructor.
+     * Constructor de CPreguntas.
      *
-     * In the constructor, the MPersonaje model is initialized.
+     * En el constructor, se inicializa el modelo MPreguntas.
      */
     public function __construct() {
         require_once '../config/config.php';
-        // Requiring the model class.
+        // Requiriendo la clase del modelo.
         require_once 'model/MPreguntas.php';
-        $this->objMPreguntas = new MPreguntas();
+        $this->MPreguntas = new MPreguntas();
     }
 
     /**
-     * Show the view for modifying questions.
+     * Muestra la vista para modificar preguntas.
      * @return void
      */
     public function showModify() {
@@ -45,7 +45,7 @@ class CPreguntas {
     }
 
     /**
-     * Show the view for listing questions.
+     * Muestra la vista para listar preguntas.
      * @return void
      */
     public function showList() {
@@ -54,7 +54,7 @@ class CPreguntas {
     }
 
     /**
-     * Show the view for deleting questions.
+     * Muestra la vista para eliminar preguntas.
      * @return void
      */
     public function showDelete() {
@@ -63,7 +63,7 @@ class CPreguntas {
     }
 
     /**
-     * Show the view for adding questions.
+     * Muestra la vista para añadir preguntas.
      * @return void
      */
     public function showAdd() {
@@ -71,16 +71,59 @@ class CPreguntas {
         $this->view = 'aniadirPreguntas.php';
     }
 
-    // Future methods for handling question data operations.
+    /**
+     * Obtiene los datos de las preguntas.
+     * @return array Un array asociativo de preguntas con sus opciones.
+     */
+    public function getQuestionData() {
+        return $this->MPreguntas->listQuestions();
+    }
 
-    // GetQuestionData
+    /**
+     * Muestra todas las preguntas con sus opciones.
+     * @return void
+     */
+    public function showQuestions() {
+        $preguntas = $this->getQuestionData();
+        foreach ($preguntas as $idPregunta => $pregunta) {
+            echo "ID Pregunta: " . $idPregunta . "\n";
+            echo "Pregunta: " . $pregunta['pregunta'] . "\n";
+        }
+    }
 
-    // GetAnswerData
+    /**
+     * Añade una nueva pregunta junto con sus opciones.
+     *
+     * @param string $contenido El contenido de la pregunta.
+     * @param int $idEscenario El ID del escenario al que pertenece la pregunta.
+     * @param array $opciones Un array de opciones, cada una contiene 'contenido' y 'esCorrecto'.
+     * @return bool Devuelve true en caso de éxito, false en caso de fallo.
+     */
+    public function addQuestion($contenido, $idEscenario, $opciones) {
+        return $this->MPreguntas->addQuestion($contenido, $idEscenario, $opciones);
+    }
 
-    // ModifyQuestions
+    /**
+     * Modifica una pregunta existente junto con sus opciones.
+     *
+     * @param int $idPregunta El ID de la pregunta a modificar.
+     * @param string $contenido El nuevo contenido de la pregunta.
+     * @param array $opciones Un array de nuevas opciones, cada una contiene 'contenido' y 'esCorrecto'.
+     * @return bool Devuelve true en caso de éxito, false en caso de fallo.
+     */
+    public function modifyQuestion($idPregunta, $contenido, $opciones) {
+        return $this->MPreguntas->modifyQuestion($idPregunta, $contenido, $opciones);
+    }
 
-    // DeleteQuestions
+    /**
+     * Elimina una pregunta y sus opciones asociadas de la base de datos.
+     *
+     * @param int $idPregunta El ID de la pregunta a eliminar.
+     * @return bool Devuelve true en caso de éxito, false en caso de fallo.
+     */
+    public function deleteQuestion($idPregunta) {
+        return $this->MPreguntas->deleteQuestion($idPregunta);
+    }
 
-    // ShowQuestions
 }
 ?>
