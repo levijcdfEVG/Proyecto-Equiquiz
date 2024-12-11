@@ -1,7 +1,7 @@
 /**
  * Importa la función para verificar la cercanía desde el archivo 'pointHandler.js'.
  */
-import { verificarCercania } from './pointHandler.js';
+import { verificarCercania } from '../pointHandler.js';
 
 /**
  * Activa el modo estricto de JavaScript.
@@ -29,7 +29,7 @@ const movimiento = 10;
  * @property {HTMLElement} image - Elemento de imagen del jugador.
  */
 const jugador = {
-    x: 370,
+    x: 430,
     y: 680,
     image: document.getElementById("player")
 };

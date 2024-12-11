@@ -6,6 +6,7 @@ const historiaCard = document.getElementById('historiaCard');
 const rankingCard = document.getElementById('rankingCard');
 const descripcionCard = document.getElementById('descripcionPersonaje');
 const seleccionEscenarios = document.getElementById('seleccionEscenarios'); 
+const mapaEducacion = document.getElementById('laboral');
 
 //Reforzar que los elementos esten ocultos
 historiaCard.style.display = 'none';
