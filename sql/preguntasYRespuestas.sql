@@ -4,9 +4,18 @@ CREATE TABLE Escenario (
     idEscenario TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     ambito VARCHAR(25) NOT NULL,
     rutaMapa VARCHAR(250) NOT NULL,
-    puntosInteres VARCHAR(25) NOT NULL,
     CONSTRAINT pk_Escenario PRIMARY KEY (idEscenario)
 );
+-- Crear la tabla de puntos de interés
+CREATE TABLE Escenario_PtsInteres (
+    idEscenario TINYINT UNSIGNED NOT NULL,
+    ptX DECIMAL(10, 6) NOT NULL,
+    ptY DECIMAL(10, 6) NOT NULL,
+    CONSTRAINT pk_Escenario_PtsInteres PRIMARY KEY (idEscenario, ptX, ptY),
+    CONSTRAINT fk_Escenario_PtsInteres FOREIGN KEY (idEscenario) REFERENCES Escenario(idEscenario),
+    CONSTRAINT unique_ptX_ptY UNIQUE (ptX, ptY)
+);
+
 
 -- Crear la tabla Pregunta
 CREATE TABLE Pregunta (
