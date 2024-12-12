@@ -3,7 +3,7 @@
         private $conexion;
 
         public function __construct() {
-            require_once '../src/app/config/configdDb.php';
+            require_once '../config/configdDb.php';
             try{
                 //Conexion por PDO.
                 $this->conexion = new PDO(DSN,USUARIO,PASSWORD);
