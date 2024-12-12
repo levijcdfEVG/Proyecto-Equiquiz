@@ -130,15 +130,20 @@ class MPreguntas {
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      */
     public function deleteQuestion($idPregunta) {
-        $sql = "DELETE FROM Respuesta WHERE idPregunta = :idPregunta";
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':idPregunta', $idPregunta);
-        $stmt->execute();
-
-        $sql = "DELETE FROM Pregunta WHERE idPregunta = :idPregunta";
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':idPregunta', $idPregunta);
-        $stmt->execute();
+        try {
+            $sql = "DELETE FROM Respuesta WHERE idPregunta = :idPregunta";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bindParam(':idPregunta', $idPregunta);
+            $stmt->execute();
+    
+            $sql = "DELETE FROM Pregunta WHERE idPregunta = :idPregunta";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bindParam(':idPregunta', $idPregunta);
+            $stmt->execute();
+            return true; // Operación exitosa
+        } catch (Exception $e) {
+            return false; // Ocurrió un error
+        }
     }
     /**
      * Retorna los datos de las preguntas.

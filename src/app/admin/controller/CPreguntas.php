@@ -106,7 +106,7 @@ class CPreguntas {
             $correcta = $_POST['correcta'];
             $escenario = $_POST['escenario'];
     
-            $this->model->addQuestion($pregunta, $respuestas, $correcta, $escenario);
+            $this->MPreguntas->addQuestion($pregunta, $respuestas, $correcta, $escenario);
             header('Location: index.php?c=CPreguntas&a=showQuestions');
     
         }
@@ -140,8 +140,12 @@ class CPreguntas {
      */
     public function deleteQuestion() {
         $idPregunta = $_GET['id'];
-        $this->model->deleteQuestion($idPregunta);
-        header('Location: index.php?c=CPreguntas&a=showQuestions');
+        $resultado = $this->MPreguntas->deleteQuestion($idPregunta);
+        if($resultado){
+            header('Location: index.php?c=CPreguntas&a=showQuestions');
+        }else{
+            echo "No se ha podido eliminar la pregunta.";
+        }    
     }
 
     /**
