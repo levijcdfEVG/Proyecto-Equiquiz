@@ -92,7 +92,7 @@ form .enviar:hover, form .borrar:hover,  form .cancelar:hover, .volver:hover{
 .volver{
     position: initial;  
     display: block;
-    margin: 0 auto;
+    margin: 0 auto ;
 }
 
 
