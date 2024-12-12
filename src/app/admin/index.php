@@ -6,7 +6,7 @@
 
     // ucfirst convierte la 1 letra de la palabra en mayusculas
     $controllerFile = RUTACONTROLLERADMIN . ucfirst($controller) . '.php';
-    //echo $controllerFile;
+    
 
     if(file_exists($controllerFile)){
         require_once $controllerFile;
