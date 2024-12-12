@@ -290,11 +290,46 @@ nav h2 {
     height: 6vh;
 }
 
+/* Estilo para el error */
 #error {
-    border-color: #4CAF50;
+    background-color: #f8d7da;
+    border: 2px solid #f5c2c7; 
+    color: #842029;
+    border-radius: 15px;
     width: 50vw;
-    height: 50vh;
+    height: auto;
+    margin: 10vh auto;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+#error h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #721c24;
+}
+
+#error p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+#error a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    background-color: #f5c2c7;
+    color: #721c24;
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#error a:hover {
+    background-color: #842029;
+    color: #f8d7da;
+}
+
 
 /**********************/
 /* Nuevo Parte Carlos */

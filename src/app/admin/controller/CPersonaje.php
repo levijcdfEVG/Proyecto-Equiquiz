@@ -80,11 +80,6 @@
             require_once VIEWPATHADMIN . $this->view;
         }
 
-        public function error() {
-            $this->title = 'Pagina Errores';
-            $this->view = "error.php";
-        }
-
         /**
          * Summary of viewModifyCharacter
          * 
@@ -137,7 +132,7 @@
                 if ($this->MPersonaje->addCharacter($data['name'], $data['age'], $data['gender'], $data['description'], $data['image'])) {
                     header('location: index.php');
                 } else {
-                    // Tengo que añadir a pagina de error.
+                    header('location: index.php?error=Error al añadir personaje');
                 }
             }
         }
@@ -200,14 +195,20 @@
                     // Mover el archivo subido a la carpeta de imágenes
                     if (move_uploaded_file($image['tmp_name'], $dirDestination)) {
                         return $dirDestination;
+                    } else {
+                        header('location: index.php?error=No se pudo mover la imagen');
+                        exit;
                     }
-                }else {
-                    header('location: index.php?c=CPersonaje&a=error');
+                } else {
+                    header('location: index.php?error=La extension de la imagen no es valido');
+                    exit;
                 }
+            } else {
+                header('location: index.php?error=No se selecciono ninguna imagen o no hubo error en la subida');
+                exit;
             }
-        
-            return null;
         }
+        
 
         /**
          * Summary of getInfoData
@@ -259,7 +260,7 @@
                     header('Location: index.php?c=CPersonaje&a=viewListCharacter');
                     exit;
                 } else {
-                    $this->view = 'error.php?e="No se pudo modificar el personaje"';
+                    header('location: index.php?error=Error al modificar el personaje');
                 }
             }
         }
