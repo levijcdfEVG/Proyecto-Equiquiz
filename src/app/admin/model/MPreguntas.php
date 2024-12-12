@@ -192,10 +192,9 @@ class MPreguntas {
      * Retorna los datos de las preguntas.
      * @return array
      */
-    public function getQuestionData() {
+    public function getQuestion($idPregunta) {
         try {
-            $idPregunta = $_GET['idPregunta']; //Coge el id de la pregunta por GET mediante el hipervinculo
-
+           
             //Obtiene el contenido de la pregunta
             $query = "SELECT contenido_P FROM Pregunta WHERE idPregunta = :idPregunta";
             $stmt = $this->conexion->query($query);
@@ -217,8 +216,7 @@ class MPreguntas {
      */
     public function getAnswer($idPregunta) {
         try {
-            $idPregunta = $_GET['idPregunta']; //Coge el id de la pregunta por GET mediante el hipervinculo
-
+            
             $query = "SELECT contenidos, esCorrecto FROM Opciones WHERE idPregunta = :idPregunta";
             $stmt = $this->conexion->prepare($query);
             $stmt->execute([':idPregunta' => $idPregunta]);
