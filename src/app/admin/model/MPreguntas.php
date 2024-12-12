@@ -39,22 +39,27 @@ class MPreguntas {
      * @throws Exception Si el número de opciones no está entre 2 y 4.
      */
     public function addQuestion($pregunta, $respuestas, $correcta, $escenario) {
-        $sql = "INSERT INTO Pregunta (pregunta, escenario) VALUES (:pregunta, :escenario)";
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':pregunta', $pregunta);
-        $stmt->bindParam(':escenario', $escenario);
-        $stmt->execute();
-
-        $idPregunta = $this->conexion->lastInsertId();
-
-        foreach ($respuestas as $index => $respuesta) {
-            $esCorrecta = ($index + 1 == $correcta) ? 1 : 0;
-            $sql = "INSERT INTO Respuesta (idPregunta, contenidos, correcta) VALUES (:idPregunta, :contenidos, :correcta)";
+        try {
+            $sql = "INSERT INTO pregunta (contenido_P, idEscenario) VALUES (:pregunta, :escenario)";
             $stmt = $this->conexion->prepare($sql);
-            $stmt->bindParam(':idPregunta', $idPregunta);
-            $stmt->bindParam(':contenidos', $respuesta);
-            $stmt->bindParam(':correcta', $esCorrecta);
+            $stmt->bindParam(':pregunta', $pregunta);
+            $stmt->bindParam(':escenario', $escenario);
             $stmt->execute();
+    
+            $idPregunta = $this->conexion->lastInsertId();
+    
+            foreach ($respuestas as $index => $respuesta) {
+                $esCorrecta = ($index + 1 == $correcta) ? 1 : 0;
+                $sql = "INSERT INTO opciones (idPregunta, contenidos, esCorrecto) VALUES (:idPregunta, :contenidos, :correcta)";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bindParam(':idPregunta', $idPregunta);
+                $stmt->bindParam(':contenidos', $respuesta);
+                $stmt->bindParam(':correcta', $esCorrecta);
+                $stmt->execute();
+            }
+            return true; // Operación exitosa
+        } catch (Exception $e) {
+            return false; // Ocurrió un error
         }
     }
 
