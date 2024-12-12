@@ -11,6 +11,7 @@
         }
         
         public function cSubirImagen($img,$ambito){
+            //Recoge el ambito y la imagen del formulario
             if(isset($_POST["ambito"]) && isset($_FILES["img"])){
                 $ambito = $_POST["ambito"];
                 $img = $_FILES['img']['name'];
@@ -21,7 +22,7 @@
                 }
                 // Verificar el tipo de archivo
                 $permitidos = ['image/jpeg', 'image/jpg', 'image/png'];
-                if (!in_array($_FILES["img"]["type"], $permitidos)) {
+                if (!in_array($_FILES["img"]["type"], $permitidos)) { //Verificar que el tipo de imagen existe en el array
                     return "Tipo de archivo no permitido. Solo se permiten imágenes JPEG, JPG y PNG.";
                 }
             }

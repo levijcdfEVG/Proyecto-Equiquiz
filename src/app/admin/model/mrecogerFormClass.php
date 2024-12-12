@@ -14,16 +14,11 @@
 
             // Mueve el archivo subido al directorio especificado
             if (move_uploaded_file($_FILES['img']['tmp_name'], $rutaImg)) { 
-                $consulta = "INSERT INTO Escenarios (ambito, rutaImagen) VALUES ('".$ambito."','".$rutaImg."');";
+                $consulta = "INSERT INTO Escenario (ambito, rutaImagen) VALUES ('".$ambito."','".$rutaImg."');";
         
                 $resultado = $this->mysqli->query($consulta);
                 
                 return $resultado;
-                /*if($resultado){
-                    echo "Imagen guardada correctamente";
-                }else{
-                    echo "Error al guardar la imagen";
-                }*/
     
             } else {
                 echo "Error al subir la imagen";

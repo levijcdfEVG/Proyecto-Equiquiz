@@ -10,7 +10,7 @@
 
         public function eleccionEscenario($ambito) { 
             //Consulta para obtener la ruta de la imagen según el ambito que recibimos por parámetro   
-            $consulta = "SELECT rutaImagen FROM Escenarios WHERE ambito='$ambito';";
+            $consulta = "SELECT rutaImagen FROM Escenario WHERE ambito='$ambito';";
             $resultado = $this->mysqli->query($consulta);
 
              //Obtiene la fila del resultado
