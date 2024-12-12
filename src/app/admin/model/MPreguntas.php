@@ -188,5 +188,45 @@ class MPreguntas {
             return false;
         }
     }
+    /**
+     * Retorna los datos de las preguntas.
+     * @return array
+     */
+    public function getQuestionData() {
+        try {
+            $idPregunta = $_GET['idPregunta']; //Coge el id de la pregunta por GET mediante el hipervinculo
+
+            //Obtiene el contenido de la pregunta
+            $query = "SELECT contenido_P FROM Pregunta WHERE idPregunta = :idPregunta";
+            $stmt = $this->conexion->query($query);
+            $stmt->execute([':idPregunta' => $idPregunta]);
+            $pregunta = $stmt->fetchColumn();
+            //Obtiene la cadena de la pregunta
+            return $pregunta;
+        } catch (Exception $e) {
+            return [];
+        }
+    }
+
+
+    /**
+     * Obtiene las opciones de respuesta para una pregunta específica.
+     *
+     * @param int $idPregunta El ID de la pregunta.
+     * @return array Un array de opciones de respuesta.
+     */
+    public function getAnswer($idPregunta) {
+        try {
+            $idPregunta = $_GET['idPregunta']; //Coge el id de la pregunta por GET mediante el hipervinculo
+
+            $query = "SELECT contenidos, esCorrecto FROM Opciones WHERE idPregunta = :idPregunta";
+            $stmt = $this->conexion->prepare($query);
+            $stmt->execute([':idPregunta' => $idPregunta]);
+            $opciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $opciones;
+        } catch (Exception $e) {
+            return [];
+        }
+    }
 
 }
