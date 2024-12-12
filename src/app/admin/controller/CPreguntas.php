@@ -103,22 +103,27 @@ class CPreguntas {
         if($_SERVER['REQUEST_METHOD'] !== 'POST' && !isset($_POST['pregunta']) && !isset($_POST['escenario']) && !isset($_POST['respuestas'])) {
             echo "No se ha recibido datos de un formulario POST.";
             return false;
+        }else{
+            $contenido = $_POST['pregunta'];
+            $idEscenario = $_POST['escenario'];
+            $opciones = $_POST['respuestas'];
+
+            if (empty($contenido) || empty($idEscenario) || !is_array($opciones)) {
+                return false;
+            }
+            $resultado =  $this->MPreguntas->addQuestion($contenido, $idEscenario, $opciones);
+            
+            if ($resultado) {
+                return true;
+            } else {
+                return false;
+            }
+            
+            require_once 'view/crearPreguntaRespuesta.php';
+    
         }
 
-        $contenido = $_POST['pregunta'];
-        $idEscenario = $_POST['escenario'];
-        $opciones = $_POST['respuestas'];
-
-        if (empty($contenido) || empty($idEscenario) || !is_array($opciones)) {
-            return false;
-        }
-        $resultado =  $this->MPreguntas->addQuestion($contenido, $idEscenario, $opciones);
         
-        if ($resultado) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
