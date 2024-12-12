@@ -96,17 +96,16 @@ class CPreguntas {
             $respuestas = $_POST['respuestas'];
             $correcta = $_POST['correcta'];
             $escenario = $_POST['escenario'];
-    
-            // Filtrar respuestas vacías
-            $respuestas = array_filter($respuestas, function($respuesta) {
-                return !empty(trim($respuesta));
-            });
-    
-            if (count($respuestas) < 2) {
-                echo "Debe proporcionar al menos dos respuestas.";
+            
+            // Validar los datos de la pregunta
+            $validacion = $this->validarPregunta($pregunta, $respuestas, $correcta, $escenario);
+            if ($validacion !== true) {
+                echo $validacion;
                 return false;
             }
-    
+
+
+            // Si se pasan todas las validaciones, se añade la pregunta
             $resultado = $this->MPreguntas->addQuestion($pregunta, $respuestas, $correcta, $escenario);
             $this->view = 'resultadoAniadido.php';
             $this->resultado = $resultado;
@@ -126,7 +125,15 @@ class CPreguntas {
         $pregunta = $_POST['pregunta'];
         $respuestas = $_POST['respuestas'];
         $correcta = $_POST['correcta'];
+        $escenario = $_POST['escenario'];
 
+        // Validar los datos de la pregunta
+        $validacion = $this->validarPregunta($pregunta, $respuestas, $correcta, $escenario);
+        if ($validacion !== true) {
+            echo $validacion;
+            return false;
+        }
+        
         $this->MPreguntas->modifyQuestion($idPregunta, $pregunta, $respuestas, $correcta);
         header('Location: index.php?c=CPreguntas&a=showQuestions');
     }
@@ -158,6 +165,47 @@ class CPreguntas {
             'pregunta' => $pregunta,
             'respuestas' => $respuestas
         ];
+    }
+
+    /**
+     * Valida los datos de una pregunta.
+     *
+     * @param string $pregunta La pregunta a validar.
+     * @param array $respuestas Un array de respuestas a validar.
+     * @param int $correcta El índice de la respuesta correcta.
+     * @param int $escenario El escenario de la pregunta.
+     * @return mixed True si la pregunta es válida, un mensaje de error si no lo es.
+     */
+    private function validarPregunta($pregunta, $respuestas, $correcta, $escenario) {
+        // Validar longitud de la pregunta
+        if (empty(trim($pregunta))) {
+            return "La pregunta no puede estar vacía.";
+        } elseif (strlen($pregunta) > 350) {
+            return "La longitud de la pregunta supera el límite establecido (350 caracteres).";
+        }
+    
+        // Filtrar respuestas vacías y validar longitud
+        $respuestas = array_filter($respuestas, function($respuesta) {
+            return !empty(trim($respuesta)) && strlen($respuesta) <= 300;
+        });
+    
+        if (count($respuestas) < 2) {
+            return "Debe proporcionar al menos dos respuestas.";
+        }
+    
+        // Validar que una respuesta correcta haya sido seleccionada
+        if (!isset($correcta) || !array_key_exists($correcta - 1, $respuestas)) {
+            return "Debe seleccionar una respuesta correcta válida.";
+        }
+    
+        // Validar escenario
+        //$escenariosValidos = [1, 2, 3];
+        //if (!in_array($escenario, $escenariosValidos)) {
+        //    return "El escenario seleccionado no es válido.";
+        //}
+    
+        // Si todas las validaciones pasan, devolver true
+        return true;
     }
 }
 ?>
