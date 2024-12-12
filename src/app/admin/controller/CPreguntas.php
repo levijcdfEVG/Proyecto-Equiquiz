@@ -138,14 +138,12 @@ class CPreguntas {
      * @param int $idPregunta El ID de la pregunta a eliminar.
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      */
+    
     public function deleteQuestion() {
         $idPregunta = $_GET['id'];
         $resultado = $this->MPreguntas->deleteQuestion($idPregunta);
-        if($resultado){
-            header('Location: index.php?c=CPreguntas&a=showQuestions');
-        }else{
-            echo "No se ha podido eliminar la pregunta.";
-        }    
+        $this->view = 'resultadoBorrado.php'; // Nueva vista para mostrar el resultado
+        $this->resultado = $resultado;
     }
 
     /**

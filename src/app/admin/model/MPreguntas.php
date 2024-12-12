@@ -131,12 +131,12 @@ class MPreguntas {
      */
     public function deleteQuestion($idPregunta) {
         try {
-            $sql = "DELETE FROM Respuesta WHERE idPregunta = :idPregunta";
+            $sql = "DELETE FROM opciones WHERE idPregunta = :idPregunta";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':idPregunta', $idPregunta);
             $stmt->execute();
     
-            $sql = "DELETE FROM Pregunta WHERE idPregunta = :idPregunta";
+            $sql = "DELETE FROM pregunta WHERE idPregunta = :idPregunta";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':idPregunta', $idPregunta);
             $stmt->execute();
