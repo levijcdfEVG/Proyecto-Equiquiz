@@ -41,7 +41,7 @@ class CPreguntas {
      */
     public function showModify() {
         $this->title = 'Modificacion de Preguntas';
-        $this->view = 'modificarPreguntas.php';
+        $this->view = 'modificarPreguntaRespuesta.php';
     }
 
     /**
