@@ -42,24 +42,39 @@ const interaccionesPuntos = {};
 
 async function fetchPregunta(idEscenario) {
     try {
+        console.log('Entra');
+
+        // Crear un FormData para enviar los datos correctamente
+        const formData = new FormData();
+        formData.append('action', 'getQuestion');
+        formData.append('idEscenario', idEscenario);
+
+        // Realizar la solicitud POST con FormData
         const respuesta = await fetch('src/app/user/controller/fetchPreguntas.php', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                action: 'getQuestion',
-                idEscenario: idEscenario,
-            }),
+            body: formData,
         });
 
-        const preguntas = await respuesta.json();
+        // Verificar si la respuesta fue exitosa
+        if (!respuesta.ok) {
+            throw new Error(`Error HTTP! Código de estado: ${respuesta.status}`);
+        }
+
+        // Convertir la respuesta a JSON
+        const preguntas = await respuesta.text();
         console.log(preguntas);
-        mostrarPopup(preguntas.data);
+
+        // Verificar el estado del servidor en la respuesta
+        if (preguntas.status === 'success') {
+            mostrarPopup(preguntas.data);
+        } else {
+            console.error('Error del servidor:', preguntas.message);
+        }
     } catch (error) {
         console.error('Error en la solicitud:', error);
     }
 }
+
 
 function mostrarPopup(preguntas) {
     // Seleccionar una pregunta aleatoria
@@ -140,7 +155,7 @@ function verificarCercania(jugador) {
         );
 
         // Si la distancia es menor a 50px
-        if (distancia < 50) {
+        if (distancia < 30) {
             const escenario = punto.dataset.escenario;
             console.log(escenario);
 
