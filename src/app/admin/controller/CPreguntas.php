@@ -87,10 +87,7 @@ class CPreguntas {
         $this->showList(); //Se llama el metodo de asignacion de titulo y de pagina
         
         $preguntas = $this->getQuestionData();
-        foreach ($preguntas as $idPregunta => $pregunta) {
-            echo "ID Pregunta: " . $idPregunta . "\n";
-            echo "Pregunta: " . $pregunta['pregunta'] . "\n";
-        }
+        return $preguntas;
     }
 
     /**

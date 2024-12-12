@@ -5,11 +5,13 @@
     </nav>
     <section>
     <?php
+        $preguntas =  $objController->$action();
+        
         if (isset($preguntas) && is_array($preguntas)) {
             foreach ($preguntas as $idPregunta => $pregunta) {
                 echo "<article class='preguntas'>";
                 echo "<p>{$pregunta['pregunta']}</p>";
-                echo "<i class='fas fa-edit modificar' data-id='{$idPregunta}'></i>";
+                echo "<a href='index.php?c=CPreguntas&a=showModify'><i class='fas fa-edit modificar' data-id='{$idPregunta}'></i></a>";
                 echo "<i class='fas fa-trash basura' data-id='{$idPregunta}'></i>";
                 echo "</article>";
             }

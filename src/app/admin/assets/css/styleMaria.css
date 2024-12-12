@@ -102,12 +102,19 @@ nav h2 {
     margin-top: 4%;
     padding: 2vh;
     border-radius: 5px;
-    background-color: #c8f2c4; 
+    background-color: #c8f2c4;
 }   
 
 .preguntas>p,.preguntas>i{
     position: absolute;
     top: 50%;
+    transform: translateY(-50%);
+}
+
+.preguntas>a{
+    position: absolute;
+    top: 50%;
+    left: 85%;
     transform: translateY(-50%);
 }
 
