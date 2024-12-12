@@ -38,7 +38,7 @@ $respuestas = $data['respuestas'];
             </select>
         </div>
         <div id="button-group">
-            <button type="button" class="btn volver">Volver</button>
+            <button type="button" class="btn volver" id="volver">Volver</button>
             <button type="submit" id="submitButton" class="btn modificar">Modificar</button>
         </div>
     </form>
