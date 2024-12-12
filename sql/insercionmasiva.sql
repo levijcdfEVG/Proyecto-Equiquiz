@@ -21,7 +21,7 @@ VALUES
 ('(90,4)'),
 ('(67,22)'),
 
--- Opciones para la tercera pregunta (Educación - Martina)
+-- Opciones para la tercera pregunta (Salud)
 ('(12,56)'),
 ('(78,43)'),
 ('(25,99)'),
