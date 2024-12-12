@@ -98,8 +98,17 @@ class CPreguntas {
      * @param array $opciones Un array de opciones, cada una contiene 'contenido' y 'esCorrecto'.
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      */
-    public function addQuestion($contenido, $idEscenario, $opciones) {
+    public function addQuestion() {
         // Validar parámetros
+        if($_SERVER['REQUEST_METHOD'] !== 'POST' && !isset($_POST['pregunta']) && !isset($_POST['escenario']) && !isset($_POST['respuestas'])) {
+            echo "No se ha recibido datos de un formulario POST.";
+            return false;
+        }
+        
+        $contenido = $_POST['pregunta'];
+        $idEscenario = $_POST['escenario'];
+        $opciones = $_POST['respuestas'];
+
         if (empty($contenido) || empty($idEscenario) || !is_array($opciones)) {
             return false;
         }
