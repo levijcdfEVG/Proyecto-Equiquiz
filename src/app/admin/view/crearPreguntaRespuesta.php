@@ -35,7 +35,7 @@
             </select>
         </div>
         <div id="button-group">
-            <button type="button" class="btn volver">Volver</button>
+            <button type="button" class="btn volver" id="volver">Volver</button>
             <button type="submit" id="submitButton" class="btn añadir">Añadir</button>
         </div>
     </form>

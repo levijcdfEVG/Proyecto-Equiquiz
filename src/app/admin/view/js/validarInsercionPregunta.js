@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const botonSubir = document.getElementById('submitButton');
     const respuestas = document.querySelectorAll('input[name="respuestas[]"]');
     const pregunta = document.getElementById('pregunta');
+    const botonVolver = document.getElementById('volver');
 
     /**
      * Valida la longitud de la pregunta.
@@ -77,4 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
     botonSubir.addEventListener('click', (event) => {
         validarRespuestas();
     });
+
+    // Evento para volver a la página anterior
+    botonVolver.addEventListener('click', () => {
+        window.location.href='index.php';
+    });
+
 });
