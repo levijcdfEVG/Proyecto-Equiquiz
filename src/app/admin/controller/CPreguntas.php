@@ -96,7 +96,7 @@ class CPreguntas {
      * @param string $contenido El contenido de la pregunta.
      * @param int $idEscenario El ID del escenario al que pertenece la pregunta.
      * @param array $opciones Un array de opciones, cada una contiene 'contenido' y 'esCorrecto'.
-     * @return bool Devuelve true en caso de éxito, false en caso de fallo.
+     * @return void No devuelve nada.
      */
     public function addQuestion() {
         // Validar parámetros
@@ -112,7 +112,13 @@ class CPreguntas {
         if (empty($contenido) || empty($idEscenario) || !is_array($opciones)) {
             return false;
         }
-        return $this->MPreguntas->addQuestion($contenido, $idEscenario, $opciones);
+        $resultado =  $this->MPreguntas->addQuestion($contenido, $idEscenario, $opciones);
+        
+        if ($resultado) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

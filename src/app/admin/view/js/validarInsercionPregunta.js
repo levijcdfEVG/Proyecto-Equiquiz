@@ -32,7 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
             newInput.id = `respuestas${counter}`;
             newInput.required = true;
 
-            contenedorDeRespuestas.appendChild(newInput); // Añade el nuevo input al contenedor
+            // Crear y añadir un nuevo campo de radio para marcar la respuesta correcta
+            const newRadio = document.createElement('input');
+            newRadio.type = 'radio';
+            newRadio.name = 'correcta';
+            newRadio.value = counter;
+            newRadio.id = `correcta${counter}`;
+
+            
+            // Añade el nuevo input al contenedor
+            contenedorDeRespuestas.appendChild(newInput);
+            // Añadir el nuevo input de radio al contenedor
+            contenedorDeRespuestas.appendChild(newRadio); 
         }
     };
 
@@ -49,7 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("No se pueden quitar más preguntas");
         } else {
             const ultimaRespuesta = document.getElementById(`respuestas${counter}`);
+            const ultimoI   = document.getElementById(`correcta${counter}`);
             ultimaRespuesta.remove(); // Elimina el último input de respuesta
+            ultimoI.remove(); // Elimina el último input de respuesta   
             counter--; // Decrementa el contador
         }
     };
