@@ -30,10 +30,10 @@ class MPuntosInteres {
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      * @throws Exception Si la cantidad de puntos de interes es menor a 5 y mayor a 9.
      */
-    public function addQuestion($puntosInteres) {
+    public function addQuestion($idEscenario, $puntosInteres) {
         try {
             // Validar el número de opciones
-            if (count($opciones) < 5 || count($opciones) > 9) {
+            if (count($puntosInteres) < 5 || count($puntosInteres) > 9) {
                 throw new Exception("Debe haber minimo 5 puntos de interes (maximo 9).");
             }
 
@@ -45,7 +45,7 @@ class MPuntosInteres {
             $stmt = $this->conexion->prepare($query);
             $stmt->execute([
                 ':idEscenario' => $idEscenario,
-                ':puntosInteres' => $puntosInteres,
+                ':puntosInteres' => $puntosInteres
             ]);
             return true;
         } catch (Exception $e) {
@@ -67,67 +67,59 @@ class MPuntosInteres {
                       ORDER BY idEscenario";
 
             $stmt = $this->conexion->query($query);
-            $preguntas = [];
+            $puntos = [];
 
             // Recorrer los resultados y organizar las preguntas y opciones
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $preguntas[$row['idPregunta']]['pregunta'] = $row['contenido_P'];
+                $puntos[$row['idEscenario']] = $row['puntosInteres'];
             }
 
-            return $preguntas;
+            return $puntos;
         } catch (Exception $e) {
             return [];
         }
     }
 
     /**
-     * Modifica una pregunta existente junto con sus opciones.
+     * Modifica un punto de interes junto al escenario asignado.
      *
-     * @param int $idPregunta El ID de la pregunta a modificar.
-     * @param string $contenido El nuevo contenido de la pregunta.
-     * @param array $opciones Un array de nuevas opciones, cada una contiene 'contenido' y 'esCorrecto'.
+     * @param int $idEscenario ID del escenario al que pertenece el punto de interes.
+     * @param string $puntosInteres Las coordenadas del punto de interes.
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
-     * @throws Exception Si el número de opciones no está entre 2 y 4 o si no hay exactamente una opción correcta.
+     * @throws Exception Si la cantidad de puntos de interes es menor a 5 y mayor a 9.
      */
-    public function modifyQuestion($idPregunta, $contenido, $opciones) {
+    public function modifyQuestion($idEscenario, $puntosInteres) {
         try {
             // Validar el número de opciones
-            if (count($opciones) < 2 || count($opciones) > 4) {
-                throw new Exception("El número de opciones debe estar entre 2 y 4.");
-            }
-
-            // Validar que hay exactamente una respuesta correcta
-            $numCorrectas = array_sum(array_column($opciones, 'esCorrecto'));
-            if ($numCorrectas !== 1) {
-                throw new Exception("Debe haber exactamente una opción correcta.");
+            if (count($puntosInteres) < 2 || count($puntosInteres) > 4) {
+                throw new Exception("Debe haber minimo 5 puntos de interes (maximo 9).");
             }
 
             // Iniciar una transacción
             $this->conexion->beginTransaction();
 
-            // Actualizar el contenido de la pregunta
-            $queryPregunta = "UPDATE Pregunta SET contenido_P = :contenido WHERE idPregunta = :idPregunta";
-            $stmtPregunta = $this->conexion->prepare($queryPregunta);
-            $stmtPregunta->execute([
-                ':contenido' => $contenido,
-                ':idPregunta' => $idPregunta
+            // Actualizar el contenido del punto de interes
+            $queryPtoInteres = "UPDATE PuntosInteres_Escenario SET puntosInteres = :puntosInteres WHERE idEscenario = :idEscenario";
+            $stmtPtoInteres = $this->conexion->prepare($queryPtoInteres);
+            $stmtPtoInteres->execute([
+                ':puntosInteres' => $puntosInteres,
+                ':idEscenario' => $idEscenario
             ]);
 
-            // Eliminar las opciones antiguas
-            $queryDeleteOpciones = "DELETE FROM Opciones WHERE idPregunta = :idPregunta";
-            $stmtDeleteOpciones = $this->conexion->prepare($queryDeleteOpciones);
-            $stmtDeleteOpciones->execute([':idPregunta' => $idPregunta]);
+            // Eliminar los puntos de interes antiguos
+            $queryBorrarPtoInteres = "DELETE FROM PuntosInteres_Escenario WHERE idEscenario = :idEscenario";
+            $stmtBorrarPtoInteres = $this->conexion->prepare($queryBorrarPtoInteres);
+            $stmtBorrarPtoInteres->execute([':idEscenario' => $idEscenario]);
 
-            // Insertar las nuevas opciones
-            $queryOpciones = "INSERT INTO Opciones (contenidos, esCorrecto, idPregunta) VALUES (:contenidos, :esCorrecto, :idPregunta)";
-            $stmtOpciones = $this->conexion->prepare($queryOpciones);
+            // Insertar los nuevos puntos de interes
+            $queryPtoInteres = "INSERT INTO PuntosInteres_Escenario (idEscenario, puntosInteres) VALUES (:idEscenario, :puntosInteres)";
+            $stmtPtoInteres = $this->conexion->prepare($queryOpciones);
 
-            // Recorrer todas las opciones y ejecutarlas
-            foreach ($opciones as $opcion) {
-                $stmtOpciones->execute([
-                    ':contenidos' => $opcion['contenido'],
-                    ':esCorrecto' => $opcion['esCorrecto'],
-                    ':idPregunta' => $idPregunta
+            // Recorrer todos los puntos de interes y ejecutarlos
+            foreach ($puntosInteres as $PtoInteres) {
+                $stmtPtoInteres->execute([
+                    ':idEscenario' => $idEscenario,
+                    ':puntosInteres' => $PtoInteres['puntosInteres']
                 ]);
             }
 
@@ -142,17 +134,17 @@ class MPuntosInteres {
     }
 
     /**
-     * Elimina una pregunta y sus opciones asociadas de la base de datos.
+     * Elimina un punto de interes de la base de datos.
      *
-     * @param int $idPregunta El ID de la pregunta a eliminar.
+     * @param int $idEscenario El ID de la pregunta a eliminar.
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      */
-    public function deleteQuestion($idPregunta) {
+    public function deleteQuestion($idEscenario) {
         try {
             // Eliminar la pregunta de la base de datos
-            $query = "DELETE FROM Pregunta WHERE idPregunta = :idPregunta";
+            $query = "DELETE FROM Pregunta WHERE idEscenario = :idEscenario";
             $stmt = $this->conexion->prepare($query);
-            $stmt->execute([':idPregunta' => $idPregunta]);
+            $stmt->execute([':idEscenario' => $idEscenario]);
             return true;
         } catch (Exception $e) {
             return false;
