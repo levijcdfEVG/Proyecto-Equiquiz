@@ -1,15 +1,13 @@
 /*Fuentes*/
 @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
 
-/*Clase de la fuente*/
-.irish-grover-regular {
-    font-family: "Irish Grover", system-ui;
-    font-weight: 400;
-    font-style: normal;
+*{
+    font-family: "Irish Grover", system-ui; 
 }
 
 body{
     background-image: url(../img/cespedFondo.jpg);
+    font-family: "Irish Grover", system-ui;
 }
 
 header h1{
@@ -18,7 +16,7 @@ header h1{
     text-align: center;
 }
 
-/* Configuración de "Inscruipción al Ranking" */
+/* Configuración de "Inscripción al Ranking" */
 #rankingForm {
     position: relative;
     margin: 5% auto;
@@ -41,16 +39,27 @@ form label {
     font-weight: bold;
 }
 
+form label:nth-of-type(2){
+    position: absolute;
+    top: 10vh;
+    right: 24vw;
+}
+
 form input[type="text"] {
-    width: 90%;
+    width: 20%;
     padding: 1.5%;
     margin-bottom: 3%;
     margin-top: 2%;
     font-size: 1.5rem;
-    font-family: "Irish Grover";
     border: 2px solid #a2d79d;
     border-radius: 5px;
     background-color: #b0e7b8ea;
+}
+
+form input[type="text"]:nth-of-type(2){
+    position: absolute;
+    top: 6vh;
+    left: 40vw;
 }
 
 button {
@@ -60,7 +69,6 @@ button {
     padding: 1%;
     font-size: 1.5rem;
     font-weight: bold;
-    font-family: "Irish Grover";
     text-transform: uppercase;
     border: none;
     border-radius: 5px;
@@ -102,8 +110,8 @@ form .enviar:hover, form .borrar:hover,  form .cancelar:hover, .volver:hover{
 @media (max-width: 810px) {
 
 #rankingForm {
-    width: 85%; 
-    height: auto;
+    width: 55%; 
+    height: 30vh;
     padding: 6%; 
 }
 
@@ -115,10 +123,34 @@ form label {
     font-size: 2rem; 
 }
 
+form label:nth-of-type(1){
+    position: absolute;
+    top: 8vh;
+    left: 10vw;
+}
+
+form label:nth-of-type(2){
+    position: absolute;
+    top: 16vh;
+    left: 5.9vw;
+}
+
 form input[type="text"] {
-    width: 100%; 
+    width: 40%; 
     font-size: 1.2rem; 
     padding: 1.2%; 
+}
+
+form input[type="text"]:nth-of-type(1){
+    position: absolute;
+    top: 5vh;
+    left: 30vw;
+}
+
+form input[type="text"]:nth-of-type(2){
+    position: absolute;
+    top: 14vh;
+    left: 30vw;
 }
 
 button {
@@ -130,17 +162,17 @@ button {
 }
 
 form .enviar {
-    top: 4vh;
-    left: 25vw;
+    top: 20vh;
+    left: 15vw;
 }
 
 form .borrar {
-    top: 1vh;
-    left: 10vw;
+    top: 18vh;
+    left: 8vw;
 }
 
 form .cancelar {
-    top: 1vh;
+    top: 18vh;
     left: 5vw;
 }
 
