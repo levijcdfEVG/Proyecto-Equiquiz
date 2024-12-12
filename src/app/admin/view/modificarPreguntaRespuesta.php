@@ -16,24 +16,22 @@ $respuestas = $data['respuestas'];
         <input type="hidden" name="idPregunta" value="<?php echo $idPregunta; ?>">
         <div class="crear-input-group">
             <label for="pregunta">Pregunta</label>
-            <textarea class="textarea" id="pregunta" name="pregunta" rows="2"><?php echo htmlspecialchars($pregunta); ?></textarea>
+            <textarea class="textarea" id="pregunta" name="pregunta" rows="2" required><?php echo htmlspecialchars($pregunta); ?></textarea>
         </div>
         <div class="crear-input-group respuesta-group">
             <label for="respuesta">Respuesta/s</label>
             <div id="contenedorDeRespuestas" class="respuesta-container">
-                <?php foreach ($respuestas as $index => $respuesta): ?>
-                <div class="respuesta-item">
-                    <input type="text" id="respuestas<?php echo $index + 1; ?>" name="respuestas[]" value="<?php echo htmlspecialchars($respuesta['contenidos']); ?>" required>
-                    <input type="radio" id="correcta<?php echo $index + 1; ?>" name="correcta" value="<?php echo $index + 1; ?>" <?php echo $respuesta['esCorrecto'] ? 'checked' : ''; ?>>
-                </div>
-                <?php endforeach; ?>
+                <?php for ($i = 0; $i < 4; $i++): ?>
+                    <div class="respuesta-item">
+                        <input type="text" id="respuestas<?php echo $i + 1; ?>" name="respuestas[]" value="<?php echo isset($respuestas[$i]) ? htmlspecialchars($respuestas[$i]['contenidos']) : ''; ?>" <?php echo $i < 2 ? 'required' : ''; ?>>
+                        <input type="radio" id="correcta<?php echo $i + 1; ?>" name="correcta" value="<?php echo $i + 1; ?>" <?php echo isset($respuestas[$i]) && $respuestas[$i]['esCorrecto'] ? 'checked' : ''; ?>>
+                    </div>
+                <?php endfor; ?>
             </div>
-            <button type="button" id="aniadirRespuestas" class="add-btn">+</button>
-            <button type="button" id="quitarRespuestas" class="add-btn">-</button>
         </div>
         <div class="crear-input-group">
             <label for="escenario">Escenario</label>
-            <select id="escenario" name="escenario">
+            <select id="escenario" name="escenario" required>
                 <option value="1" <?php echo $data['pregunta']['idEscenario'] == 1 ? 'selected' : ''; ?>>Escenario 1</option>
                 <option value="2" <?php echo $data['pregunta']['idEscenario'] == 2 ? 'selected' : ''; ?>>Escenario 2</option>
                 <option value="3" <?php echo $data['pregunta']['idEscenario'] == 3 ? 'selected' : ''; ?>>Escenario 3</option>

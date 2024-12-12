@@ -50,11 +50,11 @@ class MPreguntas {
     
             foreach ($respuestas as $index => $respuesta) {
                 $esCorrecta = ($index + 1 == $correcta) ? 1 : 0;
-                $sql = "INSERT INTO opciones (idPregunta, contenidos, esCorrecto) VALUES (:idPregunta, :contenidos, :correcta)";
+                $sql = "INSERT INTO opciones (idPregunta, contenidos, esCorrecto) VALUES (:idPregunta, :contenidos, :esCorrecto)";
                 $stmt = $this->conexion->prepare($sql);
                 $stmt->bindParam(':idPregunta', $idPregunta);
                 $stmt->bindParam(':contenidos', $respuesta);
-                $stmt->bindParam(':correcta', $esCorrecta);
+                $stmt->bindParam(':esCorrecto', $esCorrecta);
                 $stmt->execute();
             }
             return true; // Operación exitosa

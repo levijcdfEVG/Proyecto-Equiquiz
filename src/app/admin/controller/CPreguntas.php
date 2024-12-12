@@ -94,21 +94,30 @@ class CPreguntas {
      * @param array $opciones Un array de opciones, cada una contiene 'contenido' y 'esCorrecto'.
      * @return void No devuelve nada.
      */
-    <?php
-    public function addQuestion() {
-        // Validar parámetros
-        if($_SERVER['REQUEST_METHOD'] !== 'POST' && !isset($_POST['pregunta']) && !isset($_POST['escenario']) && !isset($_POST['respuestas'])) {
-            echo "No se ha recibido datos de un formulario POST.";
-            return false;
-        } else {
+
+     public function addQuestion() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pregunta']) && isset($_POST['escenario']) && isset($_POST['respuestas'])) {
             $pregunta = $_POST['pregunta'];
             $respuestas = $_POST['respuestas'];
             $correcta = $_POST['correcta'];
             $escenario = $_POST['escenario'];
-
+    
+            // Filtrar respuestas vacías
+            $respuestas = array_filter($respuestas, function($respuesta) {
+                return !empty(trim($respuesta));
+            });
+    
+            if (count($respuestas) < 2) {
+                echo "Debe proporcionar al menos dos respuestas.";
+                return false;
+            }
+    
             $resultado = $this->MPreguntas->addQuestion($pregunta, $respuestas, $correcta, $escenario);
-            $this->view = 'resultadoAniadido.php'; // Nueva vista para mostrar el resultado
+            $this->view = 'resultadoAniadido.php';
             $this->resultado = $resultado;
+        } else {
+            echo "No se ha recibido datos de un formulario POST.";
+            return false;
         }
     }
 
