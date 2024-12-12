@@ -201,6 +201,7 @@ class MPreguntas {
             $stmt->execute([':idPregunta' => $idPregunta]);
             $pregunta = $stmt->fetchColumn();
             //Obtiene la cadena de la pregunta
+//var_dump($pregunta);
             return $pregunta;
         } catch (Exception $e) {
             return [];
@@ -221,6 +222,7 @@ class MPreguntas {
             $stmt = $this->conexion->prepare($query);
             $stmt->execute([':idPregunta' => $idPregunta]);
             $opciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            var_dump($opciones);
             return $opciones;
         } catch (Exception $e) {
             return [];

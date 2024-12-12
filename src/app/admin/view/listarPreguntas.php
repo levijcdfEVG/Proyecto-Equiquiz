@@ -6,7 +6,6 @@
     <section>
     <?php
         $preguntas =  $objController->$action();
-        
         if (isset($preguntas) && is_array($preguntas)) {
             foreach ($preguntas as $idPregunta => $pregunta) {
                 echo "<article class='preguntas'>";

@@ -140,14 +140,14 @@ class CPreguntas {
      * Muestra una pregunta y sus opciones asociadas.
      * @return array Un array asociativo de la pregunta y sus opciones.
      */
-    public function showQuestionAndAnswers(){
+    public function showQuestionAndAnswers($idPregunta){
+//echo "hola";
         $this->showModify(); //Se llama el metodo de asignacion de titulo y de pagina
-
-        //Se obtiene el id de la pregunta
-        $idPregunta = $_GET['id'] = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+        //var_dump($idPregunta);
         $pregunta = $this->MPreguntas->getQuestion($idPregunta);
+        
         $respuestas = $this->MPreguntas->getAnswer($idPregunta);
-
+        
         //Se devuelve un array con la pregunta y las respuestas
         return [
             'pregunta' => $pregunta,
