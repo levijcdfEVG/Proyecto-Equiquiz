@@ -38,47 +38,23 @@ class MPreguntas {
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      * @throws Exception Si el número de opciones no está entre 2 y 4.
      */
-    public function addQuestion($contenido, $idEscenario, $opciones) {
-        try {
-            // Validar el número de opciones
-            if (count($opciones) < 2 || count($opciones) > 4) {
-                throw new Exception("El número de opciones debe estar entre 2 y 4.");
-            }
+    public function addQuestion($pregunta, $respuestas, $correcta, $escenario) {
+        $sql = "INSERT INTO Pregunta (pregunta, escenario) VALUES (:pregunta, :escenario)";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':pregunta', $pregunta);
+        $stmt->bindParam(':escenario', $escenario);
+        $stmt->execute();
 
-            // Iniciar una transacción
-            $this->conexion->beginTransaction();
+        $idPregunta = $this->conexion->lastInsertId();
 
-            // Insertar la pregunta en la base de datos
-            $query = "INSERT INTO Pregunta (contenido_P, idEscenario) VALUES (:contenido, :idEscenario)";
-            $stmt = $this->conexion->prepare($query);
-            $stmt->execute([
-                ':contenido' => $contenido,
-                ':idEscenario' => $idEscenario
-            ]);
-
-            // Obtener el ID de la pregunta recién insertada
-            $idPregunta = $this->conexion->lastInsertId();
-
-            // Insertar las opciones en la base de datos
-            $queryOpciones = "INSERT INTO Opciones (contenidos, esCorrecto, idPregunta) VALUES (:contenidos, :esCorrecto, :idPregunta)";
-            $stmtOpciones = $this->conexion->prepare($queryOpciones);
-
-            // Recorrer todas las opciones y ejecutarlas
-            foreach ($opciones as $opcion) {
-                $stmtOpciones->execute([
-                    ':contenidos' => $opcion['contenido'],
-                    ':esCorrecto' => $opcion['esCorrecto'],
-                    ':idPregunta' => $idPregunta
-                ]);
-            }
-
-            // Confirmar la transacción
-            $this->conexion->commit();
-            return true;
-        } catch (Exception $e) {
-            // Revertir la transacción en caso de error
-            $this->conexion->rollBack();
-            return false;
+        foreach ($respuestas as $index => $respuesta) {
+            $esCorrecta = ($index + 1 == $correcta) ? 1 : 0;
+            $sql = "INSERT INTO Respuesta (idPregunta, contenidos, correcta) VALUES (:idPregunta, :contenidos, :correcta)";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bindParam(':idPregunta', $idPregunta);
+            $stmt->bindParam(':contenidos', $respuesta);
+            $stmt->bindParam(':correcta', $esCorrecta);
+            $stmt->execute();
         }
     }
 
@@ -119,55 +95,26 @@ class MPreguntas {
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      * @throws Exception Si el número de opciones no está entre 2 y 4 o si no hay exactamente una opción correcta.
      */
-    public function modifyQuestion($idPregunta, $contenido, $opciones) {
-        try {
-            // Validar el número de opciones
-            if (count($opciones) < 2 || count($opciones) > 4) {
-                throw new Exception("El número de opciones debe estar entre 2 y 4.");
-            }
+    public function modifyQuestion($idPregunta, $pregunta, $respuestas, $correcta) {
+        $sql = "UPDATE Pregunta SET pregunta = :pregunta WHERE idPregunta = :idPregunta";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':pregunta', $pregunta);
+        $stmt->bindParam(':idPregunta', $idPregunta);
+        $stmt->execute();
 
-            // Validar que hay exactamente una respuesta correcta
-            $numCorrectas = array_sum(array_column($opciones, 'esCorrecto'));
-            if ($numCorrectas !== 1) {
-                throw new Exception("Debe haber exactamente una opción correcta.");
-            }
+        $sql = "DELETE FROM Respuesta WHERE idPregunta = :idPregunta";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':idPregunta', $idPregunta);
+        $stmt->execute();
 
-            // Iniciar una transacción
-            $this->conexion->beginTransaction();
-
-            // Actualizar el contenido de la pregunta
-            $queryPregunta = "UPDATE Pregunta SET contenido_P = :contenido WHERE idPregunta = :idPregunta";
-            $stmtPregunta = $this->conexion->prepare($queryPregunta);
-            $stmtPregunta->execute([
-                ':contenido' => $contenido,
-                ':idPregunta' => $idPregunta
-            ]);
-
-            // Eliminar las opciones antiguas
-            $queryDeleteOpciones = "DELETE FROM Opciones WHERE idPregunta = :idPregunta";
-            $stmtDeleteOpciones = $this->conexion->prepare($queryDeleteOpciones);
-            $stmtDeleteOpciones->execute([':idPregunta' => $idPregunta]);
-
-            // Insertar las nuevas opciones
-            $queryOpciones = "INSERT INTO Opciones (contenidos, esCorrecto, idPregunta) VALUES (:contenidos, :esCorrecto, :idPregunta)";
-            $stmtOpciones = $this->conexion->prepare($queryOpciones);
-
-            // Recorrer todas las opciones y ejecutarlas
-            foreach ($opciones as $opcion) {
-                $stmtOpciones->execute([
-                    ':contenidos' => $opcion['contenido'],
-                    ':esCorrecto' => $opcion['esCorrecto'],
-                    ':idPregunta' => $idPregunta
-                ]);
-            }
-
-            // Confirmar la transacción
-            $this->conexion->commit();
-            return true;
-        } catch (Exception $e) {
-            // Revertir la transacción en caso de error
-            $this->conexion->rollBack();
-            return false;
+        foreach ($respuestas as $index => $respuesta) {
+            $esCorrecta = ($index + 1 == $correcta) ? 1 : 0;
+            $sql = "INSERT INTO Respuesta (idPregunta, contenidos, correcta) VALUES (:idPregunta, :contenidos, :correcta)";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bindParam(':idPregunta', $idPregunta);
+            $stmt->bindParam(':contenidos', $respuesta);
+            $stmt->bindParam(':correcta', $esCorrecta);
+            $stmt->execute();
         }
     }
 
@@ -178,34 +125,34 @@ class MPreguntas {
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      */
     public function deleteQuestion($idPregunta) {
-        try {
-            // Eliminar la pregunta de la base de datos
-            $query = "DELETE FROM Pregunta WHERE idPregunta = :idPregunta";
-            $stmt = $this->conexion->prepare($query);
-            $stmt->execute([':idPregunta' => $idPregunta]);
-            return true;
-        } catch (Exception $e) {
-            return false;
-        }
+        $sql = "DELETE FROM Respuesta WHERE idPregunta = :idPregunta";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':idPregunta', $idPregunta);
+        $stmt->execute();
+
+        $sql = "DELETE FROM Pregunta WHERE idPregunta = :idPregunta";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':idPregunta', $idPregunta);
+        $stmt->execute();
     }
     /**
      * Retorna los datos de las preguntas.
      * @return array
      */
     public function getQuestion($idPregunta) {
-        try {
-           
-            //Obtiene el contenido de la pregunta
-            $query = "SELECT contenido_P FROM Pregunta WHERE idPregunta = :idPregunta";
-            $stmt = $this->conexion->query($query);
-            $stmt->execute([':idPregunta' => $idPregunta]);
-            $pregunta = $stmt->fetchColumn();
-            //Obtiene la cadena de la pregunta
-//var_dump($pregunta);
-            return $pregunta;
-        } catch (Exception $e) {
-            return [];
-        }
+        $sql = "SELECT * FROM Pregunta WHERE idPregunta = :idPregunta";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':idPregunta', $idPregunta);
+        $stmt->execute();
+        $pregunta = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $sql = "SELECT * FROM Respuesta WHERE idPregunta = :idPregunta";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':idPregunta', $idPregunta);
+        $stmt->execute();
+        $respuestas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return ['pregunta' => $pregunta, 'respuestas' => $respuestas];
     }
 
 

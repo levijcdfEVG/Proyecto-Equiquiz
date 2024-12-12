@@ -40,8 +40,10 @@ class CPreguntas {
      * @return void
      */
     public function showModify() {
-        $this->title = 'Modificacion de Preguntas';
+        $idPregunta = $_GET['id'];
+        $data = $this->model->getQuestion($idPregunta);
         $this->view = 'modificarPreguntaRespuesta.php';
+        $this->data = $data;
     }
 
     /**
@@ -104,22 +106,14 @@ class CPreguntas {
             echo "No se ha recibido datos de un formulario POST.";
             return false;
         }else{
-            $contenido = $_POST['pregunta'];
-            $idEscenario = $_POST['escenario'];
-            $opciones = $_POST['respuestas'];
 
-            if (empty($contenido) || empty($idEscenario) || !is_array($opciones)) {
-                return false;
-            }
-            $resultado =  $this->MPreguntas->addQuestion($contenido, $idEscenario, $opciones);
-            
-            if ($resultado) {
-                return true;
-            } else {
-                return false;
-            }
-            
-            require_once '../view/crearPreguntaRespuesta.php';
+            $pregunta = $_POST['pregunta'];
+            $respuestas = $_POST['respuestas'];
+            $correcta = $_POST['correcta'];
+            $escenario = $_POST['escenario'];
+    
+            $this->model->addQuestion($pregunta, $respuestas, $correcta, $escenario);
+            header('Location: index.php?c=CPreguntas&a=showQuestions');
     
         }
 
@@ -134,12 +128,14 @@ class CPreguntas {
      * @param array $opciones Un array de nuevas opciones, cada una contiene 'contenido' y 'esCorrecto'.
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      */
-    public function modifyQuestion($idPregunta, $contenido, $opciones) {
-        // Validar parámetros
-        if (empty($idPregunta) || empty($contenido) || !is_array($opciones)) {
-            return false;
-        }
-        return $this->MPreguntas->modifyQuestion($idPregunta, $contenido, $opciones);
+    public function modifyQuestion() {
+        $idPregunta = $_POST['idPregunta'];
+        $pregunta = $_POST['pregunta'];
+        $respuestas = $_POST['respuestas'];
+        $correcta = $_POST['correcta'];
+
+        $this->model->modifyQuestion($idPregunta, $pregunta, $respuestas, $correcta);
+        header('Location: index.php?c=CPreguntas&a=showQuestions');
     }
 
     /**
@@ -148,12 +144,10 @@ class CPreguntas {
      * @param int $idPregunta El ID de la pregunta a eliminar.
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      */
-    public function deleteQuestion($idPregunta) {
-        // Validar parámetros
-        if (empty($idPregunta)) {
-            return false;
-        }
-        return $this->MPreguntas->deleteQuestion($idPregunta);
+    public function deleteQuestion() {
+        $idPregunta = $_GET['id'];
+        $this->model->deleteQuestion($idPregunta);
+        header('Location: index.php?c=CPreguntas&a=showQuestions');
     }
 
     /**
