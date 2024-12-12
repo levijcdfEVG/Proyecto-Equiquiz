@@ -1,6 +1,6 @@
 <div id="container">
     <h1>Añadir Pregunta</h1>
-    <form class="form-container" action="index.php?c=CPreguntas&a=addCharacter">
+    <form class="form-container" action="index.php?c=CPreguntas&a=addQuestion">
         <div class="crear-input-group">
             <label for="pregunta">Pregunta</label>
             <textarea class="textarea" id="pregunta" name="pregunta" rows="2"></textarea>

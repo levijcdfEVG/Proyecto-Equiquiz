@@ -68,7 +68,7 @@ class CPreguntas {
      */
     public function showAdd() {
         $this->title = 'Añadir Preguntas';
-        $this->view = 'aniadirPreguntas.php';
+        $this->view = 'crearPreguntaRespuesta.php';
     }
 
     /**
@@ -104,7 +104,7 @@ class CPreguntas {
             echo "No se ha recibido datos de un formulario POST.";
             return false;
         }
-        
+
         $contenido = $_POST['pregunta'];
         $idEscenario = $_POST['escenario'];
         $opciones = $_POST['respuestas'];
