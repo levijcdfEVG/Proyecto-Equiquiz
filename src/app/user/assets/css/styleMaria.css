@@ -1,0 +1,159 @@
+/*Fuentes*/
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+
+body{
+    background-image: url(../img/cespedFondo.jpg);
+    font-family: "Irish Grover", system-ui;
+}
+
+header h1{
+    color: white;
+    font-size: 4rem;
+    text-align: center;
+}
+
+/* Configuración de "Inscruipción al Ranking" */
+#rankingForm {
+    margin: 5% auto;
+    border-collapse: collapse;
+    width: 60%;
+    height: 50vh;
+    padding: 3% 0 3% 3%;
+    background-color: rgba(197, 227, 182, 0.499); /* Fondo semi-transparente */
+    color: #000;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;  
+}
+
+/* Formulario */
+form label {
+    font-size: 2.5rem;
+    margin-bottom: 1%;
+    color: black;
+    font-weight: bold;
+}
+
+form input[type="text"] {
+    font-size: 1.5rem;
+    font-family: "Irish Grover";
+    border: 2px solid #a2d79d;
+    border-radius: 5px;
+    background-color: #b0e7b8ea;
+}
+
+form>#botones {
+    margin-top: 8vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6vh;     
+}
+
+button {
+    width: 30%;           
+    padding: 1%;       
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: "Irish Grover";
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    background-color: #b0e7b8ea;
+    color: #000;
+}
+
+form #enviar {
+    top: 40vh;
+    left: 20vw;
+    flex-grow: 2;
+}
+
+form .borrar {
+    top: 30vh;
+    left: 10vw;
+}
+
+form .cancelar {
+    top: 30vh;
+    left: 30vw;
+}
+
+form #enviar:hover, form .borrar:hover,  form .cancelar:hover, .volver:hover{
+    transform: scale(1.05);
+}
+
+form>#rellenar {
+    margin-top: 5vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+#puntuacion {
+    width: 15%;
+    text-align: center;
+}
+
+.volver{
+    position: initial;  
+    display: block;
+    margin: 0 auto;
+}
+
+
+/*****************************/
+/*    Media Queries Tablet   */
+/*****************************/
+@media (max-width: 810px) {
+
+#rankingForm {
+    width: 85%; 
+    height: auto;
+    padding: 6%; 
+}
+
+header h1 {
+    font-size: 3rem;
+}
+
+form label {
+    font-size: 2rem; 
+}
+
+form input[type="text"] {
+    width: 100%; 
+    font-size: 1.2rem; 
+    padding: 1.2%; 
+}
+
+button {
+    position: relative; 
+    width: 40%; 
+    margin: 0.5% auto; 
+    font-size: 1.3rem; 
+    padding: 1.2%; 
+}
+
+form .enviar {
+    top: 1vh;
+    left: 25vw;
+}
+
+form .borrar {
+    top: 1vh;
+    left: 10vw;
+}
+
+form .cancelar {
+    top: 1vh;
+    left: 5vw;
+}
+
+/* Botón "Volver" */
+.volver {
+    width: 40%; /* Adapta al ancho */
+    margin-top: 5%; /* Añade espacio arriba */
+}
+}
