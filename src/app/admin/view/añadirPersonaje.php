@@ -19,7 +19,7 @@
         </div>
         
         <label for="imagen">Imagen Jugador</label>
-        <input type="file" name="imagen" required>
+        <input type="file" name="imagen">
         
         <label for="descripcion">Descripción:</label>
         <textarea name="descripcion"></textarea>
@@ -27,4 +27,4 @@
         <input type="submit" value="Añadir">
     </form>
 </div>
-<script src="../../../js/validAñadirModifi.js"></script>
+<script src="./js/validAñadirModifi.js"></script>

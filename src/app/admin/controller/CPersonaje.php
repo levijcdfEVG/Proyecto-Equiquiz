@@ -80,6 +80,11 @@
             require_once VIEWPATHADMIN . $this->view;
         }
 
+        public function error() {
+            $this->title = 'Pagina Errores';
+            $this->view = "error.php";
+        }
+
         /**
          * Summary of viewModifyCharacter
          * 
@@ -196,6 +201,8 @@
                     if (move_uploaded_file($image['tmp_name'], $dirDestination)) {
                         return $dirDestination;
                     }
+                }else {
+                    header('location: index.php?c=CPersonaje&a=error');
                 }
             }
         

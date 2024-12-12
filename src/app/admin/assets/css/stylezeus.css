@@ -290,6 +290,12 @@ nav h2 {
     height: 6vh;
 }
 
+#error {
+    border-color: #4CAF50;
+    width: 50vw;
+    height: 50vh;
+}
+
 /**********************/
 /* Nuevo Parte Carlos */
 /**********************/
