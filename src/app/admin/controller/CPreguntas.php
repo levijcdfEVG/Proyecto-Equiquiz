@@ -119,7 +119,7 @@ class CPreguntas {
                 return false;
             }
             
-            require_once 'view/crearPreguntaRespuesta.php';
+            require_once '../view/crearPreguntaRespuesta.php';
     
         }
 
