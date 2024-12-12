@@ -22,7 +22,7 @@
 
         public function getQuestion($idEscenario) {
             $sql = 'SELECT
-                        idPregunta AS idPregunta,
+                        Pregunta.idPregunta AS idPregunta,
                         contenido_P AS Pregunta,
                         idOpcion AS idOpcion,
                         contenidos AS Opcion,

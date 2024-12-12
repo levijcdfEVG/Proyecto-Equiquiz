@@ -3,9 +3,9 @@
     require_once 'model/MPersonaje.php';
     require_once 'model/MPInteres.php';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        $action = $_GET['action'] ?? '';
-        $idEscenario = $_GET['idEscenario'] ?? null;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $action = $_POST['action'] ?? '';
+        $idEscenario = $_POST['idEscenario'] ?? null;
 
         $controller = new CPInteres();
 
