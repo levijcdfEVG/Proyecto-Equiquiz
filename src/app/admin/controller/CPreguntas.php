@@ -37,7 +37,7 @@ class CPreguntas {
 
     /**
      * Muestra la vista para modificar preguntas.
-     * @return void
+     * @return array Los datos de la pregunta y sus opciones.
      */
     public function showModify() {
         $idPregunta = $_GET['id'];
@@ -76,26 +76,21 @@ class CPreguntas {
 
     /**
      * Muestra todas las preguntas con sus opciones.
-     * @return void
+     * @return array Un array asociativo de preguntas con sus opciones.
      */
     public function showQuestions() {
         $this->showList(); //Se llama el metodo de asignacion de titulo y de pagina
         
         $preguntas = $this->MPreguntas->listQuestions();
-//var_dump($preguntas);
         return $preguntas;
     }
 
     /**
      * Añade una nueva pregunta junto con sus opciones.
      *
-     * @param string $contenido El contenido de la pregunta.
-     * @param int $idEscenario El ID del escenario al que pertenece la pregunta.
-     * @param array $opciones Un array de opciones, cada una contiene 'contenido' y 'esCorrecto'.
      * @return void No devuelve nada.
      */
-
-     public function addQuestion() {
+    public function addQuestion() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pregunta']) && isset($_POST['escenario']) && isset($_POST['respuestas'])) {
             $pregunta = $_POST['pregunta'];
             $respuestas = $_POST['respuestas'];
@@ -124,10 +119,7 @@ class CPreguntas {
     /**
      * Modifica una pregunta existente junto con sus opciones.
      *
-     * @param int $idPregunta El ID de la pregunta a modificar.
-     * @param string $contenido El nuevo contenido de la pregunta.
-     * @param array $opciones Un array de nuevas opciones, cada una contiene 'contenido' y 'esCorrecto'.
-     * @return bool Devuelve true en caso de éxito, false en caso de fallo.
+     * @return void No devuelve nada.
      */
     public function modifyQuestion() {
         $idPregunta = $_POST['idPregunta'];
@@ -142,10 +134,8 @@ class CPreguntas {
     /**
      * Elimina una pregunta y sus opciones asociadas de la base de datos.
      *
-     * @param int $idPregunta El ID de la pregunta a eliminar.
-     * @return bool Devuelve true en caso de éxito, false en caso de fallo.
+     * @return void No devuelve nada.
      */
-    
     public function deleteQuestion() {
         $idPregunta = $_GET['id'];
         $resultado = $this->MPreguntas->deleteQuestion($idPregunta);
@@ -155,14 +145,12 @@ class CPreguntas {
 
     /**
      * Muestra una pregunta y sus opciones asociadas.
+     * @param int $idPregunta El ID de la pregunta.
      * @return array Un array asociativo de la pregunta y sus opciones.
      */
     public function showQuestionAndAnswers($idPregunta){
-//echo "hola";
         $this->showModify(); //Se llama el metodo de asignacion de titulo y de pagina
-        //var_dump($idPregunta);
         $pregunta = $this->MPreguntas->getQuestion($idPregunta);
-        
         $respuestas = $this->MPreguntas->getAnswer($idPregunta);
         
         //Se devuelve un array con la pregunta y las respuestas
@@ -172,3 +160,4 @@ class CPreguntas {
         ];
     }
 }
+?>

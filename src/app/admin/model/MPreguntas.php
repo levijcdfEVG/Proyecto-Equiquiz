@@ -32,11 +32,11 @@ class MPreguntas {
     /**
      * Añade una nueva pregunta junto con sus opciones a la base de datos.
      *
-     * @param string $contenido El contenido de la pregunta.
-     * @param int $idEscenario El ID del escenario al que pertenece la pregunta.
-     * @param array $opciones Un array de opciones, cada una contiene 'contenido' y 'esCorrecto'.
+     * @param string $pregunta El contenido de la pregunta.
+     * @param array $respuestas Un array de respuestas.
+     * @param int $correcta El índice de la respuesta correcta.
+     * @param int $escenario El ID del escenario al que pertenece la pregunta.
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
-     * @throws Exception Si el número de opciones no está entre 2 y 4.
      */
     public function addQuestion($pregunta, $respuestas, $correcta, $escenario) {
         try {
@@ -74,7 +74,7 @@ class MPreguntas {
                         p.idPregunta, 
                         p.contenido_P 
                       FROM pregunta p
-                      LEFT JOIN Opciones o ON p.idPregunta = o.idPregunta
+                      LEFT JOIN opciones o ON p.idPregunta = o.idPregunta
                       ORDER BY p.idPregunta";
 
             $stmt = $this->conexion->query($query);
@@ -84,7 +84,6 @@ class MPreguntas {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $preguntas[$row['idPregunta']]['pregunta'] = $row['contenido_P'];
             }
-            //print_r($preguntas);
             return $preguntas;
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -96,35 +95,39 @@ class MPreguntas {
      * Modifica una pregunta existente junto con sus opciones.
      *
      * @param int $idPregunta El ID de la pregunta a modificar.
-     * @param string $contenido El nuevo contenido de la pregunta.
-     * @param array $opciones Un array de nuevas opciones, cada una contiene 'contenido' y 'esCorrecto'.
+     * @param string $pregunta El nuevo contenido de la pregunta.
+     * @param array $respuestas Un array de nuevas respuestas.
+     * @param int $correcta El índice de la respuesta correcta.
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
-     * @throws Exception Si el número de opciones no está entre 2 y 4 o si no hay exactamente una opción correcta.
      */
-    
     public function modifyQuestion($idPregunta, $pregunta, $respuestas, $correcta) {
-        // Actualizar la pregunta
-        $sql = "UPDATE Pregunta SET contenido_P = :pregunta WHERE idPregunta = :idPregunta";
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':pregunta', $pregunta);
-        $stmt->bindParam(':idPregunta', $idPregunta);
-        $stmt->execute();
-    
-        // Eliminar las opciones existentes
-        $sql = "DELETE FROM Opciones WHERE idPregunta = :idPregunta";
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':idPregunta', $idPregunta);
-        $stmt->execute();
-    
-        // Insertar las nuevas opciones
-        foreach ($respuestas as $index => $respuesta) {
-            $esCorrecta = ($index + 1 == $correcta) ? 1 : 0;
-            $sql = "INSERT INTO Opciones (idPregunta, contenidos, esCorrecto) VALUES (:idPregunta, :contenidos, :correcta)";
+        try {
+            // Actualizar la pregunta
+            $sql = "UPDATE pregunta SET contenido_P = :pregunta WHERE idPregunta = :idPregunta";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bindParam(':pregunta', $pregunta);
+            $stmt->bindParam(':idPregunta', $idPregunta);
+            $stmt->execute();
+        
+            // Eliminar las opciones existentes
+            $sql = "DELETE FROM opciones WHERE idPregunta = :idPregunta";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':idPregunta', $idPregunta);
-            $stmt->bindParam(':contenidos', $respuesta);
-            $stmt->bindParam(':correcta', $esCorrecta);
             $stmt->execute();
+        
+            // Insertar las nuevas opciones
+            foreach ($respuestas as $index => $respuesta) {
+                $esCorrecta = ($index + 1 == $correcta) ? 1 : 0;
+                $sql = "INSERT INTO opciones (idPregunta, contenidos, esCorrecto) VALUES (:idPregunta, :contenidos, :esCorrecta)";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bindParam(':idPregunta', $idPregunta);
+                $stmt->bindParam(':contenidos', $respuesta);
+                $stmt->bindParam(':esCorrecta', $esCorrecta);
+                $stmt->execute();
+            }
+            return true; // Operación exitosa
+        } catch (Exception $e) {
+            return false; // Ocurrió un error
         }
     }
 
@@ -150,9 +153,12 @@ class MPreguntas {
             return false; // Ocurrió un error
         }
     }
+
     /**
-     * Retorna los datos de las preguntas.
-     * @return array
+     * Retorna los datos de una pregunta específica junto con sus opciones.
+     *
+     * @param int $idPregunta El ID de la pregunta.
+     * @return array Un array asociativo con los datos de la pregunta y sus opciones.
      */
     public function getQuestion($idPregunta) {
         $sql = "SELECT * FROM pregunta WHERE idPregunta = :idPregunta";
@@ -167,11 +173,8 @@ class MPreguntas {
         $stmt->execute();
         $respuestas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-//print_r($pregunta);
-//print_r($respuestas);
         return ['pregunta' => $pregunta, 'respuestas' => $respuestas];
     }
-
 
     /**
      * Obtiene las opciones de respuesta para una pregunta específica.
@@ -181,16 +184,13 @@ class MPreguntas {
      */
     public function getAnswer($idPregunta) {
         try {
-            
-            $query = "SELECT contenidos, esCorrecto FROM Opciones WHERE idPregunta = :idPregunta";
+            $query = "SELECT contenidos, esCorrecto FROM opciones WHERE idPregunta = :idPregunta";
             $stmt = $this->conexion->prepare($query);
             $stmt->execute([':idPregunta' => $idPregunta]);
             $opciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            var_dump($opciones);
             return $opciones;
         } catch (Exception $e) {
             return [];
         }
     }
-
 }
