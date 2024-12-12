@@ -68,7 +68,7 @@ class MPreguntas {
             $query = "SELECT 
                         p.idPregunta, 
                         p.contenido_P 
-                      FROM Pregunta p
+                      FROM pregunta p
                       LEFT JOIN Opciones o ON p.idPregunta = o.idPregunta
                       ORDER BY p.idPregunta";
 
@@ -79,9 +79,10 @@ class MPreguntas {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $preguntas[$row['idPregunta']]['pregunta'] = $row['contenido_P'];
             }
-
+            //print_r($preguntas);
             return $preguntas;
         } catch (Exception $e) {
+            echo $e->getMessage();
             return [];
         }
     }
@@ -95,21 +96,25 @@ class MPreguntas {
      * @return bool Devuelve true en caso de éxito, false en caso de fallo.
      * @throws Exception Si el número de opciones no está entre 2 y 4 o si no hay exactamente una opción correcta.
      */
+    
     public function modifyQuestion($idPregunta, $pregunta, $respuestas, $correcta) {
-        $sql = "UPDATE Pregunta SET pregunta = :pregunta WHERE idPregunta = :idPregunta";
+        // Actualizar la pregunta
+        $sql = "UPDATE Pregunta SET contenido_P = :pregunta WHERE idPregunta = :idPregunta";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':pregunta', $pregunta);
         $stmt->bindParam(':idPregunta', $idPregunta);
         $stmt->execute();
-
-        $sql = "DELETE FROM Respuesta WHERE idPregunta = :idPregunta";
+    
+        // Eliminar las opciones existentes
+        $sql = "DELETE FROM Opciones WHERE idPregunta = :idPregunta";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':idPregunta', $idPregunta);
         $stmt->execute();
-
+    
+        // Insertar las nuevas opciones
         foreach ($respuestas as $index => $respuesta) {
             $esCorrecta = ($index + 1 == $correcta) ? 1 : 0;
-            $sql = "INSERT INTO Respuesta (idPregunta, contenidos, correcta) VALUES (:idPregunta, :contenidos, :correcta)";
+            $sql = "INSERT INTO Opciones (idPregunta, contenidos, esCorrecto) VALUES (:idPregunta, :contenidos, :correcta)";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':idPregunta', $idPregunta);
             $stmt->bindParam(':contenidos', $respuesta);
@@ -140,18 +145,20 @@ class MPreguntas {
      * @return array
      */
     public function getQuestion($idPregunta) {
-        $sql = "SELECT * FROM Pregunta WHERE idPregunta = :idPregunta";
+        $sql = "SELECT * FROM pregunta WHERE idPregunta = :idPregunta";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':idPregunta', $idPregunta);
         $stmt->execute();
         $pregunta = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $sql = "SELECT * FROM Respuesta WHERE idPregunta = :idPregunta";
+        $sql = "SELECT * FROM opciones WHERE idPregunta = :idPregunta";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':idPregunta', $idPregunta);
         $stmt->execute();
         $respuestas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+//print_r($pregunta);
+//print_r($respuestas);
         return ['pregunta' => $pregunta, 'respuestas' => $respuestas];
     }
 

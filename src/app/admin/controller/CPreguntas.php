@@ -41,9 +41,10 @@ class CPreguntas {
      */
     public function showModify() {
         $idPregunta = $_GET['id'];
-        $data = $this->model->getQuestion($idPregunta);
+        $data = $this->MPreguntas->getQuestion($idPregunta);
         $this->view = 'modificarPreguntaRespuesta.php';
         $this->data = $data;
+        return $data;
     }
 
     /**
@@ -74,21 +75,14 @@ class CPreguntas {
     }
 
     /**
-     * Obtiene los datos de las preguntas.
-     * @return array Un array asociativo de preguntas con sus opciones.
-     */
-    public function getQuestionData() {
-        return $this->MPreguntas->listQuestions();
-    }
-
-    /**
      * Muestra todas las preguntas con sus opciones.
      * @return void
      */
     public function showQuestions() {
         $this->showList(); //Se llama el metodo de asignacion de titulo y de pagina
         
-        $preguntas = $this->getQuestionData();
+        $preguntas = $this->MPreguntas->listQuestions();
+//var_dump($preguntas);
         return $preguntas;
     }
 
@@ -134,7 +128,7 @@ class CPreguntas {
         $respuestas = $_POST['respuestas'];
         $correcta = $_POST['correcta'];
 
-        $this->model->modifyQuestion($idPregunta, $pregunta, $respuestas, $correcta);
+        $this->MPreguntas->modifyQuestion($idPregunta, $pregunta, $respuestas, $correcta);
         header('Location: index.php?c=CPreguntas&a=showQuestions');
     }
 
