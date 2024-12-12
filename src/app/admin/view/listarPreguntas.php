@@ -11,7 +11,7 @@
                 echo "<article class='preguntas'>";
                 echo "<p>{$pregunta['pregunta']}</p>";
                 echo "<a href='index.php?c=CPreguntas&a=showModify&id={$idPregunta}'><i class='fas fa-edit modificar' data-id='{$idPregunta}'></i></a>";
-                echo "<i class='fas fa-trash basura' data-id='{$idPregunta}'></i>";
+                echo "<a id='basura' href='index.php?c=CPreguntas&a=showModify&id={$idPregunta}'><i class='fas fa-trash basura'  data-id='{$idPregunta}'></i></a>";
                 echo "</article>";
             }
         } else {

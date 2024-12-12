@@ -118,6 +118,13 @@ nav h2 {
     transform: translateY(-50%);
 }
 
+#basura{
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translateY(-50%);
+}
+
 .preguntas>p{
     width: 88%;
     font-size: 1.3rem;
