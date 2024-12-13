@@ -6,23 +6,23 @@ VALUES
 ('Salud', '/mapas/salud.jpg');
 
 -- Puntos de interes de cada mapa
-INSERT INTO PuntosInteres_Escenario (puntosInteres)
+INSERT INTO PuntosInteres_Escenario (idEscenario, puntosInteres)
 VALUES
 -- Puntos de interés del primer mapa (Educación)
-('(7,70)'),
-('(40,70)'),
-('(10,10)'),
-('(20,5)'),
+(1, '(7,70)'),
+(1, '(40,70)'),
+(1, '(10,10)'),
+(1, '(20,5)'),
 
 -- Opciones para la segunda pregunta (Empleo)
 
-('(35,13)'),
-('(33,33)'),
-('(90,4)'),
-('(67,22)'),
+(2, '(35,13)'),
+(2, '(33,33)'),
+(2, '(90,4)'),
+(2, '(67,22)'),
 
 -- Opciones para la tercera pregunta (Salud)
-('(12,56)'),
-('(78,43)'),
-('(25,99)'),
-('(89,37)');
+(3, '(12,56)'),
+(3, '(78,43)'),
+(3, '(25,99)'),
+(3, '(89,37)');
