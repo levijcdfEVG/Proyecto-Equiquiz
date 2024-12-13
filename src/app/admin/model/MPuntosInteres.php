@@ -35,22 +35,25 @@ class MPersonaje {
      * Añadir punto de interés.
      * 
      * @param int $idEscenario ID del escenario.
-     * @param array $puntosInteres Coordenadas de los puntos de interés.
+     * @param string $puntosInteres Coordenadas de los puntos de interés en formato "(num,num)".
+     * @throws Exception Si el formato de $puntosInteres no es válido.
      * @throws Exception Si el número de puntos de interés no está entre 5 y 9.
      * @return bool Indica si la consulta se ejecutó correctamente.
      */
     public function addPtoInteres($idEscenario, $puntosInteres) {
         try {
-            // Validar el número de opciones.
+            // Validar el formato del string puntosInteres (e.g., "(33,33)").
+            if (!preg_match('/^\(\d+,\d+\)$/', $puntosInteres)) {
+                throw new Exception("El formato de puntos de interés es inválido. Debe ser '(X,Y)'.");
+            }
             if (!is_array($puntosInteres) || count($puntosInteres) < 5 || count($puntosInteres) > 9) {
                 throw new Exception("El número de puntos de interés debe estar entre 5 y 9.");
             }
-            $puntosInteresSerializados = serialize($puntosInteres);
             $sql = "INSERT INTO PuntosInteres_Escenario (idEscenario, puntosInteres) 
                     VALUES (:idEscenario, :puntosInteres)";
             $resultado = $this->conexion->prepare($sql);
             $resultado->bindParam(':idEscenario', $idEscenario);
-            $resultado->bindParam(':puntosInteres', $puntosInteresSerializados);
+            $resultado->bindParam(':puntosInteres', $puntosInteres);
             return $resultado->execute();
         } catch (Exception $e) {
             return false;
@@ -82,35 +85,37 @@ class MPersonaje {
         $resultado->bindParam(':idEscenario', $idEscenario, PDO::PARAM_INT);
         $resultado->execute();
 
-        $data = $resultado->fetch(PDO::FETCH_ASSOC);
-        if ($data && isset($data['puntosInteres'])) {
-            $data['puntosInteres'] = unserialize($data['puntosInteres']);
-        }
-        return $data;
+        return $resultado->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
      * Modificar los puntos de interés.
      * 
      * @param int $idEscenario ID del escenario.
-     * @param array $puntosInteres Coordenadas de los puntos de interés.
+     * @param string $puntosInteres Coordenadas de los puntos de interés en formato "(num,num)".
+     * @param string $puntosInteresAntiguo Valor actual de puntos de interés que se desea actualizar.
+     * @throws Exception Si el formato de $puntosInteres no es válido.
      * @throws Exception Si el número de puntos de interés no está entre 5 y 9.
      * @return bool Indica si la consulta fue correcta o no.
      */
-    public function modifyPtoInteres($idEscenario, $puntosInteres) {
+    public function modifyPtoInteres($idEscenario, $puntosInteres, $puntosInteresAntiguo) {
         try {
-            // Validar el número de opciones.
+            // Validar el formato del string puntosInteres (e.g., "(33,33)").
+            if (!preg_match('/^\(\d+,\d+\)$/', $puntosInteres)) {
+                throw new Exception("El formato de puntos de interés es inválido. Debe ser '(X,Y)'.");
+            }
             if (!is_array($puntosInteres) || count($puntosInteres) < 5 || count($puntosInteres) > 9) {
                 throw new Exception("El número de puntos de interés debe estar entre 5 y 9.");
             }
-            $puntosInteresSerializados = serialize($puntosInteres);
-            $sql = "UPDATE PuntosInteres_Escenario SET 
-                        puntosInteres = :puntosInteres 
-                    WHERE idEscenario = :idEscenario";
+            $sql = "UPDATE PuntosInteres_Escenario 
+                    SET puntosInteres = :puntosInteres 
+                    WHERE idEscenario = :idEscenario 
+                    AND puntosInteres = :puntosInteresAntiguo";
 
             $resultado = $this->conexion->prepare($sql);
             $resultado->bindParam(':idEscenario', $idEscenario, PDO::PARAM_INT);
-            $resultado->bindParam(':puntosInteres', $puntosInteresSerializados);
+            $resultado->bindParam(':puntosInteres', $puntosInteres);
+            $resultado->bindParam(':puntosInteresAntiguo', $puntosInteresAntiguo);
 
             return $resultado->execute();
         } catch (Exception $e) {
@@ -122,19 +127,29 @@ class MPersonaje {
      * Eliminar un punto de interés.
      * 
      * @param int $idEscenario ID del escenario.
+     * @param string $puntosInteres Coordenadas del punto de interés en formato "(num,num)".
      * @return bool Indica si la consulta fue correcta o no.
      */
-    public function deletePtoInteres($idEscenario) {
-        $data = $this->getInfoPtoInteres($idEscenario);
+    public function deletePtoInteres($idEscenario, $puntosInteres) {
+        try {
+            // Validar el formato del string puntosInteres (e.g., "(33,33)").
+            if (!preg_match('/^\(\d+,\d+\)$/', $puntosInteres)) {
+                throw new Exception("El formato de puntos de interés es inválido. Debe ser '(num,num)'.");
+            }
 
-        if ($data) {
-            $sql = 'DELETE FROM PuntosInteres_Escenario WHERE idEscenario = :idEscenario';
+            $sql = 'DELETE FROM PuntosInteres_Escenario 
+                    WHERE idEscenario = :idEscenario 
+                    AND puntosInteres = :puntosInteres';
+
             $resultado = $this->conexion->prepare($sql);
             $resultado->bindParam(':idEscenario', $idEscenario, PDO::PARAM_INT);
+            $resultado->bindParam(':puntosInteres', $puntosInteres);
 
             return $resultado->execute();
+        } catch (Exception $e) {
+            return false;
         }
-        return false;
     }
+
 }
 ?>

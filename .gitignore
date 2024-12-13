@@ -1,2 +1,3 @@
-Servidor/Config/config_db.php
+src/app/config/configdb.php
+src/app/config/configDb.php
 planing

@@ -1,6 +1,6 @@
 <?php
-    class CPersonaje {
-        private $MPersonaje;
+    class CPuntosInteres {
+        private $MpuntosInteres;
         public $view;
         public $title;
 
@@ -12,8 +12,8 @@
         public function __construct() {
             require_once '../config/config.php';
             // Requerimos de la clase del modelo.
-            require_once 'model/MPersonaje.php';
-            $this->MPersonaje = new MPersonaje();
+            require_once 'model/MpuntosInteres.php';
+            $this->MpuntosInteres = new MpuntosInteres();
         }
 
         /**
@@ -24,8 +24,8 @@
          * @return void No devuelve nada.
          */
         public function viewAddCharacter() {
-            $this->title = 'Añadir Personaje';
-            $this->view = 'añadirPersonaje.php';
+            $this->title = 'Añadir Punto de Interes';
+            $this->view = 'añadirPuntoInteres.php';
         }
 
         /**
@@ -39,10 +39,10 @@
          */
         public function viewListCharacter() {
             $this->title = 'Listado de Personaje';
-            $this->view = 'listarPersonajes.php';
+            $this->view = 'listarPuntoInteres.php';
 
             //Obtengo todos los personajes
-            $characters = $this->MPersonaje->getAllCharacters();
+            $PuntosIntereses = $this->MpuntosInteres->getAllPtoInteres();
 
             require_once VIEWPATHADMIN.$this->view;
         }
