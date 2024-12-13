@@ -102,10 +102,10 @@
                 if ($data) {
                     $parseData = $this->getInfoData($data);
                 } else {
-                    $this->view = 'error.php?e="Error: No se encontró el personaje seleccionado"';
+                    $this->view = 'index.php?error=No se encontró el personaje seleccionado';
                 }
             } else {
-                $this->view = 'error.php?e="Error: Al modificar no se pudo obtener su ID"';
+                $this->view = 'index.php?error=Al modificar no se pudo obtener su ID';
             }
         
             require_once VIEWPATHADMIN . $this->view;
@@ -200,11 +200,11 @@
                         exit;
                     }
                 } else {
-                    header('location: index.php?error=La extension de la imagen no es valido');
+                    header('location: index.php?error=La extensión de la imagen no es válido');
                     exit;
                 }
             } else {
-                header('location: index.php?error=No se selecciono ninguna imagen o no hubo error en la subida');
+                header('location: index.php?error=No se selecciono ninguna imagen o hubo error en la subida');
                 exit;
             }
         }

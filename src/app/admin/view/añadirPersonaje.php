@@ -5,7 +5,7 @@
     </nav>
     <form action="index.php?c=CPersonaje&a=addCharacter" method="POST" class="formPersonajes" enctype="multipart/form-data">
         <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" placeholder="Introduce Nombre Personaje">
+        <input type="text" name="nombre" placeholder="Introduce Nombre Personaje" required>
         
         <label for="edad">Edad:</label>
         <input type="number" name="edad" placeholder="Opcional">
@@ -13,9 +13,9 @@
         <label for="genero">Género:</label>
         <div class="genero">
             <label for="hombre">H</label>
-            <input type="radio" id="hombre" name="genero" value="Hombre" >
+            <input type="radio" id="hombre" name="genero" value="Hombre" required>
             <label for="mujer">M</label>
-            <input type="radio" id="mujer" name="genero" value="Mujer" >
+            <input type="radio" id="mujer" name="genero" value="Mujer" required>
         </div>
         
         <label for="imagen">Imagen Jugador</label>
@@ -27,4 +27,3 @@
         <input type="submit" value="Añadir">
     </form>
 </div>
-<script src="./js/validAñadirModifi.js"></script>
