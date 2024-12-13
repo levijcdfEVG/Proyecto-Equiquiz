@@ -1,8 +1,3 @@
-<?php
-    require_once("../controller/cAñadirMapa.php");
-    $objcAñadirMapa = new CAñadirMapa();
-    $resultado = $objcAñadirMapa->cSubirImagen($_FILES["img"], $_POST["ambito"]);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
