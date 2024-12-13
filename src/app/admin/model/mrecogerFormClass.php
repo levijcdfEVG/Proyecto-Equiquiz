@@ -1,11 +1,10 @@
 <?php
-    require_once("../config/config_db.php");
-
     class MRecogerFormClass {
         private $mysqli;
 
-        public function __construct($mysqli){
-            $this->mysqli = $mysqli;
+        public function __construct(){
+            require_once("../config/config_db.php");
+            $this->mysqli = new mysqli($servidor, $usuario, $contraseña, $basedatos);
         }
 
         public function subirImagen($ambito, $img){
@@ -21,7 +20,7 @@
                 return $resultado;
     
             } else {
-                echo "Error al subir la imagen";
+               return false;
             }
         }
     }
