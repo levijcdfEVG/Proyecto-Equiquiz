@@ -1,11 +1,11 @@
 <?php
-    require_once("../../admin/config/config_db.php");
 
     class MBuscarImg {
         private $mysqli;
 
-        public function __construct($mysqli) {
-            $this->mysqli = $mysqli;
+        public function __construct( ) {
+            require_once("../../admin/config/config_db.php");
+            $this->mysqli = new mysqli($servidor, $usuario, $contraseña, $basedatos);
         }
 
         public function eleccionEscenario($ambito) { 

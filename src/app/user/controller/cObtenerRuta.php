@@ -5,9 +5,7 @@
 
         public function __construct() {
             require_once("../model/mBuscarImg.php");
-            require_once("../../admin/config/config_db.php");
-            $mysqli = new mysqli($servidor, $usuario, $contraseña, $basedatos);
-            $this->objBuscarFondo = new MBuscarImg($mysqli);
+            $this->objBuscarFondo = new MBuscarImg();
         }
 
         public function cRuta($ambito) {
