@@ -166,7 +166,7 @@ function verificarCercania(jugador) {
             interaccionesPuntos[escenario]++;
 
             // Actualizar el contador en el DOM
-            contadorPI.textContent = `P.I ${Object.values(interaccionesPuntos).reduce((acc, val) => acc + val, 0)}/5`;
+            contadorPI.textContent = `P.I ${interaccionesPuntos[escenario]}/5`;
 
             // Si el punto se ha interactuado 5 veces, termina el juego
             if (interaccionesPuntos[escenario] >= 5) {
