@@ -1,11 +1,11 @@
 <?php
 /**
- * Clase MPersonaje
+ * Clase MPuntosInteres
  * 
  * Esta clase gestiona los puntos de interés asociados a un escenario en la base de datos. 
  * Incluye operaciones para añadir, obtener, modificar y eliminar puntos de interés.
  */
-class MPersonaje {
+class MPuntosInteres {
 
     /**
      * @var PDO Objeto de conexión a la base de datos.
@@ -35,25 +35,18 @@ class MPersonaje {
      * Añadir punto de interés.
      * 
      * @param int $idEscenario ID del escenario.
-     * @param string $puntosInteres Coordenadas de los puntos de interés en formato "(num,num)".
-     * @throws Exception Si el formato de $puntosInteres no es válido.
-     * @throws Exception Si el número de puntos de interés no está entre 5 y 9.
+     * @param float $ptX Coordenada X del punto de interés.
+     * @param float $ptY Coordenada Y del punto de interés.
      * @return bool Indica si la consulta se ejecutó correctamente.
      */
-    public function addPtoInteres($idEscenario, $puntosInteres) {
+    public function addPtoInteres($idEscenario, $ptX, $ptY) {
         try {
-            // Validar el formato del string puntosInteres (e.g., "(33,33)").
-            if (!preg_match('/^\(\d+,\d+\)$/', $puntosInteres)) {
-                throw new Exception("El formato de puntos de interés es inválido. Debe ser '(X,Y)'.");
-            }
-            if (!is_array($puntosInteres) || count($puntosInteres) < 5 || count($puntosInteres) > 9) {
-                throw new Exception("El número de puntos de interés debe estar entre 5 y 9.");
-            }
-            $sql = "INSERT INTO PuntosInteres_Escenario (idEscenario, puntosInteres) 
-                    VALUES (:idEscenario, :puntosInteres)";
+            $sql = "INSERT INTO PuntosInteres_Escenario (idEscenario, ptX, ptY) 
+                    VALUES (:idEscenario, :ptX, :ptY)";
             $resultado = $this->conexion->prepare($sql);
             $resultado->bindParam(':idEscenario', $idEscenario);
-            $resultado->bindParam(':puntosInteres', $puntosInteres);
+            $resultado->bindParam(':ptX', $ptX);
+            $resultado->bindParam(':ptY', $ptY);
             return $resultado->execute();
         } catch (Exception $e) {
             return false;
@@ -92,34 +85,30 @@ class MPersonaje {
      * Modificar los puntos de interés.
      * 
      * @param int $idEscenario ID del escenario.
-     * @param string $puntosInteres Coordenadas de los puntos de interés en formato "(num,num)".
-     * @param string $puntosInteresAntiguo Valor actual de puntos de interés que se desea actualizar.
-     * @throws Exception Si el formato de $puntosInteres no es válido.
-     * @throws Exception Si el número de puntos de interés no está entre 5 y 9.
+     * @param float $ptX Coordenada X nueva del punto de interés.
+     * @param float $ptY Coordenada Y nueva del punto de interés.
+     * @param float $ptXAntiguo Coordenada X actual del punto de interés.
+     * @param float $ptYAntiguo Coordenada Y actual del punto de interés.
      * @return bool Indica si la consulta fue correcta o no.
      */
-    public function modifyPtoInteres($idEscenario, $puntosInteres, $puntosInteresAntiguo) {
+    public function modifyPtoInteres($idEscenario, $ptX, $ptY, $ptXAntiguo, $ptYAntiguo) {
         try {
-            // Validar el formato del string puntosInteres (e.g., "(33,33)").
-            if (!preg_match('/^\(\d+,\d+\)$/', $puntosInteres)) {
-                throw new Exception("El formato de puntos de interés es inválido. Debe ser '(X,Y)'.");
-            }
-            if (!is_array($puntosInteres) || count($puntosInteres) < 5 || count($puntosInteres) > 9) {
-                throw new Exception("El número de puntos de interés debe estar entre 5 y 9.");
-            }
             $sql = "UPDATE PuntosInteres_Escenario 
-                    SET puntosInteres = :puntosInteres 
+                    SET ptX = :ptX, ptY = :ptY
                     WHERE idEscenario = :idEscenario 
-                    AND puntosInteres = :puntosInteresAntiguo";
+                    AND ptX = :ptXAntiguo 
+                    AND ptY = :ptYAntiguo";
 
             $resultado = $this->conexion->prepare($sql);
             $resultado->bindParam(':idEscenario', $idEscenario, PDO::PARAM_INT);
-            $resultado->bindParam(':puntosInteres', $puntosInteres);
-            $resultado->bindParam(':puntosInteresAntiguo', $puntosInteresAntiguo);
+            $resultado->bindParam(':ptX', $ptX);
+            $resultado->bindParam(':ptY', $ptY);
+            $resultado->bindParam(':ptXAntiguo', $ptXAntiguo);
+            $resultado->bindParam(':ptYAntiguo', $ptYAntiguo);
 
             return $resultado->execute();
         } catch (Exception $e) {
-            return false;
+            return false; 
         }
     }
 
@@ -127,29 +116,26 @@ class MPersonaje {
      * Eliminar un punto de interés.
      * 
      * @param int $idEscenario ID del escenario.
-     * @param string $puntosInteres Coordenadas del punto de interés en formato "(num,num)".
+     * @param float $ptX Coordenada X del punto de interés.
+     * @param float $ptY Coordenada Y del punto de interés.
      * @return bool Indica si la consulta fue correcta o no.
      */
-    public function deletePtoInteres($idEscenario, $puntosInteres) {
+    public function deletePtoInteres($idEscenario, $ptX, $ptY) {
         try {
-            // Validar el formato del string puntosInteres (e.g., "(33,33)").
-            if (!preg_match('/^\(\d+,\d+\)$/', $puntosInteres)) {
-                throw new Exception("El formato de puntos de interés es inválido. Debe ser '(num,num)'.");
-            }
-
             $sql = 'DELETE FROM PuntosInteres_Escenario 
                     WHERE idEscenario = :idEscenario 
-                    AND puntosInteres = :puntosInteres';
+                    AND ptX = :ptX 
+                    AND ptY = :ptY';
 
             $resultado = $this->conexion->prepare($sql);
             $resultado->bindParam(':idEscenario', $idEscenario, PDO::PARAM_INT);
-            $resultado->bindParam(':puntosInteres', $puntosInteres);
+            $resultado->bindParam(':ptX', $ptX);
+            $resultado->bindParam(':ptY', $ptY);
 
             return $resultado->execute();
         } catch (Exception $e) {
             return false;
         }
     }
-
 }
 ?>

@@ -71,15 +71,6 @@
             $this->view = 'unionListar.php';
         }
 
-        public function viewRecovery() {
-            $this->title = 'Recuperar Personaje';
-            $this->view = 'recuperarPersonaje.php';
-
-            $characters = $this->MPersonaje->getAllOldCharacters();
-
-            require_once VIEWPATHADMIN . $this->view;
-        }
-
         /**
          * Summary of viewModifyCharacter
          * 
@@ -92,17 +83,17 @@
          * Puedes hacer uso de la variable $parseData que tiene la informacion de los campos del personaje.
          * @return void No devuelve nada
          */
-        public function viewModifyCharacter() {
-            $this->title = 'Modificar Personaje';
-            $this->view = 'modificarPersonaje.php';
+        public function viewModifyPtoInteres() {
+            $this->title = 'Modificar Puntos de interes';
+            $this->view = 'modificarPuntoInteres.php';
         
             if (isset($_GET['id'])) {
-                $data = $this->MPersonaje->getInfoviewModify($_GET['id']);
+                $data = $this->MpuntosInteres->getInfoPtoInteres($_GET['id']);
                 
                 if ($data) {
                     $parseData = $this->getInfoData($data);
                 } else {
-                    $this->view = 'error.php?e="Error: No se encontró el personaje seleccionado"';
+                    $this->view = 'error.php?e="Error: No se encontró el punto de interes seleccionado"';
                 }
             } else {
                 $this->view = 'error.php?e="Error: Al modificar no se pudo obtener su ID"';
@@ -119,17 +110,13 @@
          * El método obtiene la info del personaje, valida la imagen que sean las extensiones validas.
          * @return void No devuelve nada.
          */
-        public function addCharacter() {
+        public function addPtoInteres() {
             if (!empty($_POST)) {
                 // var_dump($_POST);
         
-                $data = $this->getInfoCharacter();
+                $data = $this->getInfoPtoInteres();
         
-                if (isset($_FILES['imagen'])) {
-                    $data['image'] = $this->validateImage($_FILES['imagen'], $data);
-                }
-        
-                if ($this->MPersonaje->addCharacter($data['name'], $data['age'], $data['gender'], $data['description'], $data['image'])) {
+                if ($this->MpuntosInteres->addPtoInteres($data['name'], $data['age'], $data['gender'], $data['description'], $data['image'])) {
                     header('location: index.php');
                 } else {
                     // Tengo que añadir a pagina de error.
@@ -143,7 +130,7 @@
          * Obtiene la info del personaje por $_POST.
          * @return array Devuelve un array con los datos del personaje.
          */
-        private function getInfoCharacter() {
+        private function getInfoPtoInteres() {
             $data = [];
             $data['name'] = isset($_POST['nombre']) ? $_POST['nombre'] : 'NULL';
             $data['age'] = isset($_POST['edad']) ? (int)$_POST['edad'] : 0;
@@ -170,36 +157,6 @@
             $data['image'] = $info['urlImagen']; // Por si no añade imagen.
         
             return $data;
-        }
-        
-
-        /**
-         * Summary of validateImage
-         * 
-         * Método para validar imagenes y moverlas a la carpeta para guardarlas.
-         * Los permitidos son jpeg, jpg, png.
-         * 
-         * @param mixed $image Imagen adjuntada en el formulario.
-         * @param mixed $data Los datos del personaje para poder crear el nombre unico de la imagen con el nombre del personaje
-         * @return string|null Puede devolver la ruta de la imagen donde ha sido guardada mas el nombre de ella o si da error devuelve null.
-         */
-        private function validateImage($image, $data) {
-            $permitidos = ['image/jpeg', 'image/jpg', 'image/png'];
-        
-            if (isset($image) && $image['error'] === UPLOAD_ERR_OK) {
-                if (in_array($image['type'], $permitidos)) {
-                    $fileExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
-                    $nameImg = time() . '-' . $data['name'] . '.' . $fileExtension;
-                    $dirDestination = PATHIMGADMIN . $nameImg;
-        
-                    // Mover el archivo subido a la carpeta de imágenes
-                    if (move_uploaded_file($image['tmp_name'], $dirDestination)) {
-                        return $dirDestination;
-                    }
-                }
-            }
-        
-            return null;
         }
 
         /**
