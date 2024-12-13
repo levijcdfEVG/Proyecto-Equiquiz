@@ -1,12 +1,11 @@
-<?php 
-    require_once("../model/mrecogerFormClass.php");
-    require_once("./config_db.php");
+<?php
     
     class CAñadirMapa{
         private $objmRecogerFormClass;
 
         public function __construct() {
-            //$mysqli = new mysqli('esvirgua.com', 'user2daw_21', 'rU}s@+[kCz)y', 'user2daw_BD1-21');
+            require_once("../model/mrecogerFormClass.php");
+            require_once("../config/config_db.php");
             $mysqli = new mysqli($servidor, $usuario, $contraseña, $basedatos);
             $this->objmRecogerFormClass = new MRecogerFormClass($mysqli);
         }
