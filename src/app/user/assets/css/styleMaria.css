@@ -41,8 +41,8 @@ form label {
 
 form label:nth-of-type(2){
     position: absolute;
-    top: 10vh;
-    right: 24vw;
+    top: 9vh;
+    right: 18vw;
 }
 
 form input[type="text"] {
@@ -59,7 +59,7 @@ form input[type="text"] {
 form input[type="text"]:nth-of-type(2){
     position: absolute;
     top: 6vh;
-    left: 40vw;
+    left: 45vw;
 }
 
 button {
