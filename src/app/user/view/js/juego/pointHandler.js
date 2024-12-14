@@ -1,5 +1,7 @@
 'use strict';
 
+const juego = document.getElementById('juego');
+
 /**
  * Elemento del DOM que representa la barra de progreso.
  * @type {HTMLElement}
@@ -39,36 +41,70 @@ barraProgreso.style.width = `${progreso}%`;
  */
 const interaccionesPuntos = {};
 
+/**
+ * Convierte la respuesta del servidor en un formato de objeto organizado.
+ * @param {Array} data - Los datos de preguntas y opciones.
+ * @returns {Object} - Un objeto organizado por pregunta y sus opciones.
+ */
+function procesarPreguntas(data) {
+    const preguntasFormateadas = {};
+
+    data.forEach(item => {
+        // Si la pregunta no está en el objeto, agrégala
+        if (!preguntasFormateadas[item.idPregunta]) {
+            preguntasFormateadas[item.idPregunta] = {
+                pregunta: item.Pregunta,
+                opciones: [] // Inicializa un arreglo vacío para las opciones
+            };
+        }
+
+        // Agrega la opción a la pregunta correspondiente
+        preguntasFormateadas[item.idPregunta].opciones.push({
+            idOpcion: item.idOpcion,
+            contenido: item.Opcion,
+            correcto: item.Correcto
+        });
+    });
+
+    return preguntasFormateadas;
+}
 
 async function fetchPregunta(idEscenario) {
     try {
         console.log('Entra');
 
-        // Crear un FormData para enviar los datos correctamente
         const formData = new FormData();
         formData.append('action', 'getQuestion');
         formData.append('idEscenario', idEscenario);
 
-        // Realizar la solicitud POST con FormData
         const respuesta = await fetch('../../../controller/fetchPreguntas.php', {
             method: 'POST',
             body: formData,
         });
 
-        // Verificar si la respuesta fue exitosa
         if (!respuesta.ok) {
             throw new Error(`Error HTTP! Código de estado: ${respuesta.status}`);
         }
 
-        // Convertir la respuesta a JSON
         const preguntas = await respuesta.json();
-        console.log(preguntas.data);
 
-        // Verificar el estado del servidor en la respuesta
-        if (preguntas.status === 'success') {
-            mostrarPopup(preguntas.data);
+        if (preguntas.status === 'success' && preguntas.data.length > 0) {
+            const pregunta = {
+                idPregunta: preguntas.data[0].idPregunta,
+                contenido: preguntas.data[0].Pregunta,
+                opciones: preguntas.data.map(opcion => ({
+                    idOpcion: opcion.idOpcion,
+                    contenido: opcion.Opcion,
+                    correcto: opcion.Correcto === 1
+                }))
+            };
+
+            console.log('Pregunta procesada:', pregunta);
+
+            // Llamada a mostrarPopup con el objeto completo de la pregunta
+            mostrarPopup(pregunta);
         } else {
-            console.error('Error del servidor:', preguntas.message);
+            console.error('Error del servidor o datos vacíos:', preguntas.message || 'Sin preguntas disponibles.');
         }
     } catch (error) {
         console.error('Error en la solicitud:', error);
@@ -76,49 +112,40 @@ async function fetchPregunta(idEscenario) {
 }
 
 
-function mostrarPopup(preguntas) {
-    // Seleccionar una pregunta aleatoria
-    const pregunta = preguntas[Math.floor(Math.random() * preguntas.length)];
+function mostrarPopup(pregunta) {
+    const popup = document.getElementById('popup'); // El contenedor del popup
+    popup.innerHTML = ''; // Limpiar el contenido del popup
 
-    const popup = document.createElement('div');
-    popup.classList.add('popup');
+    // Crear un título con la pregunta
+    const titulo = document.createElement('h3');
+    titulo.textContent = pregunta.contenido;
+    popup.appendChild(titulo);
 
-    // Creamos la pregunta
-    const preguntaDiv = document.createElement('div');
-    preguntaDiv.classList.add('pregunta');
-    preguntaDiv.textContent = pregunta.Pregunta;
-    popup.appendChild(preguntaDiv);
+    // Crear un contenedor para las opciones
+    const opcionesContenedor = document.createElement('div');
+    opcionesContenedor.classList.add('opciones');
 
-    // Crear un contenedor para las opciones de respuesta
-    const opcionesDiv = document.createElement('div');
-    opcionesDiv.classList.add('opciones');
+    // Recorrer todas las opciones y añadirlas al contenedor
+    pregunta.opciones.forEach(opcion => {
+        const opcionElemento = document.createElement('div');
+        opcionElemento.classList.add('opcion');
+        opcionElemento.textContent = opcion.contenido;
 
-    // Crear los botones para las opciones
-    pregunta.Opcion.forEach(opcion => {
-        const botonOpcion = document.createElement('button');
-        botonOpcion.textContent = opcion;
-        botonOpcion.onclick = () => verificarRespuesta(opcion, pregunta);
-        opcionesDiv.appendChild(botonOpcion);
+        // Si la opción es correcta, agregarle un indicador visual (puedes cambiar esto según lo necesites)
+        if (opcion.correcto) {
+            opcionElemento.style.backgroundColor = 'green'; // Ejemplo de cómo indicar que es correcta
+        }
+
+        opcionesContenedor.appendChild(opcionElemento);
     });
 
-    popup.appendChild(opcionesDiv);
+    // Añadir las opciones al popup
+    popup.appendChild(opcionesContenedor);
 
-    // Añadir el popup al body
-    document.body.appendChild(popup);
+    // Mostrar el popup (asegúrate de tener código que maneje esto)
+    juego.style.display = 'none';
+    popup.style.display = 'block';
 }
-
-
-function verificarRespuesta(opcion, pregunta) {
-    // Comprobar si la opción es correcta
-    if (opcion === pregunta.Correcto) {
-        incrementarProgreso(10);
-    } else {
-        decrementarProgreso(10);
-    }
-    document.body.removeChild(document.querySelector('.popup'));
-}
-
-
 
 /**
  * Incrementa el progreso en una cantidad específica, limitando el valor a 100%.
