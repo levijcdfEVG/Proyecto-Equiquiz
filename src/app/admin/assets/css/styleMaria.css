@@ -54,12 +54,14 @@ main h1{
 /* Modificar Preguntas */
 /**********************/
 
+
+/*Div principal*/
 #modfPreguntas {
     background-color: #68EDCB;
     border-radius: 25px;
-    height: 94vh;
     margin: 3vh 3vw;
-    padding-bottom: 1%;
+    padding-bottom: 2%;
+    overflow: hidden;
 }
 
 #modfPreguntas > h2 {   
@@ -94,8 +96,12 @@ nav h2 {
     color: #000;
 }
 
+/*Articles*/
+
 .preguntas{
     position: relative;
+    display: flex;
+    align-items: center;
     width: 80%;
     height: 5vh;  
     margin: 0 auto;
@@ -105,27 +111,25 @@ nav h2 {
     background-color: #c8f2c4; 
 }   
 
-.preguntas>p,.preguntas>i{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.preguntas>p{
-    width: 88%;
+.preguntas > p {
     font-size: 1.3rem;
+    flex-grow: 1;  
+    margin: 0;  
 }
 
-.preguntas>i{
+/*Iconos*/
+.preguntas > i {
+    position: absolute;   
     font-size: 1.5rem;
+    cursor: pointer;
 }
 
-.preguntas i:nth-of-type(1){
-    right: 5%;
+.preguntas i:nth-of-type(1) {
+    right: 5%; 
 }
 
-.preguntas i:nth-of-type(2){
-    right: 9%;
+.preguntas i:nth-of-type(2) {
+    right: 9%; 
 }
 
 .basura:hover {
