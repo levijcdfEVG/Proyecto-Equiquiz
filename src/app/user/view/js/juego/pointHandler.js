@@ -50,7 +50,7 @@ async function fetchPregunta(idEscenario) {
         formData.append('idEscenario', idEscenario);
 
         // Realizar la solicitud POST con FormData
-        const respuesta = await fetch('src/app/user/controller/fetchPreguntas.php', {
+        const respuesta = await fetch('../../../controller/fetchPreguntas.php', {
             method: 'POST',
             body: formData,
         });
@@ -61,8 +61,8 @@ async function fetchPregunta(idEscenario) {
         }
 
         // Convertir la respuesta a JSON
-        const preguntas = await respuesta.text();
-        console.log(preguntas);
+        const preguntas = await respuesta.json();
+        console.log(preguntas.data);
 
         // Verificar el estado del servidor en la respuesta
         if (preguntas.status === 'success') {

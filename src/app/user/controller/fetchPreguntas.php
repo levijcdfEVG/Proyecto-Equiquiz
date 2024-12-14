@@ -1,6 +1,7 @@
 <?php
-    require_once 'config/config.php';
-    require_once 'model/MPInteres.php';
+    require_once '../config/config.php';
+    require_once '../model/MPInteres.php';
+    require_once 'CPinteres.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $action = $_POST['action'] ?? '';
@@ -10,14 +11,18 @@
 
         switch ($action) {
             case 'getQuestion':
-                if ($idEscenario) {
-                    $result = $objCPinteres->getQuestion($idEscenario);
-                    $questions = $result->fetchAll(PDO::FETCH_ASSOC);
-                    echo json_encode(['status' => 'success', 'data' => $questions]);
-                } else {
-                    echo json_encode(['status' => 'error', 'message' => 'ID de escenario no proporcionado.']);
+                $result = $objCPinteres->getQuestion($idEscenario);
+                $questions = $result->fetchAll(PDO::FETCH_ASSOC);
+
+                // Registrar la pregunta en la tabla temporal
+                if (!empty($questions)) {
+                    $idPregunta = $questions[0]['idPregunta'];
+                    $objCPinteres->registrarPreguntaTemporal($idPregunta, $idEscenario);
                 }
+
+                echo json_encode(['status' => 'success', 'data' => $questions]);
                 break;
+
             default:
                 echo json_encode(['status' => 'error', 'message' => 'Acción no válida.']);
         }
