@@ -163,10 +163,15 @@ input[type="submit"]:hover {
     background-color: #68EDCB;
     border-radius: 25px;
     width: 97vw;
-    height: auto;
+    min-height: 96vh;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin: 2vh 1.5vw;
+}
+
+.noPersonaje {
+    margin-top: 25vh;
+    font-size: 6rem;
 }
 
 nav {

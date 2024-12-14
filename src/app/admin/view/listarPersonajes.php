@@ -29,12 +29,12 @@
             }
         } else {
             ?>
-            <p>No hay personajes disponibles.</p>
+            <p class="noPersonaje">No hay personajes disponibles.</p>
             <?php
         }
     } else {
         ?>
-        <p>No hay personajes disponibles.</p>
+        <p class="noPersonaje">No hay personajes disponibles.</p>
         <?php
     }
     ?>
