@@ -1,6 +1,7 @@
 'use strict';
 
 const juego = document.getElementById('juego');
+const mapa = document.getElementById('mapa');
 
 /**
  * Elemento del DOM que representa la barra de progreso.
@@ -127,25 +128,39 @@ function mostrarPopup(pregunta) {
 
     // Recorrer todas las opciones y añadirlas al contenedor
     pregunta.opciones.forEach(opcion => {
-        const opcionElemento = document.createElement('div');
-        opcionElemento.classList.add('opcion');
-        opcionElemento.textContent = opcion.contenido;
+        const botonOpcion = document.createElement('button');
+        botonOpcion.textContent = opcion.contenido;
+        botonOpcion.classList.add('opcion-boton');
 
-        // Si la opción es correcta, agregarle un indicador visual (puedes cambiar esto según lo necesites)
-        if (opcion.correcto) {
-            opcionElemento.style.backgroundColor = 'green'; // Ejemplo de cómo indicar que es correcta
-        }
+        // Evento al hacer clic en el botón
+        botonOpcion.addEventListener('click', () => {
+            if (opcion.correcto) {
+                incrementarProgreso(25);
+                alert('¡Respuesta correcta!');
+            } else {
+                decrementarProgreso(15);
+                alert('Respuesta incorrecta');
+            }
 
-        opcionesContenedor.appendChild(opcionElemento);
+            // Actualiza la barra de progreso
+            actualizarBarra();
+
+            // Oculta el popup y vuelve al juego
+            popup.style.display = 'none';
+            juego.style.display = 'block';
+        });
+
+        opcionesContenedor.appendChild(botonOpcion);
     });
 
     // Añadir las opciones al popup
     popup.appendChild(opcionesContenedor);
 
-    // Mostrar el popup (asegúrate de tener código que maneje esto)
+    // Mostrar el popup
     juego.style.display = 'none';
     popup.style.display = 'block';
 }
+
 
 /**
  * Incrementa el progreso en una cantidad específica, limitando el valor a 100%.
@@ -211,7 +226,17 @@ function verificarCercania(jugador) {
  */
 function actualizarBarra() {
     barraProgreso.style.width = `${progreso}%`;
+
+    // Opcional: Cambiar el color de la barra según el progreso
+    if (progreso >= 80) {
+        barraProgreso.style.backgroundColor = 'green';
+    } else if (progreso >= 50) {
+        barraProgreso.style.backgroundColor = 'yellow';
+    } else {
+        barraProgreso.style.backgroundColor = 'red';
+    }
 }
+
 
 /**
  * Termina el juego y muestra un mensaje de finalización.

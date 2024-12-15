@@ -198,61 +198,67 @@ body, html {
 }
 
 /* POPUP PREGUNTA RESPUESTAS */
-.popup {
+/* POPUP PREGUNTA RESPUESTAS */
+#popup {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 4vh 6vw; /* Espaciado alrededor del contenido */
-    border-radius: 2.77vh;
-    box-shadow: 0 0 5.55vh rgba(0, 0, 0, 0.3); /* Sombra suave */
-    z-index: 1000; /* Asegura que esté sobre otros elementos */
-    max-width: 90vw; /* Limita el tamaño máximo */
-    max-height: 70vh; /* Limita el tamaño máximo de altura */
-    overflow-y: auto; /* Permite desplazarse si el contenido es largo */
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 3px solid #64d8b5;
+    padding: 20px 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: none;
+    border-radius: 10px;
+    width: 60vw;
+    max-width: 60vw;
     text-align: center;
+    font-family: "Irish Grover", cursive;
 }
 
-/* Estilo de la pregunta */
-.pregunta {
-    font-family: "Irish Grover", cursive;
-    font-size: 3.7vh; /* Similar a los botones */
-    color: #333; /* Un color oscuro para que sea legible */
-    margin-bottom: 3vh; /* Espacio debajo de la pregunta */
-    font-weight: bold;
+#popup h2 {
+    font-size: 3vh; /* Tamaño del título */
+    color: #1a7f1a;
+    margin-bottom: 1.5em;
 }
 
-/* Estilo para las opciones */
-.opciones button {
-    font-family: "Irish Grover", cursive;
-    font-size: 2.8vh; /* Tamaño adecuado para leer */
-    background-color: #1a7f1a; /* Color de fondo similar al de los botones */
-    color: white;
+#popup .opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#popup .opcion-boton {
+    padding: 15px;
+    font-size: 1.2vh; /* Tamaño adecuado para opciones */
+    background-color: #64d8b5; /* Color coherente con el juego */
     border: none;
-    padding: 2vh 4vw; /* Espaciado adecuado para el botón */
-    border-radius: 2.77vh;
+    border-radius: 5px;
     cursor: pointer;
-    margin: 1vh 0; /* Espacio entre los botones */
-    transition: background-color 0.3s ease; /* Transición suave al pasar el mouse */
-    width: 80%; /* Ancho del botón */
-    max-width: 20rem; /* Limita el ancho máximo del botón */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.opciones button:hover {
-    background-color: #145e14; /* Efecto hover */
+#popup .opcion-boton:hover {
+    background-color: #1a7f1a; /* Cambio de color al pasar el mouse */
+    transform: scale(1.05); /* Ligero efecto de zoom al hacer hover */
 }
 
-.opciones button:active {
-    background-color: #0d4b0d; /* Cambio de color cuando se presiona */
+#popup .opcion-boton:active {
+    background-color: #145e14; /* Color al hacer clic */
 }
 
-/* Estilo para el mensaje de respuesta */
-.popup .respuesta {
-    font-family: "Irish Grover", cursive;
-    font-size: 3.7vh;
-    color: #333;
-    margin-top: 2vh;
-    font-weight: bold;
-    display: none; /* Inicialmente oculto */
+#popup .cerrar-popup {
+    font-size: 1vh;
+    color: #1a7f1a;
+    cursor: pointer;
+    margin-top: 20px;
+    background: none;
+    border: none;
+    text-decoration: underline;
 }
+
+#popup .cerrar-popup:hover {
+    color: #145e14;
+}
+

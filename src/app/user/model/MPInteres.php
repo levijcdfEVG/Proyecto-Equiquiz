@@ -50,7 +50,6 @@
                     SELECT idPregunta FROM PreguntasPartida
                 )
                 ORDER BY RAND()
-                LIMIT 1
             ';
             $resultado = $this->conexion->prepare($sql);
             $resultado->bindParam(':idEscenario', $idEscenario);
