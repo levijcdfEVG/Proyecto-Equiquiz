@@ -1,6 +1,6 @@
 'use strict';
 
-const juego = document.getElementById('juego');
+const juego = document.getElementById('div-juego');
 const mapa = document.getElementById('mapa');
 
 /**
@@ -147,7 +147,7 @@ function mostrarPopup(pregunta) {
 
             // Oculta el popup y vuelve al juego
             popup.style.display = 'none';
-            juego.style.display = 'block';
+            juego.style.display = 'flex';
         });
 
         opcionesContenedor.appendChild(botonOpcion);
@@ -199,7 +199,6 @@ function verificarCercania(jugador) {
         // Si la distancia es menor a 50px
         if (distancia < 30) {
             const escenario = punto.dataset.escenario;
-            console.log(escenario);
 
             // Si ya se interactuó con este punto, incrementar el contador
             if (!interaccionesPuntos[escenario]) {
@@ -217,6 +216,7 @@ function verificarCercania(jugador) {
 
             // Muestra el popup para interactuar
             fetchPregunta(escenario);
+            punto.style.display = 'none'; // Oculta el punto en el mapa una vez interactuado.
         }
     });
 }
