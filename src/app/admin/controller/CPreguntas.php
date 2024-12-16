@@ -29,7 +29,7 @@ class CPreguntas {
      * En el constructor, se inicializa el modelo MPreguntas.
      */
     public function __construct() {
-        require_once '../config/config.php';
+        require_once 'config/config.php';
         // Requiriendo la clase del modelo.
         require_once 'model/MPreguntas.php';
         $this->MPreguntas = new MPreguntas();
@@ -104,6 +104,10 @@ class CPreguntas {
                 return false;
             }
 
+            // Filtrar respuestas vacías
+            $respuestas = array_filter($respuestas, function($respuesta) {
+                return !empty(trim($respuesta));
+            });
 
             // Si se pasan todas las validaciones, se añade la pregunta
             $resultado = $this->MPreguntas->addQuestion($pregunta, $respuestas, $correcta, $escenario);
@@ -133,7 +137,12 @@ class CPreguntas {
             echo $validacion;
             return false;
         }
-        
+
+        // Filtrar respuestas vacías
+        $respuestas = array_filter($respuestas, function($respuesta) {
+            return !empty(trim($respuesta));
+        });
+
         $this->MPreguntas->modifyQuestion($idPregunta, $pregunta, $respuestas, $correcta);
         header('Location: index.php?c=CPreguntas&a=showQuestions');
     }
@@ -179,9 +188,11 @@ class CPreguntas {
     private function validarPregunta($pregunta, $respuestas, $correcta, $escenario) {
         // Validar longitud de la pregunta
         if (empty(trim($pregunta))) {
-            return "La pregunta no puede estar vacía.";
+            header('Location: index.php?error=La pregunta no puede estar vacía.');
+            exit;
         } elseif (strlen($pregunta) > 350) {
-            return "La longitud de la pregunta supera el límite establecido (350 caracteres).";
+            header('Location: index.php?error=La longitud de la pregunta supera el límite establecido (350 caracteres).');
+            exit;
         }
     
         // Filtrar respuestas vacías y validar longitud
@@ -190,19 +201,22 @@ class CPreguntas {
         });
     
         if (count($respuestas) < 2) {
-            return "Debe proporcionar al menos dos respuestas.";
+            header('Location: index.php?error=Debe proporcionar al menos dos respuestas.');
+            exit;
         }
     
         // Validar que una respuesta correcta haya sido seleccionada
         if (!isset($correcta) || !array_key_exists($correcta - 1, $respuestas)) {
-            return "Debe seleccionar una respuesta correcta válida.";
+            header('Location: index.php?error=Debe seleccionar una respuesta correcta válida.');
+            exit;
         }
     
         // Validar escenario
-        //$escenariosValidos = [1, 2, 3];
-        //if (!in_array($escenario, $escenariosValidos)) {
-        //    return "El escenario seleccionado no es válido.";
-        //}
+        $escenariosValidos = [1, 2, 3];
+        if (!in_array($escenario, $escenariosValidos)) {
+            header('Location: index.php?error=El escenario seleccionado no es válido.');
+            exit;
+        }
     
         // Si todas las validaciones pasan, devolver true
         return true;
