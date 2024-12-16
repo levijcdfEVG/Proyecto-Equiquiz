@@ -20,10 +20,10 @@ class MPuntosInteres {
      * @throws PDOException Si ocurre un error durante la conexión a la base de datos.
      */
     public function __construct() {
-        require_once '../config/config.php';
+        require_once 'config/config.php';
 
         try {
-            require_once '../config/configDb.php';
+            require_once 'config/configDb.php';
             $this->conexion = new PDO(DSN, USUARIO, PASSWORD);
             $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
@@ -59,9 +59,11 @@ class MPuntosInteres {
      * @return bool|PDOStatement Devuelve un objeto PDOStatement con todos los puntos de interés de la base de datos.
      */
     public function getAllPoints() {
-        $sql = "SELECT * FROM Escenario_PtsInteres";
-        $resultado = $this->conexion->prepare($sql);
-        $resultado->execute();
+        $sql = 'SELECT * FROM Escenario_PtsInteres';
+        $resultado = $this->conexion->query($sql);
+        // $resultado->execute();
+        // var_dump($sql);
+        // var_dump($resultado);
 
         return $resultado;
     }
@@ -73,7 +75,7 @@ class MPuntosInteres {
      * @return mixed Retorna un array asociativo con los datos del punto de interés.
      */
     public function getPointById($idEscenario) {
-        $sql = 'SELECT * FROM PuntosInteres_Escenario WHERE idEscenario = :idEscenario';
+        $sql = 'SELECT * FROM Escenario_PtsInteres WHERE idEscenario = :idEscenario';
         $resultado = $this->conexion->prepare($sql);
         $resultado->bindParam(':idEscenario', $idEscenario, PDO::PARAM_INT);
         $resultado->execute();

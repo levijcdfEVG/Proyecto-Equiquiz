@@ -6,14 +6,20 @@
 </head>
 <body>
     <h1>Modificar Punto de Interés</h1>
-    <form action="CPuntosInteres.php?action=modificarPuntoInteres" method="POST">
-        <input type="hidden" name="idEscenario" value="<?= htmlspecialchars($_GET['idEscenario']) ?>">
-        <input type="hidden" name="ptXAntigua" value="<?= htmlspecialchars($_GET['ptX']) ?>">
-        <input type="hidden" name="ptYAntigua" value="<?= htmlspecialchars($_GET['ptY']) ?>">
+    <div>
+        <p>Id del Escenario Anterior: <?= htmlspecialchars($_GET['id']) ?></p>
+        <p>Coordenada X anterior:
+            <?php echo isset($_GET['ptX']) ? htmlspecialchars($_GET['ptX']) : 'No disponible'; ?>
+        </p>
+        <p>Coordenada Y anterior:
+            <?php echo isset($_GET['ptY']) ? htmlspecialchars($_GET['ptY']) : 'No disponible'; ?>
+        </p>
+    </div>
+    <form action="CPuntosInteres.php?action=modifyPoint" method="POST">
         <label for="ptX">Nueva Coordenada X:</label>
-        <input type="number" id="ptX" name="ptX" step="0.01" required><br>
+        <input type="number" id="ptX" name="ptX"><br>
         <label for="ptY">Nueva Coordenada Y:</label>
-        <input type="number" id="ptY" name="ptY" step="0.01" required><br>
+        <input type="number" id="ptY" name="ptY"><br>
         <button type="submit">Modificar</button>
     </form>
 </body>

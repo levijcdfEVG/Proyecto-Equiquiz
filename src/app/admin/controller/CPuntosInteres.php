@@ -8,7 +8,7 @@ class CPuntosInteres {
      * Constructor: inicializa el modelo de Puntos de Interés.
      */
     public function __construct() {
-        require_once '../config/config.php';
+        require_once 'config/config.php';
         require_once 'model/MPuntosInteres.php';
         $this->MPuntosInteres = new MPuntosInteres();
     }
@@ -37,7 +37,7 @@ class CPuntosInteres {
      */
     public function viewModifyPoint() {
         $this->title = 'Modificar Punto de Interés';
-        $this->view = 'modificarPuntoInteres.php';
+        $this->view = 'modificarPuntosInteres.php';
 
         if (isset($_GET['id'])) {
             $pointData = $this->MPuntosInteres->getPointById($_GET['id']);
@@ -48,7 +48,7 @@ class CPuntosInteres {
             $this->view = 'error.php?e="Error: No se proporcionó el ID"';
         }
 
-        require_once VIEWPATH . $this->view;
+        require_once VIEWPATHADMIN.$this->view;
     }
 
     /**
@@ -67,7 +67,7 @@ class CPuntosInteres {
             $this->view = 'error.php?e="Error: No se proporcionó el ID"';
         }
 
-        require_once VIEWPATH . $this->view;
+        require_once VIEWPATH.$this->view;
     }
 
     /**
