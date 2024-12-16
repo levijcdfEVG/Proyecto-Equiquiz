@@ -1,5 +1,4 @@
 Servidor/Config/config_db.php
 src/app/admin/config/config.php
 src/app/admin/config/configDb.php
-src/app/user/config/config.php
 src/app/user/config/configDb.php
