@@ -42,10 +42,10 @@ class CPuntosInteres {
         if (isset($_GET['id'])) {
             $pointData = $this->MPuntosInteres->getPointById($_GET['id']);
             if (!$pointData) {
-                $this->view = 'error.php?e="Error: No se encontró el punto de interés"';
+                $this->view = 'index.php?error="Error: No se encontró el punto de interés"';
             }
         } else {
-            $this->view = 'error.php?e="Error: No se proporcionó el ID"';
+            $this->view = 'index.php?error="Error: No se proporcionó el ID"';
         }
 
         require_once VIEWPATHADMIN.$this->view;
@@ -61,10 +61,10 @@ class CPuntosInteres {
         if (isset($_GET['id'])) {
             $pointData = $this->MPuntosInteres->getPointById($_GET['id']);
             if (!$pointData) {
-                $this->view = 'error.php?e="Error: No se encontró el punto de interés"';
+                $this->view = 'index.php?error="Error: No se encontró el punto de interés"';
             }
         } else {
-            $this->view = 'error.php?e="Error: No se proporcionó el ID"';
+            $this->view = 'index.php?error="Error: No se proporcionó el ID"';
         }
 
         require_once VIEWPATH.$this->view;
@@ -80,7 +80,7 @@ class CPuntosInteres {
                 header('Location: index.php?c=CPuntosInteres&a=viewListPoints');
                 exit;
             } else {
-                $this->view = 'error.php?e="Error al añadir el punto de interés"';
+                $this->view = 'index.php?error="Error al añadir el punto de interés"';
             }
         }
     }
@@ -90,14 +90,16 @@ class CPuntosInteres {
      */
     public function modifyPoint() {
         if (!empty($_POST) && isset($_GET['id'])) {
-            $id = $_GET['id'];
+            $id = (int)$_GET['id'];
+            $ptXAntiguo = (float)$_GET['ptXAntiguo'];
+            $ptYAntiguo= (float)$_GET['ptYAntiguo'];
             $data = $this->getPointDataFromPost();
 
-            if ($this->MPuntosInteres->modifyPoint($id, $data)) {
+            if ($this->MPuntosInteres->modifyPoint($id, $data['ptX'], $data['ptY'], $ptXAntiguo, $ptYAntiguo)) {
                 header('Location: index.php?c=CPuntosInteres&a=viewListPoints');
                 exit;
             } else {
-                $this->view = 'error.php?e="Error al modificar el punto de interés"';
+                $this->view = 'index.php?error="Error al modificar el punto de interés"';
             }
         }
     }
@@ -111,7 +113,7 @@ class CPuntosInteres {
                 header('Location: index.php?c=CPuntosInteres&a=viewListPoints');
                 exit;
             } else {
-                $this->view = 'error.php?e="Error al eliminar el punto de interés"';
+                $this->view = 'index.php?error="Error al eliminar el punto de interés"';
             }
         }
     }

@@ -44,7 +44,7 @@ class MPuntosInteres {
             $sql = "INSERT INTO Escenario_PtsInteres (idEscenario, ptX, ptY) 
                     VALUES (:idEscenario, :ptX, :ptY)";
             $resultado = $this->conexion->prepare($sql);
-            $resultado->bindParam(':idEscenario', $idEscenario);
+            $resultado->bindParam(':idEscenario', $idEscenario, PDO::PARAM_INT);
             $resultado->bindParam(':ptX', $ptX);
             $resultado->bindParam(':ptY', $ptY);
             return $resultado->execute();
@@ -80,7 +80,7 @@ class MPuntosInteres {
         $resultado->bindParam(':idEscenario', $idEscenario, PDO::PARAM_INT);
         $resultado->execute();
 
-        return $resultado->fetch(PDO::FETCH_ASSOC);
+        return $resultado;
     }
 
     /**
@@ -95,22 +95,32 @@ class MPuntosInteres {
      */
     public function modifyPoint($idEscenario, $ptX, $ptY, $ptXAntiguo, $ptYAntiguo) {
         try {
-            $sql = "UPDATE Escenario_PtsInteres 
-                    SET ptX = :ptX, ptY = :ptY
+            var_dump($idEscenario);
+            var_dump($ptX);
+            var_dump($ptXAntiguo);
+            var_dump($ptY);
+            var_dump($ptYAntiguo);
+            // Eliminar el punto de interes existente
+            $sql = 'DELETE FROM Escenario_PtsInteres 
                     WHERE idEscenario = :idEscenario 
-                    AND ptX = :ptXAntiguo 
-                    AND ptY = :ptYAntiguo";
-
-            $resultado = $this->conexion->prepare($sql);
-            $resultado->bindParam(':idEscenario', $idEscenario, PDO::PARAM_INT);
-            $resultado->bindParam(':ptX', $ptX);
-            $resultado->bindParam(':ptY', $ptY);
-            $resultado->bindParam(':ptXAntiguo', $ptXAntiguo);
-            $resultado->bindParam(':ptYAntiguo', $ptYAntiguo);
-
-            return $resultado->execute();
+                    AND ptX = :ptX 
+                    AND ptY = :ptY';
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bindParam(':idEscenario', $idEscenario, PDO::PARAM_INT);
+            $stmt->bindParam(':ptX', $ptXAntiguo);
+            $stmt->bindParam(':ptY', $ptYAntiguo);
+            $stmt->execute();
+        
+            // Insertar el nuevo punto de interes
+                $sql = "INSERT INTO Escenario_PtsInteres (idEscenario, ptX, ptY) VALUES (:idEscenario, :ptX, :ptY)";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bindParam(':idEscenario', $idEscenario, PDO::PARAM_INT);
+                $stmt->bindParam(':ptX', $ptX);
+                $stmt->bindParam(':ptY', $ptY);
+                $stmt->execute();
+            return true; // Operación exitosa
         } catch (Exception $e) {
-            return false; 
+            return false; // Ocurrió un error
         }
     }
 

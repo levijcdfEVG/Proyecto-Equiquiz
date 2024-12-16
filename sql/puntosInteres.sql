@@ -7,12 +7,13 @@ CREATE TABLE Escenario (
 );
 -- Crear la tabla de puntos de interés
 CREATE TABLE Escenario_PtsInteres (
+    idPtoInteres SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     idEscenario TINYINT UNSIGNED NOT NULL,
     ptX DECIMAL(10, 6) NOT NULL,
     ptY DECIMAL(10, 6) NOT NULL,
-    CONSTRAINT pk_Escenario_PtsInteres PRIMARY KEY (idEscenario, ptX, ptY),
-    CONSTRAINT fk_Escenario_PtsInteres FOREIGN KEY (idEscenario) REFERENCES Escenario(idEscenario),
-    CONSTRAINT unique_ptX_ptY UNIQUE (ptX, ptY)
+    CONSTRAINT pk_Escenario_PtsInteres PRIMARY KEY (idPtoInteres),
+    CONSTRAINT csu_PtsInteres UNIQUE (idEscenario, ptX, ptY),
+    CONSTRAINT fk_Escenario_PtsInteres FOREIGN KEY (idEscenario) REFERENCES Escenario(idEscenario)
 );
 
 
