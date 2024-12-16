@@ -7,7 +7,6 @@ const rankingCard = document.getElementById('rankingCard');
 const descripcionCard = document.getElementById('descripcionPersonaje');
 const seleccionEscenarios = document.getElementById('seleccionEscenarios'); 
 const mapaEducacion = document.getElementById('laboral');
-//const btnsalir = document.getElementById('salir');
 
 //Reforzar que los elementos esten ocultos
 historiaCard.style.display = 'none';
@@ -72,18 +71,21 @@ function mostrarDescripcion(personaje) {
     switch (personaje) {
         case 'luis':
             imagenPersonaje.src = '../../../assets/img/luis.png';
+            imagenPersonaje.style.width = '8%';
             nombrePersonaje.textContent = 'Luis';
-            textoDescripcion.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacus metus, dignissim sit amet congue in, maximus quis nibh. In convallis hendrerit neque, eget pretium mi faucibus eu.';
+            textoDescripcion.textContent = 'Luis ha trabajado toda su vida en entornos exigentes física y emocionalmente. A pesar de que enfrenta altos niveles de estrés y desgaste mental, nunca ha buscado ayuda porque siente la presión social que dicta que "los hombres no deben mostrar vulnerabilidad". Ahora quiere mejorar su bienestar emocional y desafiar esos estereotipos.';
             break;
         case 'ana':
             imagenPersonaje.src = '../../../assets/img/ana.png';
+            imagenPersonaje.style.width = '8%';
             nombrePersonaje.textContent = 'Ana';
-            textoDescripcion.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacus metus, dignissim sit amet congue in, maximus quis nibh. In convallis hendrerit neque, eget pretium mi faucibus eu.';
+            textoDescripcion.textContent = 'Ana está en un entorno profesional donde predominan los hombres. A menudo enfrenta prejuicios sobre su capacidad y ve cómo sus ideas o habilidades se ponen en duda simplemente por su género. Busca oportunidades para ser reconocida como una profesional competente en ingeniería y romper estereotipos sobre "carreras masculinas';
             break;
         case 'martina':
             imagenPersonaje.src = '../../../assets/img/martina.png';
+            imagenPersonaje.style.width = '8%';
             nombrePersonaje.textContent = 'Martina';
-            textoDescripcion.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacus metus, dignissim sit amet congue in, maximus quis nibh. In convallis hendrerit neque, eget pretium mi faucibus eu.';
+            textoDescripcion.textContent = 'Martina está terminando su formación y lucha por acceder a becas y programas educativos que históricamente han favorecido a los hombres. Quiere oportunidades para desarrollarse académicamente en igualdad de condiciones y demostrar su potencial, especialmente en áreas STEM (Ciencia, Tecnología, Ingeniería y Matemáticas).';
             break;
         default:
             console.error('Personaje desconocido');

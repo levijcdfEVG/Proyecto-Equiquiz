@@ -8,6 +8,12 @@ import { verificarCercania } from './pointHandler.js';
  */
 'use strict';
 
+let puedeMover = true;
+
+function setPuedeMover(valor) {
+    puedeMover = valor;
+}
+
 /**
  * Elemento del DOM que representa la barra de progreso del juego.
  * @type {HTMLElement}
@@ -97,6 +103,12 @@ function actualizarPosicionJugador() {
  * @param {KeyboardEvent} event - El evento de teclado disparado.
  */
 window.addEventListener("keydown", (event) => {
+
+    // Si el jugador no puede moverse, no se procesa el evento
+    if (!puedeMover) {
+        return;
+    }
+
     // Si el foco está en un campo de entrada, textarea o botón, no se procesa el evento
     if (["input", "textarea", "button"].includes(document.activeElement.tagName.toLowerCase())) {
         return;
@@ -113,32 +125,28 @@ window.addEventListener("keydown", (event) => {
     }
 });
 
-
-//Boton resetear
+// Botón resetear
 document.getElementById('resetear').addEventListener('click', () =>{
     if (confirm('¿Está seguro de que desea resetear el progreso?')) {
         window.location.reload();
     }
-
-
 });
 
-//Boton Salir
+// Botón Salir
 document.getElementById('salir').addEventListener('click', () =>{
     if (confirm('¿Está seguro de que desea salir del juego? (¡PERDERÁS EL PROGRESO!)')) {
-        window.open('../menu/mainMenu.html');
+        window.open('../menu/mainMenu.php');
     }
-}); 
+});
 
-
-//Pantalla Controles
+// Pantalla Controles
 document.getElementById('mostrarControles').addEventListener('click', () =>{
     alert('Controles:\n\nW: Mover hacia arriba\nA: Mover hacia la izquierda\nS: Mover hacia abajo\nD: Mover hacia la derecha\n\nObjetivo: Llegar a los puntos rojos para contestar una respuesta y en caso de que la respuesta sea correcta sumar puntos.\n\n¡Buena suerte!');
 });
-
-
 
 /**
  * Inicializa la posición del jugador y el progreso del juego.
  */
 actualizarPosicionJugador();
+
+export { setPuedeMover };

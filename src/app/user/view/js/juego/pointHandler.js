@@ -1,61 +1,39 @@
 'use strict';
 
+import { setPuedeMover } from './mainJuego.js';
+
 const juego = document.getElementById('div-juego');
-const mapa = document.getElementById('mapa');
 const botones = document.getElementById('barraBotones');
 const drch = document.getElementById('botones-dcha');
 const izqrd  = document.getElementById('controles');
 let puntuacion = 500;
 
-/**
- * Elemento del DOM que representa la barra de progreso.
- * @type {HTMLElement}
- */
+// Elemento del DOM que representa la barra de progreso.
 const barraProgreso = document.getElementById("rellenar-progreso");
 
-/**
- * Lista de todos los puntos (elementos con clase 'punto') en el juego.
- * @type {NodeListOf<HTMLElement>}
- */
+// Lista de todos los puntos (elementos con clase 'punto') en el juego.
 const puntos = document.querySelectorAll('.punto');
 
-/**
- * Elemento del DOM que representa el contador de puntos de interés interactuados.
- * @type {HTMLElement}
- */
+// Elemento del DOM que representa el contador de puntos de interés interactuados.
 const contadorPI = document.querySelector('.botones.progreso');
 
-/**
- * Elemento del DOM que representa el botón de "Terminar" en la interfaz.
- * @type {HTMLElement}
- */
+// Elemento del DOM que representa el botón de "Terminar" en la interfaz.
 const botonTerminar = document.querySelector('.botones.terminar');
 
-/**
- * Nivel de progreso inicial del jugador.
- * @type {number}
- */
+// Nivel de progreso inicial del jugador.
 let progreso = 50; // Progreso inicial
 
 // Establece el ancho de la barra de progreso según el valor de 'progreso'
 barraProgreso.style.width = `${progreso}%`;
 
-/**
- * Objeto que guarda el número de interacciones con los puntos de interés.
- * @type {Object<string, number>}
- */
+// Objeto que guarda el número de interacciones con los puntos de interés.
 const interaccionesPuntos = {};
 
-/**
- * Convierte la respuesta del servidor en un formato de objeto organizado.
- * @param {Array} data - Los datos de preguntas y opciones.
- * @returns {Object} - Un objeto organizado por pregunta y sus opciones.
- */
+// Convierte la respuesta del servidor en un formato de objeto organizado.
 function procesarPreguntas(data) {
     const preguntasFormateadas = {};
 
     data.forEach(item => {
-        // Si la pregunta no está en el objeto, agrégala
         if (!preguntasFormateadas[item.idPregunta]) {
             preguntasFormateadas[item.idPregunta] = {
                 pregunta: item.Pregunta,
@@ -63,7 +41,6 @@ function procesarPreguntas(data) {
             };
         }
 
-        // Agrega la opción a la pregunta correspondiente
         preguntasFormateadas[item.idPregunta].opciones.push({
             idOpcion: item.idOpcion,
             contenido: item.Opcion,
@@ -76,8 +53,6 @@ function procesarPreguntas(data) {
 
 async function fetchPregunta(idEscenario) {
     try {
-        console.log('Entra');
-
         const formData = new FormData();
         formData.append('action', 'getQuestion');
         formData.append('idEscenario', idEscenario);
@@ -94,11 +69,7 @@ async function fetchPregunta(idEscenario) {
         const preguntas = await respuesta.json();
 
         if (preguntas.status === 'success' && preguntas.data.length > 0) {
-            console.log('Preguntas:', preguntas.data);
-
-            // Procesar las preguntas y opciones
-
-            const numPregunta = preguntas.data[0].idPregunta;        
+            const numPregunta = preguntas.data[0].idPregunta;
 
             const pregunta = {
                 idPregunta: preguntas.data[0].idPregunta,
@@ -112,9 +83,6 @@ async function fetchPregunta(idEscenario) {
                     }))
             };
 
-            console.log('Pregunta procesada:', pregunta);
-
-            // Llamada a mostrarPopup con el objeto completo de la pregunta
             mostrarPopup(pregunta);
         } else {
             console.error('Error del servidor o datos vacíos:', preguntas.message || 'Sin preguntas disponibles.');
@@ -125,8 +93,11 @@ async function fetchPregunta(idEscenario) {
 }
 
 function mostrarPopup(pregunta) {
-    const popup = document.getElementById('popup'); // El contenedor del popup
+    const popup = document.getElementById('popup');
     popup.innerHTML = ''; // Limpiar el contenido del popup
+
+    // Desactiva el movimiento del jugador
+    setPuedeMover(false);
 
     // Crear un título con la pregunta
     const titulo = document.createElement('h3');
@@ -159,9 +130,12 @@ function mostrarPopup(pregunta) {
             // Oculta el popup y vuelve al juego
             popup.style.display = 'none';
             juego.style.display = 'flex';
-            botones.style.display = 'flex'
+            botones.style.display = 'flex';
             drch.style.display = 'flex';
             izqrd.style.display = 'flex';
+
+            // Activa el movimiento del jugador
+            setPuedeMover(true);
         });
 
         opcionesContenedor.appendChild(botonOpcion);
@@ -179,74 +153,49 @@ function mostrarPopup(pregunta) {
 }
 
 
-/**
- * Incrementa el progreso en una cantidad específica, limitando el valor a 100%.
- * @param {number} cantidad - La cantidad a incrementar en el progreso.
- */
 function incrementarProgreso(cantidad) {
-    progreso = Math.min(progreso + cantidad, 100); // Limita a 100%
-    puntuacion += 200; // Incrementa la puntuación
+    progreso = Math.min(progreso + cantidad, 100);
+    puntuacion += 200;
 }
 
-/**
- * Decrementa el progreso en una cantidad específica, evitando valores menores a 0%.
- * @param {number} cantidad - La cantidad a decrementar en el progreso.
- */
 function decrementarProgreso(cantidad) {
-    progreso = Math.max(progreso - cantidad, 0); // No permite valores menores a 0%
-    puntuacion -= 100; // Decrementa la puntuación
+    progreso = Math.max(progreso - cantidad, 0);
+    puntuacion -= 100;
 }
 
-/**
- * Verifica la cercanía entre el jugador y los puntos en el juego.
- * Si la distancia entre el jugador y un punto es menor a 50px, muestra un popup con la pregunta relacionada.
- * Además, lleva un contador de interacciones por punto de interés y actualiza el DOM.
- * @param {Object} jugador - El objeto que representa al jugador.
- * @param {HTMLElement} jugador.image - El elemento de imagen del jugador.
- */
 function verificarCercania(jugador) {
     puntos.forEach(punto => {
         const rectPunto = punto.getBoundingClientRect();
         const rectJugador = jugador.image.getBoundingClientRect();
 
-        // Calcular la distancia entre el jugador y el punto
         const distancia = Math.sqrt(
             Math.pow(rectJugador.left - rectPunto.left, 2) +
             Math.pow(rectJugador.top - rectPunto.top, 2)
         );
 
-        // Si la distancia es menor a 50px
         if (distancia < 30) {
             const escenario = punto.dataset.escenario;
 
-            // Si ya se interactuó con este punto, incrementar el contador
             if (!interaccionesPuntos[escenario]) {
                 interaccionesPuntos[escenario] = 0;
             }
             interaccionesPuntos[escenario]++;
 
-            // Actualizar el contador en el DOM
             contadorPI.textContent = `P.I ${interaccionesPuntos[escenario]}/5`;
 
-            // Si el punto se ha interactuado 5 veces, termina el juego
             if (interaccionesPuntos[escenario] >= 5) {
-                botonTerminar.disabled = false; // Desactiva el botón de "Terminar"
+                botonTerminar.disabled = false;
             }
 
-            // Muestra el popup para interactuar
             fetchPregunta(escenario);
-            punto.style.display = 'none'; // Oculta el punto en el mapa una vez interactuado.
+            punto.style.display = 'none';
         }
     });
 }
 
-/**
- * Actualiza el ancho de la barra de progreso según el valor de 'progreso'.
- */
 function actualizarBarra() {
     barraProgreso.style.width = `${progreso}%`;
 
-    // Opcional: Cambiar el color de la barra según el progreso
     if (progreso >= 80) {
         barraProgreso.style.backgroundColor = 'green';
     } else if (progreso >= 50) {
@@ -256,19 +205,10 @@ function actualizarBarra() {
     }
 }
 
-
-/**
- * Termina el juego y muestra un mensaje de finalización.
- */
 function terminarJuego() {
     window.location.href = `formularioRanking.php?puntuacion=${puntuacion}`;
 }
 
-/**
- * Evento que se dispara cuando el jugador hace clic en el botón "Terminar".
- * Este evento llama a la función `terminarJuego`, que finaliza el juego y muestra un mensaje de alerta.
- */
 botonTerminar.addEventListener('click', terminarJuego);
 
-// Exporta la función para verificar la cercanía
 export { verificarCercania };
