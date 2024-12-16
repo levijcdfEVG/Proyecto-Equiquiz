@@ -16,10 +16,10 @@ class MPreguntas {
      * Inicializa la conexión a la base de datos usando PDO y establece el modo de error a excepción.
      */
     public function __construct() {
-        require_once '../config/config.php';
+        require_once 'config/config.php';
 
         try {
-            require_once '../config/configDb.php';
+            require_once 'config/configDb.php';
             // Crear una nueva instancia de PDO para la conexión a la base de datos
             $this->conexion = new PDO(DSN, USUARIO, PASSWORD);
             // Establecer el modo de error de PDO a excepción
@@ -40,7 +40,7 @@ class MPreguntas {
      */
     public function addQuestion($pregunta, $respuestas, $correcta, $escenario) {
         try {
-            $sql = "INSERT INTO pregunta (contenido_P, idEscenario) VALUES (:pregunta, :escenario)";
+            $sql = "INSERT INTO Pregunta (contenido_P, idEscenario) VALUES (:pregunta, :escenario)";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':pregunta', $pregunta);
             $stmt->bindParam(':escenario', $escenario);
@@ -50,15 +50,16 @@ class MPreguntas {
     
             foreach ($respuestas as $index => $respuesta) {
                 $esCorrecta = ($index + 1 == $correcta) ? 1 : 0;
-                $sql = "INSERT INTO opciones (idPregunta, contenidos, esCorrecto) VALUES (:idPregunta, :contenidos, :esCorrecto)";
+                $sql = "INSERT INTO Opciones (idPregunta, contenidos, esCorrecto) VALUES (:idPregunta, :contenidos, :esCorrecta)";
                 $stmt = $this->conexion->prepare($sql);
                 $stmt->bindParam(':idPregunta', $idPregunta);
                 $stmt->bindParam(':contenidos', $respuesta);
-                $stmt->bindParam(':esCorrecto', $esCorrecta);
+                $stmt->bindParam(':esCorrecta', $esCorrecta);
                 $stmt->execute();
             }
             return true; // Operación exitosa
         } catch (Exception $e) {
+            echo $e->getMessage();
             return false; // Ocurrió un error
         }
     }
@@ -73,8 +74,8 @@ class MPreguntas {
             $query = "SELECT 
                         p.idPregunta, 
                         p.contenido_P 
-                      FROM pregunta p
-                      LEFT JOIN opciones o ON p.idPregunta = o.idPregunta
+                      FROM Pregunta p
+                      LEFT JOIN Opciones o ON p.idPregunta = o.idPregunta
                       ORDER BY p.idPregunta";
 
             $stmt = $this->conexion->query($query);
@@ -103,14 +104,14 @@ class MPreguntas {
     public function modifyQuestion($idPregunta, $pregunta, $respuestas, $correcta) {
         try {
             // Actualizar la pregunta
-            $sql = "UPDATE pregunta SET contenido_P = :pregunta WHERE idPregunta = :idPregunta";
+            $sql = "UPDATE Pregunta SET contenido_P = :pregunta WHERE idPregunta = :idPregunta";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':pregunta', $pregunta);
             $stmt->bindParam(':idPregunta', $idPregunta);
             $stmt->execute();
         
             // Eliminar las opciones existentes
-            $sql = "DELETE FROM opciones WHERE idPregunta = :idPregunta";
+            $sql = "DELETE FROM Opciones WHERE idPregunta = :idPregunta";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':idPregunta', $idPregunta);
             $stmt->execute();
@@ -118,7 +119,7 @@ class MPreguntas {
             // Insertar las nuevas opciones
             foreach ($respuestas as $index => $respuesta) {
                 $esCorrecta = ($index + 1 == $correcta) ? 1 : 0;
-                $sql = "INSERT INTO opciones (idPregunta, contenidos, esCorrecto) VALUES (:idPregunta, :contenidos, :esCorrecta)";
+                $sql = "INSERT INTO Opciones (idPregunta, contenidos, esCorrecto) VALUES (:idPregunta, :contenidos, :esCorrecta)";
                 $stmt = $this->conexion->prepare($sql);
                 $stmt->bindParam(':idPregunta', $idPregunta);
                 $stmt->bindParam(':contenidos', $respuesta);
@@ -139,12 +140,12 @@ class MPreguntas {
      */
     public function deleteQuestion($idPregunta) {
         try {
-            $sql = "DELETE FROM opciones WHERE idPregunta = :idPregunta";
+            $sql = "DELETE FROM Opciones WHERE idPregunta = :idPregunta";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':idPregunta', $idPregunta);
             $stmt->execute();
     
-            $sql = "DELETE FROM pregunta WHERE idPregunta = :idPregunta";
+            $sql = "DELETE FROM Pregunta WHERE idPregunta = :idPregunta";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':idPregunta', $idPregunta);
             $stmt->execute();
@@ -161,13 +162,13 @@ class MPreguntas {
      * @return array Un array asociativo con los datos de la pregunta y sus opciones.
      */
     public function getQuestion($idPregunta) {
-        $sql = "SELECT * FROM pregunta WHERE idPregunta = :idPregunta";
+        $sql = "SELECT * FROM Pregunta WHERE idPregunta = :idPregunta";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':idPregunta', $idPregunta);
         $stmt->execute();
         $pregunta = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $sql = "SELECT * FROM opciones WHERE idPregunta = :idPregunta";
+        $sql = "SELECT * FROM Opciones WHERE idPregunta = :idPregunta";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':idPregunta', $idPregunta);
         $stmt->execute();
@@ -184,7 +185,7 @@ class MPreguntas {
      */
     public function getAnswer($idPregunta) {
         try {
-            $query = "SELECT contenidos, esCorrecto FROM opciones WHERE idPregunta = :idPregunta";
+            $query = "SELECT contenidos, esCorrecto FROM Opciones WHERE idPregunta = :idPregunta";
             $stmt = $this->conexion->prepare($query);
             $stmt->execute([':idPregunta' => $idPregunta]);
             $opciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -194,3 +195,4 @@ class MPreguntas {
         }
     }
 }
+?>
