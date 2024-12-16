@@ -3,8 +3,8 @@
         private $MRanking;
 
         public function __construct() {
-            require_once '../config/config.php';
-            require_once '../model/MRanking.php';
+            require_once __DIR__ . '/../model/MRanking.php';
+            
             $this->MRanking = new MRanking();
         }
 
