@@ -1,0 +1,202 @@
+/*Fuentes*/
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+
+body {
+    font-family: "Irish Grover", system-ui;
+    background-color: #c8f2c4;
+}
+
+main h1{
+    font-size: 5rem;
+    text-align: center;
+    margin: 10vh 0;
+}
+
+#navPanelAdmin {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    align-items: center;
+    padding: 3vh;
+    background-color: #a2d79d;
+}
+
+#navPanelAdmin>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#navPanelAdmin>div>span {
+    font-size: 1.3rem;
+    margin: 2vh 0;
+}
+
+#navPanelAdmin i {
+    display: block;
+    font-size: 4rem;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: color 0.3s;
+}
+
+#panelAdmin>div {
+    margin-top: 20vh;
+}
+
+#panelAdmin>div>p{
+    margin: 9vh 3vw;
+    font-size: 2rem;
+}
+
+/**********************/
+/* Modificar Preguntas */
+/**********************/
+
+#modfPreguntas {
+    background-color: #68EDCB;
+    border-radius: 25px;
+    height: 94vh;
+    margin: 3vh 3vw;
+    padding-bottom: 1%;
+}
+
+#modfPreguntas > h2 {   
+    padding-top: 3vh;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-shrink: 1;
+    padding: 1vh 2vw;
+    border-radius: 25px 25px 0 0;
+    margin-bottom: 3vh;
+}
+
+nav a {
+    font-size: 3rem;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #FFFFFF;
+}
+
+nav h2 {
+    font-size: 3rem;
+    color: #000;
+}
+
+.preguntas{
+    position: relative;
+    width: 80%;
+    height: 5vh;  
+    margin: 0 auto;
+    margin-top: 4%;
+    padding: 2vh;
+    border-radius: 5px;
+    background-color: #c8f2c4;
+}   
+
+.preguntas>p,.preguntas>i{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.preguntas>a{
+    position: absolute;
+    top: 50%;
+    left: 85%;
+    transform: translateY(-50%);
+}
+
+#basura{
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translateY(-50%);
+}
+
+.preguntas>p{
+    width: 88%;
+    font-size: 1.3rem;
+}
+
+.preguntas>i{
+    font-size: 1.5rem;
+}
+
+.preguntas i:nth-of-type(1){
+    right: 5%;
+}
+
+.preguntas i:nth-of-type(2){
+    right: 9%;
+}
+
+.basura:hover {
+    color: #f94646;
+}
+
+.modificar:hover {
+    color: #f9f946;
+}
+
+/*****************************/
+/*    Media Queries Tablet   */
+/*****************************/
+@media (max-width: 810px) {
+    body {
+        font-size: 1rem; 
+    }
+
+    #modfPreguntas {
+        height: auto; 
+        margin: 2vh 2vw; 
+        padding: 2vh; 
+    }
+
+    nav a {
+        font-size: 2rem; 
+        text-align: center; 
+    }
+
+    nav h2 {
+        font-size: 2rem; 
+        text-align: center; 
+    }
+
+    .preguntas {
+        width: 90%; 
+        padding: 1.5vh;
+        margin-top: 2%; 
+    }
+
+    .preguntas>p {
+        font-size: 1rem;
+    }
+
+    .preguntas>i {
+        font-size: 1.2rem; 
+    }
+
+    .preguntas i:nth-of-type(1) {
+        right: 3%;
+    }
+
+    .preguntas i:nth-of-type(2) {
+        right: 7%; 
+    }
+
+    .basura:hover, .modificar:hover {
+        transform: scale(1.2); 
+    }
+}

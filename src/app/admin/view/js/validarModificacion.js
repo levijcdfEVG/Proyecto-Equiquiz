@@ -35,11 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const validarRespuesta = (respuesta) => {
         const longitud = respuesta.value.length;
 
-        if (longitud === 0) {
-            alert(`La respuesta "${respuesta.id}" no puede estar vacía`);
-            botonModificar.setAttribute('disabled', 'true');
-            return false;
-        } else if (longitud > 300) {
+        if (longitud > 300) {
             alert(`La longitud de la respuesta "${respuesta.id}" supera el límite establecido (300 caracteres)`);
             botonModificar.setAttribute('disabled', 'true');
             return false;
