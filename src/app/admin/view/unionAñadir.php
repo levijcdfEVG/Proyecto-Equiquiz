@@ -16,9 +16,10 @@
 
     <nav id="opciones">
         <a href="index.php?c=CPersonaje&a=viewAddCharacter" class="nav-link">Añadir Personaje</a>
-        <a href="/diseño/GMapas/añadirMapa.html" class="nav-link">Añadir Mapa</a>
+        <a href="index.php?c=CPuntosInteres&a=viewAddPoint" class="nav-link">Añadir Mapa</a>
         <a href="#" class="nav-link">Añadir Pregunta</a>
     </nav>
+    
 
     <main id="panelAdmin">
         <h1>
