@@ -29,16 +29,14 @@ $respuestas = $data['respuestas'];
                 <?php endfor; ?>
             </div>
         </div>
-        <!--
         <div class="crear-input-group">
             <label for="escenario">Escenario</label>
             <select id="escenario" name="escenario" required>
-                <option value="1" <?php// echo $data['pregunta']['idEscenario'] == 1 ? 'selected' : ''; ?>>Escenario 1</option>
-                <option value="2" <?php// echo $data['pregunta']['idEscenario'] == 2 ? 'selected' : ''; ?>>Escenario 2</option>
-                <option value="3" <?php// echo $data['pregunta']['idEscenario'] == 3 ? 'selected' : ''; ?>>Escenario 3</option>
+                <option value="1" <?php echo $data['pregunta']['idEscenario'] == 1 ? 'selected' : ''; ?>>Educacion</option>
+                <option value="2" <?php echo $data['pregunta']['idEscenario'] == 2 ? 'selected' : ''; ?>>Empleo</option>
+                <option value="3" <?php echo $data['pregunta']['idEscenario'] == 3 ? 'selected' : ''; ?>>Salud</option>
             </select>
         </div>
-        -->
         <div id="button-group">
             <button type="button" class="btn volver" id="volver">Volver</button>
             <button type="submit" id="submitButton" class="btn modificar">Modificar</button>
