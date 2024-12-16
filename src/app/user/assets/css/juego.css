@@ -11,7 +11,7 @@ body, html {
 }
 
 .background {
-    background-image: url('../img/cespedFondo.png');
+    background-image: url('../img/cespedFondo.png'); /* Ruta a la imagen del césped */
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
@@ -19,7 +19,7 @@ body, html {
     justify-content: space-between;
     align-items: center;
     height: 100vh;
-    padding: 5.55vh;
+    padding: 5.55vh; /* 1em ≈ 20px */
     position: relative;
 }
 
@@ -29,22 +29,22 @@ body, html {
     top: 2vh;
     right: 2vw;
     display: flex;
-    flex-direction: column;
-    gap: 5.55vh;
+    flex-direction: column; /* Botones apilados */
+    gap: 5.55vh; /* 1rem ≈ 20px */
 }
 
 #botones-dcha .botones {
     font-family: "Irish Grover", cursive;
-    font-size: 3.7vh;
+    font-size: 3.7vh; /* 2em ≈ 36px */
     background-color: #1a7f1a;
     color: white;
     border: none;
-    padding: 2.77vh 7.81vw;
-    border-radius: 2.77vh;
+    padding: 2.77vh 7.81vw; /* 0.5em ≈ 10px, 1.5em ≈ 30px */
+    border-radius: 2.77vh; /* 0.5em ≈ 10px */
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease;
-    box-shadow: 0 2.77vh 5.55vh rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2.77vh 5.55vh rgba(0, 0, 0, 0.3); /* 5px ≈ 2.77vh, 10px ≈ 5.55vh */
 }
 
 #botones-dcha .botones.progreso:hover {
@@ -55,7 +55,7 @@ body, html {
 #controles {
     display: flex;
     flex-direction: column;
-    gap: 5.55vh;
+    gap: 5.55vh; /* 1em ≈ 20px */
     position: absolute;
     left: 2vw;
     top: 2vh;
@@ -67,7 +67,7 @@ body, html {
     background-color: #1a7f1a;
     color: white;
     border: none;
-    padding: 2.77vh 5.20vw;
+    padding: 2.77vh 5.20vw; /* 0.5em ≈ 10px, 1em ≈ 20px */
     border-radius: 2.77vh;
     cursor: pointer;
     text-align: center;
@@ -88,21 +88,21 @@ body, html {
     height: 78vh;
     margin-right: 5%;
     background-color: white;
-    box-shadow: 0 0 5.55vh rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5.55vh rgba(0, 0, 0, 0.5); /* 10px ≈ 5.55vh */
     overflow: hidden; /* Impide que el jugador salga del área visible */
 }
 
 #player {
-    width: 5%;
+    width: 5%; /* Ajusta según el tamaño deseado del jugador */
     height: auto;
     left: 19.27vw; /* 370px / 1920px * 100 */
     top: 62.96vh; /* 680px / 1080px * 100 */
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /* Centra inicialmente el jugador */
     position: absolute;
 }
 
 #mapa {
-    border: 2.77vh solid #64d8b5;
+    border: 2.77vh solid #64d8b5; /* 0.5em ≈ 10px */
     width: 100%;
     height: 100%;
     margin-bottom: 1%;
@@ -114,10 +114,10 @@ body, html {
     justify-content: space-between;
     align-items: center;
     width: 90%;
-    margin-bottom: 1.85vh;
-    padding: 5.55vh;
+    margin-bottom: 1.85vh; /* 2em ≈ 37px */
+    padding: 5.55vh; /* 1em ≈ 20px */
     background-color: #64d8b5;
-    border-radius: 5.55vh;
+    border-radius: 5.55vh; /* 1em ≈ 20px */
     box-shadow: 0 0 5.55vh rgba(0, 0, 0, 0.5);
 }
 
@@ -126,33 +126,33 @@ body, html {
     flex-direction: column;
     align-items: center;
     flex: 1;
-    position: relative;
+    position: relative; /* Permite posicionar el span encima */
 }
 
 #equidad {
     font-family: "Irish Grover", cursive;
-    font-size: 3.7vh;
+    font-size: 3.7vh; /* 2em ≈ 36px */
     color: black;
-    top: 1.001vh;
-    position: absolute;
+    top: 1.001vh; /* 0.3em ≈ 6px */
+    position: absolute; /* Posiciona el span sobre la barra */
     z-index: +1;
 }
 
 #barra-progreso {
     width: 90%;
-    height: 70px;
+    height: 70px; /* 1.5em ≈ 25px */
     background-color: #e8e8e8;
-    border-radius: 2.77vh;
+    border-radius: 2.77vh; /* 0.5em ≈ 10px */
     overflow: hidden;
     position: relative;
-    border: 0.18vh solid #000;
+    border: 0.18vh solid #000; /* 2px ≈ 0.18vh */
 }
 
 #rellenar-progreso {
-    width: 0%;
+    width: 0%; /* Progreso inicial */
     height: 100%;
     background-color: #ff00ff;
-    transition: width 0.3s ease;
+    transition: width 0.3s ease; /* Animación suave */
 }
 
 #info {
@@ -165,13 +165,13 @@ body, html {
 
 .botones.controles {
     font-family: "Irish Grover", cursive;
-    margin-right: 7.81vw;
+    margin-right: 7.81vw; /* 15% ≈ 15% */
     background-color: #1a7f1a;
     color: white;
     border: none;
-    padding: 2.77vh 5.20vw;
+    padding: 2.77vh 5.20vw; /* 0.5em ≈ 10px, 1em ≈ 20px */
     border-radius: 2.77vh;
-    font-size: 3.14vh; 
+    font-size: 3.14vh; /* 1.7em ≈ 31px */
     cursor: pointer;
     text-align: center;
 }
@@ -182,21 +182,22 @@ body, html {
 
 #escenario {
     font-family: "Irish Grover", cursive;
-    font-size: 3.7vh;
+    font-size: 3.7vh; /* 2em ≈ 36px */
     color: black;
 }
 
 .punto {
     position: absolute;
-    width: 1.04vw;
-    height: 1.85vh;
+    width: 1.04vw; /* 20px / 1920px * 100 */
+    height: 1.85vh; /* 20px / 1080px * 100 */
     background-color: red;
     border-radius: 50%;
     position: absolute;
-    box-shadow: 0 0 5.55vh rgba(255, 0, 0, 0.7); 
+    box-shadow: 0 0 5.55vh rgba(255, 0, 0, 0.7); /* 10px ≈ 5.55vh */
     cursor: pointer;
 }
 
+/* POPUP PREGUNTA RESPUESTAS */
 /* POPUP PREGUNTA RESPUESTAS */
 #popup {
     position: fixed;
@@ -217,7 +218,7 @@ body, html {
 }
 
 #popup h2 {
-    font-size: 3vh;
+    font-size: 3vh; /* Tamaño del título */
     color: #1a7f1a;
     margin-bottom: 1.5em;
 }
@@ -230,8 +231,8 @@ body, html {
 
 #popup .opcion-boton {
     padding: 15px;
-    font-size: 1.2vh;
-    background-color: #64d8b5; 
+    font-size: 1.2vh; /* Tamaño adecuado para opciones */
+    background-color: #64d8b5; /* Color coherente con el juego */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -239,12 +240,12 @@ body, html {
 }
 
 #popup .opcion-boton:hover {
-    background-color: #1a7f1a;
-    transform: scale(1.05);
+    background-color: #1a7f1a; /* Cambio de color al pasar el mouse */
+    transform: scale(1.05); /* Ligero efecto de zoom al hacer hover */
 }
 
 #popup .opcion-boton:active {
-    background-color: #145e14;
+    background-color: #145e14; /* Color al hacer clic */
 }
 
 #popup .cerrar-popup {
