@@ -1,12 +1,21 @@
 <?php
-    require_once '../config/config.php';
+    require_once 'config/config.php';
+
+    //Esto lo usamos para el manejo de errores.
+    if (isset($_GET['error'])) {
+        $error = htmlspecialchars($_GET['error']);
+        require_once HEADADMIN;
+        require_once DEFAULTVIEW.'/error.php';
+        require_once FOOTERADMIN;
+        exit;
+    }
 
     $controller = isset($_GET['c']) ? $_GET['c'] : DEFAULTCONTROLLER;
     $action = isset($_GET['a']) ? $_GET['a'] : DEFAULTVIEW;
 
     // ucfirst convierte la 1 letra de la palabra en mayusculas
     $controllerFile = RUTACONTROLLERADMIN . ucfirst($controller) . '.php';
-    
+    //echo $controllerFile;
 
     if(file_exists($controllerFile)){
         require_once $controllerFile;
