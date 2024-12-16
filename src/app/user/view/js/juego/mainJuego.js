@@ -113,6 +113,31 @@ window.addEventListener("keydown", (event) => {
     }
 });
 
+
+//Boton resetear
+document.getElementById('resetear').addEventListener('click', () =>{
+    if (confirm('¿Está seguro de que desea resetear el progreso?')) {
+        window.location.reload();
+    }
+
+
+});
+
+//Boton Salir
+document.getElementById('salir').addEventListener('click', () =>{
+    if (confirm('¿Está seguro de que desea salir del juego? (¡PERDERÁS EL PROGRESO!)')) {
+        window.open('../menu/mainMenu.html');
+    }
+}); 
+
+
+//Pantalla Controles
+document.getElementById('mostrarControles').addEventListener('click', () =>{
+    alert('Controles:\n\nW: Mover hacia arriba\nA: Mover hacia la izquierda\nS: Mover hacia abajo\nD: Mover hacia la derecha\n\nObjetivo: Llegar a los puntos rojos para contestar una respuesta y en caso de que la respuesta sea correcta sumar puntos.\n\n¡Buena suerte!');
+});
+
+
+
 /**
  * Inicializa la posición del jugador y el progreso del juego.
  */

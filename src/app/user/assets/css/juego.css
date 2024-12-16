@@ -217,8 +217,8 @@ body, html {
     font-family: "Irish Grover", cursive;
 }
 
-#popup h2 {
-    font-size: 3vh; /* Tamaño del título */
+#popup h3 {
+    font-size: 4vh; /* Tamaño del título */
     color: #1a7f1a;
     margin-bottom: 1.5em;
 }
@@ -231,7 +231,7 @@ body, html {
 
 #popup .opcion-boton {
     padding: 15px;
-    font-size: 1.2vh; /* Tamaño adecuado para opciones */
+    font-size: 2vh; /* Tamaño adecuado para opciones */
     background-color: #64d8b5; /* Color coherente con el juego */
     border: none;
     border-radius: 5px;
@@ -249,7 +249,7 @@ body, html {
 }
 
 #popup .cerrar-popup {
-    font-size: 1vh;
+    font-size: 6vh;
     color: #1a7f1a;
     cursor: pointer;
     margin-top: 20px;

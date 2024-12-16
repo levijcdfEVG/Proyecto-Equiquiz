@@ -1,3 +1,11 @@
+<?php
+    require_once '../../../controller/CRanking.php';
+
+    $objCRanking = new CRanking();
+    $stmt = $objCRanking->getRanking();
+    $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -65,7 +73,33 @@
             <button id="volverBtnDescripcion" class="irish-grover-regular">Volver</button>
         </section>
         
-
+        <!-- Sección Ranking -->
+        <section  class="irish-grover-regular" id="rankingCard">
+            <h2>Ranking</h2>
+            <table class="tabla-ranking">
+                <thead>
+                    <tr>
+                        <th>Posición</th>
+                        <th>Nombre</th>
+                        <th>Puntuación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $posicion = 1;
+                        foreach ($ranking as $jugador) {
+                            echo "<tr>";
+                            echo "<td>$posicion</td>";
+                            echo "<td>{$jugador['nombre']}</td>";
+                            echo "<td>{$jugador['puntuacion']}</td>";
+                            echo "</tr>";
+                            $posicion++;
+                        }
+                    ?>
+                </tbody>
+            </table>
+            <button class="volverBtnRanking">Volver</button>
+        </section>
 
         <!-- Seleccion de Escenario -->
         <section id="seleccionEscenarios">

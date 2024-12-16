@@ -2,6 +2,10 @@
 
 const juego = document.getElementById('div-juego');
 const mapa = document.getElementById('mapa');
+const botones = document.getElementById('barraBotones');
+const drch = document.getElementById('botones-dcha');
+const izqrd  = document.getElementById('controles');
+let puntuacion = 500;
 
 /**
  * Elemento del DOM que representa la barra de progreso.
@@ -90,14 +94,22 @@ async function fetchPregunta(idEscenario) {
         const preguntas = await respuesta.json();
 
         if (preguntas.status === 'success' && preguntas.data.length > 0) {
+            console.log('Preguntas:', preguntas.data);
+
+            // Procesar las preguntas y opciones
+
+            const numPregunta = preguntas.data[0].idPregunta;        
+
             const pregunta = {
                 idPregunta: preguntas.data[0].idPregunta,
                 contenido: preguntas.data[0].Pregunta,
-                opciones: preguntas.data.map(opcion => ({
-                    idOpcion: opcion.idOpcion,
-                    contenido: opcion.Opcion,
-                    correcto: opcion.Correcto === 1
-                }))
+                opciones: preguntas.data
+                    .filter(opcion => opcion.idPregunta === numPregunta)
+                    .map(opcion => ({
+                        idOpcion: opcion.idOpcion,
+                        contenido: opcion.Opcion,
+                        correcto: opcion.Correcto === 1
+                    }))
             };
 
             console.log('Pregunta procesada:', pregunta);
@@ -111,7 +123,6 @@ async function fetchPregunta(idEscenario) {
         console.error('Error en la solicitud:', error);
     }
 }
-
 
 function mostrarPopup(pregunta) {
     const popup = document.getElementById('popup'); // El contenedor del popup
@@ -148,6 +159,9 @@ function mostrarPopup(pregunta) {
             // Oculta el popup y vuelve al juego
             popup.style.display = 'none';
             juego.style.display = 'flex';
+            botones.style.display = 'flex'
+            drch.style.display = 'flex';
+            izqrd.style.display = 'flex';
         });
 
         opcionesContenedor.appendChild(botonOpcion);
@@ -158,6 +172,9 @@ function mostrarPopup(pregunta) {
 
     // Mostrar el popup
     juego.style.display = 'none';
+    botones.style.display = 'none';
+    drch.style.display = 'none';
+    izqrd.style.display = 'none';
     popup.style.display = 'block';
 }
 
@@ -168,6 +185,7 @@ function mostrarPopup(pregunta) {
  */
 function incrementarProgreso(cantidad) {
     progreso = Math.min(progreso + cantidad, 100); // Limita a 100%
+    puntuacion += 200; // Incrementa la puntuación
 }
 
 /**
@@ -176,6 +194,7 @@ function incrementarProgreso(cantidad) {
  */
 function decrementarProgreso(cantidad) {
     progreso = Math.max(progreso - cantidad, 0); // No permite valores menores a 0%
+    puntuacion -= 100; // Decrementa la puntuación
 }
 
 /**
@@ -242,7 +261,7 @@ function actualizarBarra() {
  * Termina el juego y muestra un mensaje de finalización.
  */
 function terminarJuego() {
-    alert("¡Juego terminado! Has interactuado con todos los puntos de interés.");
+    window.location.href = `formularioRanking.php?puntuacion=${puntuacion}`;
 }
 
 /**

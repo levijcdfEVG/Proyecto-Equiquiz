@@ -1,3 +1,6 @@
+<?php
+    $puntuacion = $_GET['puntuacion'];
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -5,8 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="../assets/img/Logo.png" type="image/x-icon">
         <title>Inscripción al ranking</title>
-        <link rel="stylesheet" href="/src/app/user/assets/css/reset.css">
-        <link rel="stylesheet" href="/src/app/user/assets/css/styleMaria.css">
+        <link rel="stylesheet" href ="../../../assets/css/reset.css">
+        <link rel="stylesheet" href="../../../assets/css/styleMaria.css">
         <script src="validacionRanking.js"></script>
     </head>
     <body>
@@ -14,19 +17,19 @@
             <h1>Inscripción al Ranking</h1>
         </header>
         <main id="rankingForm">
-            <form action="" method="POST" id="formRanking"> <!-- Luego cambiar el action por el path del controlador -->
+            <form action="../../../controller/intermedioRanking.php" method="POST" id="formRanking"> 
                 <div id="rellenar">
                     <label for="name">Jugador:</label>
                     <input type="text" id="name" name="nombreJugador" placeholder="Ej: Maria">
                     <label for="puntuacion">Puntuacion:</label>
-                    <input type="text" id="puntuacion" name="nombreJugador" placeholder="3800" disabled> <!-- Luego cambiar el placeholder por la puntuacion obtenida en esa partida -->
+                    <input type="text" id="puntuacion" name="puntuacion" value="<?php echo $puntuacion ?>" readonly> 
                 </div>
                 <div id="botones">
                     <button class="cancelar">Cancelar</button>
                     <button class="borrar">Borrar</button> 
                     <button id="enviar">Enviar</button>
                 </div>
-            </form>
+            </>
         </main>
         <button class="volver">Volver</button>
     </body>
