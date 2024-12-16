@@ -39,9 +39,9 @@ class MPuntosInteres {
      * @param float $ptY Coordenada Y del punto de interés.
      * @return bool Indica si la consulta se ejecutó correctamente.
      */
-    public function addPtoInteres($idEscenario, $ptX, $ptY) {
+    public function addPoint($idEscenario, $ptX, $ptY) {
         try {
-            $sql = "INSERT INTO PuntosInteres_Escenario (idEscenario, ptX, ptY) 
+            $sql = "INSERT INTO Escenario_PtsInteres (idEscenario, ptX, ptY) 
                     VALUES (:idEscenario, :ptX, :ptY)";
             $resultado = $this->conexion->prepare($sql);
             $resultado->bindParam(':idEscenario', $idEscenario);
@@ -58,8 +58,8 @@ class MPuntosInteres {
      * 
      * @return bool|PDOStatement Devuelve un objeto PDOStatement con todos los puntos de interés de la base de datos.
      */
-    public function getAllPtoInteres() {
-        $sql = "SELECT * FROM PuntosInteres_Escenario";
+    public function getAllPoints() {
+        $sql = "SELECT * FROM Escenario_PtsInteres";
         $resultado = $this->conexion->prepare($sql);
         $resultado->execute();
 
@@ -72,7 +72,7 @@ class MPuntosInteres {
      * @param int $idEscenario ID del escenario.
      * @return mixed Retorna un array asociativo con los datos del punto de interés.
      */
-    public function getInfoPtoInteres($idEscenario) {
+    public function getPointById($idEscenario) {
         $sql = 'SELECT * FROM PuntosInteres_Escenario WHERE idEscenario = :idEscenario';
         $resultado = $this->conexion->prepare($sql);
         $resultado->bindParam(':idEscenario', $idEscenario, PDO::PARAM_INT);
@@ -91,9 +91,9 @@ class MPuntosInteres {
      * @param float $ptYAntiguo Coordenada Y actual del punto de interés.
      * @return bool Indica si la consulta fue correcta o no.
      */
-    public function modifyPtoInteres($idEscenario, $ptX, $ptY, $ptXAntiguo, $ptYAntiguo) {
+    public function modifyPoint($idEscenario, $ptX, $ptY, $ptXAntiguo, $ptYAntiguo) {
         try {
-            $sql = "UPDATE PuntosInteres_Escenario 
+            $sql = "UPDATE Escenario_PtsInteres 
                     SET ptX = :ptX, ptY = :ptY
                     WHERE idEscenario = :idEscenario 
                     AND ptX = :ptXAntiguo 
@@ -120,9 +120,9 @@ class MPuntosInteres {
      * @param float $ptY Coordenada Y del punto de interés.
      * @return bool Indica si la consulta fue correcta o no.
      */
-    public function deletePtoInteres($idEscenario, $ptX, $ptY) {
+    public function deletePoint($idEscenario, $ptX, $ptY) {
         try {
-            $sql = 'DELETE FROM PuntosInteres_Escenario 
+            $sql = 'DELETE FROM Escenario_PtsInteres 
                     WHERE idEscenario = :idEscenario 
                     AND ptX = :ptX 
                     AND ptY = :ptY';

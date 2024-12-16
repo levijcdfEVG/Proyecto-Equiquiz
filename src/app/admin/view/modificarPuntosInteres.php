@@ -1,25 +1,20 @@
-<div id="contenedor">
-    <h1>Modificar Puntos de Interes</h1>
-    <div id="form-contenedor">
-        <?php
-        $data =  $objController->$action();
-        $pregunta = $data['pregunta'];
-        $respuestas = $data['respuestas'];
-        ?>
-        <div class="input-group">
-            <label for="pregunta">Pregunta</label>
-            <textarea id="pregunta" rows="4"><?php echo htmlspecialchars($pregunta['contenido']); ?></textarea>
-        </div>
-        <?php foreach ($respuestas as $index => $respuesta): ?>
-            <div class="input-group">
-                <label for="respuesta<?php echo $index + 1; ?>">Respuesta <?php echo $index + 1; ?></label>
-                <textarea id="respuesta<?php echo $index + 1; ?>" rows="4"><?php echo htmlspecialchars($respuesta['contenido']); ?></textarea>
-            </div>
-        <?php endforeach; ?>
-        </div>
-        <div id="button-group">
-            <button class="btn volver">Volver</button>
-            <button class="btn modificar">Modificar</button>
-        </div>
-        </div>
-<script type="text/javascript" src="/src/app/admin/view/js/validarModificacion.js"></script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar Punto de Interés</title>
+</head>
+<body>
+    <h1>Modificar Punto de Interés</h1>
+    <form action="CPuntosInteres.php?action=modificarPuntoInteres" method="POST">
+        <input type="hidden" name="idEscenario" value="<?= htmlspecialchars($_GET['idEscenario']) ?>">
+        <input type="hidden" name="ptXAntigua" value="<?= htmlspecialchars($_GET['ptX']) ?>">
+        <input type="hidden" name="ptYAntigua" value="<?= htmlspecialchars($_GET['ptY']) ?>">
+        <label for="ptX">Nueva Coordenada X:</label>
+        <input type="number" id="ptX" name="ptX" step="0.01" required><br>
+        <label for="ptY">Nueva Coordenada Y:</label>
+        <input type="number" id="ptY" name="ptY" step="0.01" required><br>
+        <button type="submit">Modificar</button>
+    </form>
+</body>
+</html>

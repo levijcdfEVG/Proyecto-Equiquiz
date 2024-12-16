@@ -16,7 +16,7 @@
 
 <nav id="opciones">
     <a href="index.php?c=CPersonaje&a=viewListCharacter" class="nav-link">Listar Personajes</a>
-    <a href="#" class="nav-link">Listar Mapas</a>
+    <a href="index.php?c=CPuntosInteres&a=viewListPoints" class="nav-link">Listar Mapas</a>
     <a href="#" class="nav-link">Listar Preguntas</a>
 </nav>
 

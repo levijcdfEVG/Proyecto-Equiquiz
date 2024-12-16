@@ -1,23 +1,39 @@
-<div id="modfPreguntas">
-    <nav>
-        <a href="index.php">Volver</a>
-        <h2>Modificar Preguntas/Respuestas</h2>
-    </nav>
-    <section>
-    <?php
-        $preguntas =  $objController->$action();
-        
-        if (isset($preguntas) && is_array($preguntas)) {
-            foreach ($preguntas as $idPregunta => $pregunta) {
-                echo "<article class='preguntas'>";
-                echo "<p>{$pregunta['pregunta']}</p>";
-                echo "<a href='index.php?c=CPreguntas&a=showModify&id={$idPregunta}'><i class='fas fa-edit modificar' data-id='{$idPregunta}'></i></a>";
-                echo "<i class='fas fa-trash basura' data-id='{$idPregunta}'></i>";
-                echo "</article>";
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Puntos de Interés</title>
+</head>
+<body>
+    <h1>Lista de Puntos de Interés</h1>
+        <?php
+    if(isset($points)){
+        if ($points && $points->rowCount() > 0) {
+            // Iteramos sobre los personajes
+            while ($points = $points->fetch(PDO::FETCH_ASSOC)) {
+                // echo $character['urlImagen'];
+                ?>
+                <div>
+                    <span><?php echo $points['ptX']; ?></span>
+                    <a href="index.php?c=CPuntosInteres&a=viewModifyPoint&id=<?php echo $points['idEscenario'] ?>">
+                        <i class="fas fa-edit modificar"></i>
+                    </a>
+                    <a href="index.php?c=CPuntosInteres&a=deletePoint&id=<?php echo $points['idEscenario'] ?>">
+                        <i class="fas fa-trash basura"></i>
+                    </a>
+                </div>
+                <?php
             }
         } else {
-            echo "<p>No hay preguntas disponibles.</p>";
+            ?>
+            <p>No hay puntos de interes disponibles.</p>
+            <?php
         }
+    } else {
+        ?>
+        <p>No hay puntos de interes disponibles.</p>
+        <?php
+    }
     ?>
-    </section>
-</div>
+</body>
+</html>
