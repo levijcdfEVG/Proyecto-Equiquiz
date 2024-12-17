@@ -12,44 +12,6 @@ main h1{
     margin: 10vh 0;
 }
 
-#navPanelAdmin {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    flex-shrink: 1;
-    align-items: center;
-    padding: 3vh;
-    background-color: #a2d79d;
-}
-
-#navPanelAdmin>div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#navPanelAdmin>div>span {
-    font-size: 1.3rem;
-    margin: 2vh 0;
-}
-
-#navPanelAdmin i {
-    display: block;
-    font-size: 4rem;
-    cursor: pointer;
-    margin: 0 auto;
-    transition: color 0.3s;
-}
-
-#panelAdmin>div {
-    margin-top: 20vh;
-}
-
-#panelAdmin>div>p{
-    margin: 9vh 3vw;
-    font-size: 2rem;
-}
-
 /**********************/
 /* Modificar Preguntas */
 /**********************/
@@ -100,10 +62,8 @@ nav h2 {
 
 .preguntas{
     position: relative;
-    display: flex;
     align-items: center;
-    width: 80%;
-    height: 5vh;  
+    width: 70%;
     margin: 0 auto;
     margin-top: 4%;
     padding: 2vh;
@@ -112,8 +72,8 @@ nav h2 {
 }   
 
 .preguntas > p {
+    width: 80%;
     font-size: 1.3rem;
-    flex-grow: 1;  
     margin: 0;  
 }
 
@@ -122,6 +82,8 @@ nav h2 {
     position: absolute;   
     font-size: 1.5rem;
     cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .preguntas i:nth-of-type(1) {
