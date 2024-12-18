@@ -3,7 +3,7 @@
         private $MRanking;
 
         public function __construct() {
-            require_once __DIR__ . '/../model/MRanking.php';
+            require_once '../model/MRanking.php';
             
             $this->MRanking = new MRanking();
         }
