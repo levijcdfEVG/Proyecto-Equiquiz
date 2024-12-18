@@ -29,7 +29,7 @@
                     <button class="borrar">Borrar</button> 
                     <button id="enviar">Enviar</button>
                 </div>
-            </>
+            </form>
         </main>
         <button class="volver">Volver</button>
     </body>
